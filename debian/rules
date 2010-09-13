@@ -1,7 +1,12 @@
 #!/usr/bin/make -f
 
+#
+# Archivo de construcción de canaima-notas
+# Equipo de Desarrollo de Canaima <franjvasquezg@gmail.com>
+# 
+#
+
 include /usr/share/cdbs/1/rules/debhelper.mk
-include /usr/share/cdbs/1/class/makefile.mk
 
-
-# Add here any variable or target overrides you need.
+update-control::
+        debian/rules DEB_AUTO_UPDATE_DEBIAN_CONTROL=yes debian/control
