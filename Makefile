@@ -7,7 +7,7 @@ install:
 
 	# Installing executables
 	mkdir -p $(DESTDIR)/usr/bin/
-	mv canaima-notas.py  $(DESTDIR)/usr/bin/canaima-notas
+	cp canaima-notas  $(DESTDIR)/usr/bin/
 
 	# Installing documentation
 	#mkdir -p $(DESTDIR)/usr/share/doc/canaima-semilla
