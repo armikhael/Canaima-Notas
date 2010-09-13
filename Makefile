@@ -6,7 +6,7 @@ install:
 	cp -r canaima-notas.png canaima-notas.glade $(DESTDIR)/usr/share/canaima-notas/
 
 	# Installing executables
-	mkdir -p $(DESTDIR)/usr/bin/canaima-notas/
+	mkdir -p $(DESTDIR)/usr/bin/
 	mv canaima-notas.py  $(DESTDIR)/usr/bin/canaima-notas
 
 	# Installing documentation
