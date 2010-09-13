@@ -1,12 +1,11 @@
 #!/usr/bin/make -f
 
-#
 # Archivo de construcción de canaima-notas
 # Equipo de Desarrollo de Canaima <franjvasquezg@gmail.com>
-# 
-#
 
-include /usr/share/cdbs/1/rules/debhelper.mk
+%:
+	dh ${@}
 
-update-control::
-        debian/rules DEB_AUTO_UPDATE_DEBIAN_CONTROL=yes debian/control
+override_dh_auto_install:
+	$(MAKE) DESTDIR=$(CURDIR)/debian/canaima-notas install
+
