@@ -3,8 +3,7 @@
 install:
 	# Installing shared data
 	mkdir -p $(DESTDIR)/usr/share/canaima-notas/
-	cp -r canaima-notas.png canaima-notas.glade $(DESTDIR)/usr/share/canaima-notas/
-
+	cp -r canaima-notas.png arriba2.png canaima-notas.glade $(DESTDIR)/usr/share/canaima-notas/
 	# Installing executables
 	mkdir -p $(DESTDIR)/usr/bin/
 	cp -r canaima-notas  $(DESTDIR)/usr/bin/
