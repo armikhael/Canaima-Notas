@@ -7,7 +7,7 @@ install:
 
 	# Installing executables
 	mkdir -p $(DESTDIR)/usr/bin/
-	cp canaima-notas  $(DESTDIR)/usr/bin/
+	cp -r canaima-notas  $(DESTDIR)/usr/bin/
 
 	# Installing documentation
 	#mkdir -p $(DESTDIR)/usr/share/doc/canaima-semilla
