@@ -27,6 +27,7 @@ class nota_canaima:
 	def __init__(self):
 		
 		#Se define el archivo .glade en el cual se basa la GUI.
+		#self.gladefile = "canaima-notas.glade"
 		self.gladefile = "/usr/share/canaima-notas/canaima-notas.glade"
 		self.widgets = gtk.glade.XML(self.gladefile)
 		
