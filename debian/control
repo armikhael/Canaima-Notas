@@ -9,4 +9,4 @@ Homepage:  http://canaima.softwarelibre.gob.ve/
 Package: canaima-notas
 Architecture: all
 Depends:  python, python-gtk2, python-gobject
-Description: Cliente para  la  plataforma http://notas.canaima.softwarelibre.gob.ve/
+Description: Cliente para la  plataforma http://notas.canaima.softwarelibre.gob.ve/
