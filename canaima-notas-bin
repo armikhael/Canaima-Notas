@@ -1,0 +1,7 @@
+#!/bin/bash
+
+cd /usr/share/canaima-contrasena/
+if [ -e /usr/share/canaima-contrasena/.notas ]
+then
+	python canaima-notas.py
+fi

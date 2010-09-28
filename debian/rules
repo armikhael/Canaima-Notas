@@ -1,11 +1,7 @@
 #!/usr/bin/make -f
 
-# Archivo de construcción de canaima-notas
-# Equipo de Desarrollo de Canaima <franjvasquezg@gmail.com>
-
 %:
 	dh ${@}
 
 override_dh_auto_install:
 	$(MAKE) DESTDIR=$(CURDIR)/debian/canaima-notas install
-
