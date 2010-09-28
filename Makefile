@@ -5,10 +5,10 @@ SHELL := sh -e
 all: test build
 
 test:
-        @echo " Hecho!"
+	@echo " Hecho!"
 
 build:
-        @echo "Nada para compilar!"
+	@echo "Nada para compilar!"
 
 
 install:
