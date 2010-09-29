@@ -1,0 +1,42 @@
+canaima-notas (1.0+7) unstable; urgency=low
+
+  * [881fc04] arreglando canaima-notas-bin
+
+ -- Francisco Javier Vasquez Guerrero <fvasquez@canaima.softwarelibre.gob.ve>  Wed, 29 Sep 2010 06:00:55 -0430
+
+canaima-notas (1.0+6) unstable; urgency=low
+
+  * [dfb6cd4] commit de versionamiento
+
+ -- Francisco Javier Vasquez Guerrero <fvasquez@cnti.gob.ve>  Tue, 28 Sep 2010 12:53:26 -0430
+
+canaima-notas (1.0+5) unstable; urgency=low
+
+  * [1bd7c96] commit de versionamiento
+
+ -- Francisco Javier Vasquez Guerrero <fvasquez@cnti.gob.ve>  Tue, 28 Sep 2010 12:43:05 -0430
+
+canaima-notas (1.0+4) unstable; urgency=low
+
+  * [e57b3bd] commit
+
+ -- Francisco Javier Vasquez Guerrero <fvasquez@canaima.softwarelibre.gob.ve>  Tue, 14 Sep 2010 10:32:49 -0430
+
+canaima-notas (1.0+3) unstable; urgency=low
+
+  * [485bfa9] nuevo commit
+
+ -- Francisco Javier Vasquez Guerrero <fvasquez@canaima.softwarelibre.gob.ve>  Tue, 14 Sep 2010 10:28:33 -0430
+
+canaima-notas (1.0-2) unstable; urgency=low
+
+  * [8b1e6cb] modificamos el control para realizar un nuevo tag
+
+ -- Francisco Javier Vasquez Guerrero <fvasquez@canaima.softwarelibre.gob.ve>  Mon, 13 Sep 2010 11:57:46 -0430
+
+canaima-notas (1.0-1) unstable; urgency=low
+
+  * Initial release (Closes: #nnnn)  <nnnn is the bug number of your ITP>
+
+ -- Francisco Javier Vasquez Guerrero <fvasquez@cnti.gob.ve>  Tue, 31 Aug 2010 14:19:28 -0430
+
