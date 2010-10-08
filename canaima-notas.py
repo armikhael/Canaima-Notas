@@ -30,7 +30,7 @@ class nota_canaima:
 		#self.gladefile = "canaima-notas.glade"
 		self.gladefile = "/usr/share/canaima-notas/canaima-notas.glade"
 		self.widgets = gtk.glade.XML(self.gladefile)
-		
+	
 		#Se conectan las señales basicas de los botones de la GUI de Glade a funciones especificas.
 		dic = { "on_boton_enviar_clicked" : self.enviar,
 		        "on_entry1_activate" : self.enviar,
@@ -58,7 +58,8 @@ class nota_canaima:
 		
 		self.widgets.get_widget("ventana_principal").show();
 				
-		self.widgets.signal_autoconnect(dic)		
+		self.widgets.signal_autoconnect(dic)	
+		
 		gtk.main()
 		
 	def cancelar(self, widget):
@@ -67,12 +68,15 @@ class nota_canaima:
 		exit(0);
 				
 	def enviar(self, widgets):
-		
+		self.vnota=0
+		self.vdis=0		
 		info="___________________ NOTA DE USUARIO ___________________\n\n"				
 		info+="-\n"			
-		texto =self.widgets.get_widget('entry1')	  	
+		texto =self.widgets.get_widget('entry1')	
+		self.t = texto.get_text()
 		info+= texto.get_text()
 	        info+="-\n"
+		self.vnota=1
 		texto =self.widgets.get_widget('entry2')	  	
 		info+= texto.get_text()
 	        info+="-\n"		
@@ -124,52 +128,124 @@ class nota_canaima:
 			info+="-\n"		
 			info+=os.popen("lspci").read()
 			info+="-\n"
+			self.vdis=1
 			
 		if self.widgets.get_widget("usb").get_active() == True:
 			info+="----- Dispositivos conectados por puerto USB:\n\n"
 			info+="-\n"
 			info+=os.popen("lsusb").read()
 			info+="-\n"
+			self.vdis=1
 			
 		if self.widgets.get_widget("t_grafica").get_active() == True:	
-			info+="----- Información sobre su tarjeta gráfica:\n\n"
+			info+="----- Información sobre su aceleración gráfica:\n\n"
 			info+="-\n"
 			info+=os.popen("glxinfo").read()
 			info+="-\n"
+			self.vdis=1
+			
+		if self.widgets.get_widget("tt_grafica").get_active() == True:	
+			info+="----- Información sobre su tarjeta gráfica:\n\n"
+			info+="-\n"
+			info+=os.popen("hwinfo --framebuffer").read()
+			info+="-\n"
+			self.vdis=1
 			
 		if self.widgets.get_widget("ram").get_active() == True:
 			info+="----- Información sobre su memoria RAM (en MB):\n\n"
 			info+="-\n"
 			info+=os.popen("free -m").read()
 			info+="-\n"
+			self.vdis=1
 			
 		if self.widgets.get_widget("d_alma").get_active() == True:
 			info+="----- Información sobre su espacio libre :\n\n"
+			info+="S.ficheros| Tamaño Usado | Disp | Uso% | Montado en\n"
 			info+="-\n"
 			info+=os.popen("df -h").read()
 			info+="-\n"
+			self.vdis=1
 			
-		if self.widgets.get_widget("dd").get_active() == True:
-			info+="----- Información sobre sus discos duros :\n\n"
+		if self.widgets.get_widget("t_part").get_active() == True:
+			info+="----- Información tabla de partición:\n\n"
 			info+="-\n"
 			info+=os.popen("fdisk -l").read()
-			
-		if self.widgets.get_widget("term").get_active() == True:
-			info+="----- Información Archivo term.log :\n\n"
 			info+="-\n"
-			info+=os.popen("cat /var/log/apt/term.log").read()	
-		info+="-\n"
-		info+="-*- Información Enviada automáticamente desde el Cliente Notas Canaima:\n\n"
+			self.vdis=1
 		
+		if self.widgets.get_widget("cpu").get_active() == True:
+			info+="----- Información del procesador:\n\n"
+			info+="-\n"
+			info+=os.popen("cat /proc/cpuinfo").read()
+			info+="-\n"
+			self.vdis=1
+			
+		if self.widgets.get_widget("xorg").get_active() == True:
+			info+="----- Información del servidor de pantallas:\n\n"
+			info+="-\n"
+			info+=os.popen("cat /etc/X11/xorg.conf").read()
+			info+="-\n"
+			self.vdis=1
+			
+		if self.widgets.get_widget("repo").get_active() == True:
+			info+="----- Información de los repositorios :\n\n"
+			info+="-\n"
+			info+=os.popen("cat /etc/apt/sources.list").read()	
+			info+="-\n"			
+			self.vdis=1
+			
+		if self.widgets.get_widget("modulos").get_active() == True:
+			info+="----- Listado de los modulos del kernel:\n\n"
+			info+="-\n"
+			info+=os.popen("lsmod").read()	
+			info+="-\n"			
+			self.vdis=1
+		
+		if self.widgets.get_widget("kernel").get_active() == True:
+			info+="----- Kernel del Equipo :\n\n"
+			info+="-\n"
+			info+=os.popen("uname -a").read()	
+			info+="-\n"
+			info+="-*- Información Enviada automáticamente desde el Cliente Notas Canaima:\n\n"
+			self.vdis=1
+			
 		#Titulo de la Nota
 		titulo1 = self.widgets.get_widget('text_titulo')
-		titulo  = titulo1.get_text()
+		titulo  = titulo1.get_text()		
 		autor1 = self.widgets.get_widget('text_autor')
 		autor = autor1.get_text()
-
-		params = urllib.urlencode({'codigo_form': info, 'titulo_form': titulo,'nombre_form': autor})
-		f = urllib.urlopen("http://notas.canaima.softwarelibre.gob.ve/enviar_consola", params)
-		print f.read()
+		
+		self.ti = titulo1.get_text()
+		self.aut = autor1.get_text()
+		
+		if (self.t==""):
+			md=gtk.MessageDialog(parent=None, flags=0, type=gtk.MESSAGE_QUESTION, buttons=gtk.BUTTONS_CLOSE, message_format="Por Favor!:\nDebes escribir\nen el cuadro de notas")
+			md.run()
+			md.destroy()
+		if (self.vdis==0):			
+			md=gtk.MessageDialog(parent=None, flags=0, type=gtk.MESSAGE_QUESTION, buttons=gtk.BUTTONS_CLOSE, message_format="Por Favor!:\nSeleccione al menos una opción a consultar\nen el cuadro de información")
+			md.run()
+			md.destroy()			
+		if (self.ti==""):
+			md=gtk.MessageDialog(parent=None, flags=0, type=gtk.MESSAGE_QUESTION, buttons=gtk.BUTTONS_CLOSE, message_format="Es necesario:\nUn título")
+			md.run()
+			md.destroy()
+		if (self.aut==""):
+			md=gtk.MessageDialog(parent=None, flags=0, type=gtk.MESSAGE_QUESTION, buttons=gtk.BUTTONS_CLOSE, message_format="Es necesario:\nUn autor")
+			md.run()
+			md.destroy()
+			
+		if (self.vdis==0 or self.t=="" or self.ti=="" or self.aut==""):
+			md=gtk.MessageDialog(parent=None, flags=0, type=gtk.MESSAGE_ERROR, buttons=gtk.BUTTONS_CLOSE, message_format="No es posible enviar la nota")
+			md.run()
+			md.destroy()
+		else:
+			params = urllib.urlencode({'codigo_form': info, 'titulo_form': titulo,'nombre_form': autor})
+			f = urllib.urlopen("http://notas.canaima.softwarelibre.gob.ve/enviar_consola", params)
+			print f.read()
+			md=gtk.MessageDialog(parent=None, flags=0, type=gtk.MESSAGE_INFO, buttons=gtk.BUTTONS_CLOSE, message_format="El envio de la nota a\nhttp://notas.canaima.softwarelibre.gob.ve\nfue exitoso !")
+			md.run()
+			md.destroy()
 		
 		
 if __name__ == "__main__":
