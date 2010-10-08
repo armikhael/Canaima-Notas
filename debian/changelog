@@ -1,3 +1,9 @@
+canaima-notas (1.0+8) unstable; urgency=low
+
+  * [aa9ca07] incorporación de nuevo item de informacion
+
+ -- Francisco Javier Vasquez Guerrero <fvasquez@cnti.gob.ve>  Fri, 08 Oct 2010 10:26:24 -0430
+
 canaima-notas (1.0+7) unstable; urgency=low
 
   [ Francisco Javier Vasquez Guerrero ]
