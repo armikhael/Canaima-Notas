@@ -1,3 +1,17 @@
+canaima-notas (1.0+7) unstable; urgency=low
+
+  [ Francisco Javier Vasquez Guerrero ]
+  * [881fc04] arreglando canaima-notas-bin
+  * [9f2f4de] corrigiendo el changelog
+  * [accd41d] commit de versionamiento
+
+  [ Francisco Vasquez ]
+  * [e9726e4] incluyendo nuevo iten de informcaion y mejora en el gui
+
+  [ Francisco Javier Vasquez Guerrero ]
+
+ -- Francisco Javier Vasquez Guerrero <fvasquez@cnti.gob.ve>  Fri, 08 Oct 2010 07:35:01 -0430
+
 canaima-notas (1.0+6) unstable; urgency=low
 
   * [dfb6cd4] commit de versionamiento
