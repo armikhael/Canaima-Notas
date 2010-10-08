@@ -27,8 +27,8 @@ class nota_canaima:
 	def __init__(self):
 		
 		#Se define el archivo .glade en el cual se basa la GUI.
-		#self.gladefile = "canaima-notas.glade"
-		self.gladefile = "/usr/share/canaima-notas/canaima-notas.glade"
+		self.gladefile = "canaima-notas.glade"
+		#self.gladefile = "/usr/share/canaima-notas/canaima-notas.glade"
 		self.widgets = gtk.glade.XML(self.gladefile)
 	
 		#Se conectan las señales basicas de los botones de la GUI de Glade a funciones especificas.
@@ -144,7 +144,7 @@ class nota_canaima:
 			info+="-\n"
 			self.vdis=1
 			
-		if self.widgets.get_widget("tt_grafica").get_active() == True:	
+		if self.widgets.get_widget("tt_gra").get_active() == True:	
 			info+="----- Información sobre su tarjeta gráfica:\n\n"
 			info+="-\n"
 			info+=os.popen("hwinfo --framebuffer").read()
