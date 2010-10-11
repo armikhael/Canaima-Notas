@@ -144,12 +144,20 @@ class nota_canaima:
 			info+="-\n"
 			self.vdis=1
 			
-		if self.widgets.get_widget("tt_gra").get_active() == True:	
-			info+="----- Información sobre su tarjeta gráfica:\n\n"
+		if self.widgets.get_widget("rf").get_active() == True:	
+			info+="----- Información General fallas al iniciar el sistema:\n\n"
 			info+="-\n"
-			info+=os.popen("hwinfo --framebuffer").read()
+			info+=os.popen("dmesg | tail").read()
 			info+="-\n"
 			self.vdis=1
+			
+		if self.widgets.get_widget("mswap").get_active() == True:	
+			info+="----- Información sobre la meoria swap:\n\n"
+			info+="-\n"
+			info+=os.popen("cat /proc/swaps").read()
+			info+="-\n"
+			self.vdis=1
+			
 			
 		if self.widgets.get_widget("ram").get_active() == True:
 			info+="----- Información sobre su memoria RAM (en MB):\n\n"
@@ -166,12 +174,12 @@ class nota_canaima:
 			info+="-\n"
 			self.vdis=1
 			
-		if self.widgets.get_widget("t_part").get_active() == True:
-			info+="----- Información tabla de partición:\n\n"
-			info+="-\n"
-			info+=os.popen("fdisk -l").read()
-			info+="-\n"
-			self.vdis=1
+		#if self.widgets.get_widget("t_part").get_active() == True:
+			#info+="----- Información tabla de partición:\n\n"
+			#info+="-\n"
+			#info+=os.popen("fdisk -l").read()
+			#info+="-\n"
+			#self.vdis=1
 		
 		if self.widgets.get_widget("cpu").get_active() == True:
 			info+="----- Información del procesador:\n\n"

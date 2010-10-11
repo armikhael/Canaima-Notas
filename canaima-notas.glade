@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE glade-interface SYSTEM "glade-2.0.dtd">
-<!--Generated with glade3 3.4.5 on Fri Oct  8 10:22:35 2010 -->
+<!--Generated with glade3 3.4.5 on Mon Oct 11 12:07:11 2010 -->
 <glade-interface>
   <widget class="GtkWindow" id="ventana_principal">
     <property name="width_request">600</property>
@@ -392,15 +392,15 @@
                       </packing>
                     </child>
                     <child>
-                      <widget class="GtkCheckButton" id="t_part">
+                      <widget class="GtkCheckButton" id="mswap">
                         <property name="width_request">153</property>
                         <property name="height_request">22</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
-                        <property name="label" translatable="yes">Tabla de Particiones</property>
+                        <property name="label" translatable="yes">Memoria swap</property>
                         <property name="response_id">0</property>
                         <property name="draw_indicator">True</property>
-                        <signal name="toggled" handler="on_t_part_toggled"/>
+                        <signal name="toggled" handler="on_mswap_toggled"/>
                       </widget>
                       <packing>
                         <property name="x">285</property>
@@ -472,15 +472,15 @@
                       </packing>
                     </child>
                     <child>
-                      <widget class="GtkCheckButton" id="tt_gra">
+                      <widget class="GtkCheckButton" id="rf">
                         <property name="width_request">120</property>
                         <property name="height_request">25</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
-                        <property name="label" translatable="yes">Tarjeta Gráfica</property>
+                        <property name="label" translatable="yes">Reg. Fallas</property>
                         <property name="response_id">0</property>
                         <property name="draw_indicator">True</property>
-                        <signal name="toggled" handler="on_tt_gra_toggled"/>
+                        <signal name="toggled" handler="on_rf_toggled"/>
                       </widget>
                       <packing>
                         <property name="x">450</property>
