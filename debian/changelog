@@ -1,3 +1,9 @@
+canaima-notas (1.0+9) unstable; urgency=low
+
+  * [943cab2] agregando consultan que no necesitan usuario root
+
+ -- Francisco Javier Vasquez Guerrero <fvasquez@cnti.gob.ve>  Mon, 11 Oct 2010 12:09:50 -0430
+
 canaima-notas (1.0+8) unstable; urgency=low
 
   * [aa9ca07] incorporación de nuevo item de informacion
