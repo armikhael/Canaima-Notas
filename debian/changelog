@@ -1,3 +1,9 @@
+canaima-notas (1.0+10) unstable; urgency=low
+
+  * [fb714ec] Agregando scripts del mantenedor
+
+ -- Luis Alejandro Martínez Faneyth <martinez.faneyth@gmail.com>  Fri, 26 Nov 2010 17:50:18 -0430
+
 canaima-notas (1.0+9) unstable; urgency=low
 
   * [943cab2] agregando consultan que no necesitan usuario root
