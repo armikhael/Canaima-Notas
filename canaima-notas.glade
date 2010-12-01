@@ -1,18 +1,18 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!DOCTYPE glade-interface SYSTEM "glade-2.0.dtd">
-<!--Generated with glade3 3.4.5 on Mon Oct 11 12:07:11 2010 -->
+<?xml version="1.0"?>
 <glade-interface>
+  <!-- interface-requires gtk+ 2.6 -->
+  <!-- interface-naming-policy toplevel-contextual -->
   <widget class="GtkWindow" id="ventana_principal">
     <property name="width_request">600</property>
-    <property name="height_request">630</property>
+    <property name="height_request">670</property>
     <property name="visible">True</property>
     <property name="border_width">1</property>
     <property name="title" translatable="yes" comments="Cliente de la pataforma canaima notas ">Canaima Notas</property>
     <property name="resizable">False</property>
     <property name="modal">True</property>
-    <property name="window_position">GTK_WIN_POS_CENTER_ALWAYS</property>
+    <property name="window_position">center-always</property>
     <property name="default_width">600</property>
-    <property name="default_height">630</property>
+    <property name="default_height">670</property>
     <signal name="destroy" handler="gtk_main_quit"/>
     <child>
       <widget class="GtkFixed" id="fixed1">
@@ -25,7 +25,7 @@
             <property name="height_request">341</property>
             <property name="visible">True</property>
             <property name="label_xalign">0</property>
-            <property name="shadow_type">GTK_SHADOW_IN</property>
+            <property name="shadow_type">in</property>
             <child>
               <widget class="GtkAlignment" id="alignment1">
                 <property name="visible">True</property>
@@ -36,7 +36,7 @@
                     <property name="height_request">0</property>
                     <property name="visible">True</property>
                     <property name="border_width">9</property>
-                    <property name="resize_mode">GTK_RESIZE_IMMEDIATE</property>
+                    <property name="resize_mode">immediate</property>
                     <property name="homogeneous">True</property>
                     <child>
                       <widget class="GtkEntry" id="entry1">
@@ -47,6 +47,9 @@
                         <property name="width_chars">82</property>
                         <signal name="activate" handler="on_entry1_activate"/>
                       </widget>
+                      <packing>
+                        <property name="position">0</property>
+                      </packing>
                     </child>
                     <child>
                       <widget class="GtkEntry" id="entry2">
@@ -237,7 +240,7 @@
                 <property name="visible">True</property>
                 <property name="label" translatable="yes">&lt;b&gt;Cuadro de Notas&lt;/b&gt;</property>
                 <property name="use_markup">True</property>
-                <property name="justify">GTK_JUSTIFY_RIGHT</property>
+                <property name="justify">right</property>
               </widget>
               <packing>
                 <property name="type">label_item</property>
@@ -246,7 +249,7 @@
           </widget>
           <packing>
             <property name="x">3</property>
-            <property name="y">67</property>
+            <property name="y">100</property>
           </packing>
         </child>
         <child>
@@ -258,7 +261,7 @@
           </widget>
           <packing>
             <property name="x">20</property>
-            <property name="y">542</property>
+            <property name="y">568</property>
           </packing>
         </child>
         <child>
@@ -271,7 +274,7 @@
           </widget>
           <packing>
             <property name="x">67</property>
-            <property name="y">540</property>
+            <property name="y">568</property>
           </packing>
         </child>
         <child>
@@ -283,7 +286,7 @@
           </widget>
           <packing>
             <property name="x">303</property>
-            <property name="y">542</property>
+            <property name="y">568</property>
           </packing>
         </child>
         <child>
@@ -296,7 +299,7 @@
           </widget>
           <packing>
             <property name="x">358</property>
-            <property name="y">540</property>
+            <property name="y">568</property>
           </packing>
         </child>
         <child>
@@ -305,7 +308,7 @@
             <property name="height_request">110</property>
             <property name="visible">True</property>
             <property name="label_xalign">0</property>
-            <property name="shadow_type">GTK_SHADOW_IN</property>
+            <property name="shadow_type">in</property>
             <child>
               <widget class="GtkAlignment" id="alignment2">
                 <property name="visible">True</property>
@@ -315,12 +318,12 @@
                     <property name="visible">True</property>
                     <child>
                       <widget class="GtkCheckButton" id="pci">
+                        <property name="label" translatable="yes">Dispositivos PCI</property>
                         <property name="width_request">130</property>
                         <property name="height_request">32</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
-                        <property name="label" translatable="yes">Dispositivos PCI</property>
-                        <property name="response_id">0</property>
+                        <property name="receives_default">False</property>
                         <property name="draw_indicator">True</property>
                         <signal name="toggled" handler="on_pci_toggled"/>
                       </widget>
@@ -330,12 +333,12 @@
                     </child>
                     <child>
                       <widget class="GtkCheckButton" id="modulos">
+                        <property name="label" translatable="yes">Modulos del Kernel</property>
                         <property name="width_request">160</property>
                         <property name="height_request">23</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
-                        <property name="label" translatable="yes">Modulos del Kernel</property>
-                        <property name="response_id">0</property>
+                        <property name="receives_default">False</property>
                         <property name="draw_indicator">True</property>
                         <signal name="toggled" handler="on_modulos_toggled"/>
                       </widget>
@@ -346,12 +349,12 @@
                     </child>
                     <child>
                       <widget class="GtkCheckButton" id="repo">
+                        <property name="label" translatable="yes">Repositorios</property>
                         <property name="width_request">147</property>
                         <property name="height_request">20</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
-                        <property name="label" translatable="yes">Repositorios</property>
-                        <property name="response_id">0</property>
+                        <property name="receives_default">False</property>
                         <property name="draw_indicator">True</property>
                         <signal name="toggled" handler="on_repo_toggled"/>
                       </widget>
@@ -362,12 +365,12 @@
                     </child>
                     <child>
                       <widget class="GtkCheckButton" id="usb">
+                        <property name="label" translatable="yes">Dispositivos USB</property>
                         <property name="width_request">133</property>
                         <property name="height_request">26</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
-                        <property name="label" translatable="yes">Dispositivos USB</property>
-                        <property name="response_id">0</property>
+                        <property name="receives_default">False</property>
                         <property name="draw_indicator">True</property>
                         <signal name="toggled" handler="on_usb_toggled"/>
                       </widget>
@@ -377,13 +380,13 @@
                     </child>
                     <child>
                       <widget class="GtkCheckButton" id="d_alma">
+                        <property name="label" translatable="yes">Espacio Libre
+</property>
                         <property name="width_request">125</property>
                         <property name="height_request">23</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
-                        <property name="label" translatable="yes">Espacio Libre
-</property>
-                        <property name="response_id">0</property>
+                        <property name="receives_default">False</property>
                         <property name="draw_indicator">True</property>
                         <signal name="toggled" handler="on_d_alma_toggled"/>
                       </widget>
@@ -393,12 +396,12 @@
                     </child>
                     <child>
                       <widget class="GtkCheckButton" id="mswap">
+                        <property name="label" translatable="yes">Memoria swap</property>
                         <property name="width_request">153</property>
                         <property name="height_request">22</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
-                        <property name="label" translatable="yes">Memoria swap</property>
-                        <property name="response_id">0</property>
+                        <property name="receives_default">False</property>
                         <property name="draw_indicator">True</property>
                         <signal name="toggled" handler="on_mswap_toggled"/>
                       </widget>
@@ -409,12 +412,12 @@
                     </child>
                     <child>
                       <widget class="GtkCheckButton" id="t_grafica">
+                        <property name="label" translatable="yes">Aceleraci&#xF3;n Gr&#xE1;fica</property>
                         <property name="width_request">151</property>
                         <property name="height_request">20</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
-                        <property name="label" translatable="yes">Aceleración Gráfica</property>
-                        <property name="response_id">0</property>
+                        <property name="receives_default">False</property>
                         <property name="draw_indicator">True</property>
                         <signal name="toggled" handler="on_t_grafica_toggled"/>
                       </widget>
@@ -425,12 +428,12 @@
                     </child>
                     <child>
                       <widget class="GtkCheckButton" id="ram">
+                        <property name="label" translatable="yes">Memoria RAM</property>
                         <property name="width_request">119</property>
                         <property name="height_request">20</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
-                        <property name="label" translatable="yes">Memoria RAM</property>
-                        <property name="response_id">0</property>
+                        <property name="receives_default">False</property>
                         <property name="draw_indicator">True</property>
                         <signal name="toggled" handler="on_RAM_toggled"/>
                       </widget>
@@ -441,12 +444,12 @@
                     </child>
                     <child>
                       <widget class="GtkCheckButton" id="xorg">
+                        <property name="label" translatable="yes">Servidor de Pantalla</property>
                         <property name="width_request">153</property>
                         <property name="height_request">20</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
-                        <property name="label" translatable="yes">Servidor de Pantalla</property>
-                        <property name="response_id">0</property>
+                        <property name="receives_default">False</property>
                         <property name="draw_indicator">True</property>
                         <signal name="toggled" handler="on_xorg_toggled"/>
                       </widget>
@@ -457,12 +460,12 @@
                     </child>
                     <child>
                       <widget class="GtkCheckButton" id="kernel">
+                        <property name="label" translatable="yes">Kernel</property>
                         <property name="width_request">73</property>
                         <property name="height_request">20</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
-                        <property name="label" translatable="yes">Kernel</property>
-                        <property name="response_id">0</property>
+                        <property name="receives_default">False</property>
                         <property name="draw_indicator">True</property>
                         <signal name="toggled" handler="on_kernel_toggled"/>
                       </widget>
@@ -473,12 +476,12 @@
                     </child>
                     <child>
                       <widget class="GtkCheckButton" id="rf">
+                        <property name="label" translatable="yes">Reg. Fallas</property>
                         <property name="width_request">120</property>
                         <property name="height_request">25</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
-                        <property name="label" translatable="yes">Reg. Fallas</property>
-                        <property name="response_id">0</property>
+                        <property name="receives_default">False</property>
                         <property name="draw_indicator">True</property>
                         <signal name="toggled" handler="on_rf_toggled"/>
                       </widget>
@@ -489,12 +492,12 @@
                     </child>
                     <child>
                       <widget class="GtkCheckButton" id="cpu">
+                        <property name="label" translatable="yes">Procesador</property>
                         <property name="width_request">100</property>
                         <property name="height_request">23</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
-                        <property name="label" translatable="yes">Procesador</property>
-                        <property name="response_id">0</property>
+                        <property name="receives_default">False</property>
                         <property name="draw_indicator">True</property>
                         <signal name="toggled" handler="on_cpu_toggled"/>
                       </widget>
@@ -510,7 +513,7 @@
             <child>
               <widget class="GtkLabel" id="label5">
                 <property name="visible">True</property>
-                <property name="label" translatable="yes">&lt;b&gt;Cuadro de Información&lt;/b&gt;</property>
+                <property name="label" translatable="yes">&lt;b&gt;Cuadro de Informaci&#xF3;n&lt;/b&gt;</property>
                 <property name="use_markup">True</property>
               </widget>
               <packing>
@@ -520,22 +523,22 @@
           </widget>
           <packing>
             <property name="x">3</property>
-            <property name="y">417</property>
+            <property name="y">447</property>
           </packing>
         </child>
         <child>
           <widget class="GtkButton" id="boton_cancelar">
+            <property name="label" translatable="yes">Cancelar</property>
             <property name="width_request">148</property>
             <property name="height_request">38</property>
             <property name="visible">True</property>
             <property name="can_focus">True</property>
-            <property name="label" translatable="yes">Cancelar</property>
-            <property name="response_id">0</property>
+            <property name="receives_default">False</property>
             <signal name="clicked" handler="on_boton_cancelar_clicked"/>
           </widget>
           <packing>
-            <property name="x">412</property>
-            <property name="y">583</property>
+            <property name="x">228</property>
+            <property name="y">615</property>
           </packing>
         </child>
         <child>
@@ -551,17 +554,29 @@
         </child>
         <child>
           <widget class="GtkButton" id="boton_enviar">
+            <property name="label" translatable="yes">Enviar Nota</property>
             <property name="width_request">148</property>
             <property name="height_request">38</property>
             <property name="visible">True</property>
             <property name="can_focus">True</property>
-            <property name="label" translatable="yes">Enviar Nota</property>
-            <property name="response_id">0</property>
+            <property name="receives_default">False</property>
             <signal name="clicked" handler="on_boton_enviar_clicked"/>
           </widget>
           <packing>
-            <property name="x">228</property>
-            <property name="y">583</property>
+            <property name="x">411</property>
+            <property name="y">615</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="GtkLabel" id="label4">
+            <property name="width_request">581</property>
+            <property name="height_request">30</property>
+            <property name="visible">True</property>
+            <property name="label" translatable="yes">ayudameeeeeeeeeeeeeeeeeeeee!</property>
+          </widget>
+          <packing>
+            <property name="x">9</property>
+            <property name="y">69</property>
           </packing>
         </child>
       </widget>

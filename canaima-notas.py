@@ -54,6 +54,7 @@ class nota_canaima:
 			"on_text_titulo_activate":self.enviar,
 			"on_text_autor_activate":self.enviar,
 			"on_boton_cancelar_clicked" : self.cancelar,
+			#"on_boton_Ayuda_clicked" : self.ayuda,
 			"gtk_main_quit" : gtk.main_quit }
 		
 		self.widgets.get_widget("ventana_principal").show();
@@ -66,7 +67,14 @@ class nota_canaima:
 		print "Que pase Buen Dia!"
                 self.widgets.get_widget("ventana_principal").hide();
 		exit(0);
-				
+		
+	#def ayuda(self, widget):
+	#	msg = gtk.MessageDialog(self, type=gtk.MESSAGE_INFO, buttons=gtk.BUTTONS_CLOSE)
+	#	msg.set_markup("ayudameeeeeeeeeeeeeeeeeeeeeee!")
+	#	msg.run()
+	#	msg.destroy()
+        
+        			
 	def enviar(self, widgets):
 		self.vnota=0
 		self.vdis=0		
