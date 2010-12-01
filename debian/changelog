@@ -1,3 +1,10 @@
+canaima-notas (1.0+11) unstable; urgency=low
+
+  * [28e3401] Realizando cambios en la estructura de archivos
+  * [162fefc] Modificando string del Nombre
+
+ -- Luis Alejandro Martínez Faneyth <martinez.faneyth@gmail.com>  Wed, 01 Dec 2010 15:01:03 -0430
+
 canaima-notas (1.0+10) unstable; urgency=low
 
   * [fb714ec] Agregando scripts del mantenedor
