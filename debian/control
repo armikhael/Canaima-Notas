@@ -11,11 +11,13 @@ Vcs-Browser: http://gitorious.org/canaima-gnu-linux/canaima-notas/trees/master
 
 Package: canaima-notas
 Architecture: all
-Depends:  python, python-gtk2, python-gobject
+Depends:  python, python-gtk2, python-gobject, ${shlibs:Depends}, ${misc:Depends}
 Description: Cliente para la plataforma http://notas.canaima.softwarelibre.gob.ve/
- A través de de Canaima Notas puedes enviar texto a la plataforma Canaima,
- de forma tal que sirva como referencia a cualquiera que quiera ayudarte con un tema
- en particular, incluyendo problemas de hardware y/o software en Canaima GNU/Linux.
+ A través de Canaima Notas puedes enviar texto a la
+ plataforma Canaima, de forma tal que sirva como referencia
+ a cualquiera que quiera ayudarte con un tema en particular,
+ incluyendo problemas de hardware y/o software en Canaima
+ GNU/Linux.
  .
- Opcionalmente puedes elegir varios datos a incluir en la nota, como por ejemplo:
- Tarjeta gráfica, Kernel, entre otros. 
+ Opcionalmente puedes elegir varios datos a incluir en la
+ nota, como por ejemplo: Tarjeta gráfica, Kernel, entre otros. 
