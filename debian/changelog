@@ -1,3 +1,10 @@
+canaima-notas (1.0+13) unstable; urgency=low
+
+  * [81e97f1] Corrigiendo erroes arrojados por lintian
+  * [942e82d] Arreglando debian/copyright
+
+ -- Luis Alejandro Martínez Faneyth <martinez.faneyth@gmail.com>  Wed, 01 Dec 2010 19:05:50 -0430
+
 canaima-notas (1.0+12) unstable; urgency=low
 
   [ Francisco Vasquez ]
