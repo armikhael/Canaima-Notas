@@ -33,22 +33,6 @@ class nota_canaima:
 	
 		#Se conectan las señales basicas de los botones de la GUI de Glade a funciones especificas.
 		dic = { "on_boton_enviar_clicked" : self.enviar,
-		        "on_entry1_activate" : self.enviar,
-			"on_entry2_activate" : self.enviar,
-			"on_entry3_activate" : self.enviar,
-			"on_entry4_activate" : self.enviar,
-			"on_entry5_activate" : self.enviar,
-			"on_entry6_activate" : self.enviar,
-			"on_entry7_activate" : self.enviar,
-			"on_entry8_activate" : self.enviar,
-			"on_entry9_activate" : self.enviar,
-			"on_entry10_activate" : self.enviar,
-			"on_entry11_activate" : self.enviar,
-			"on_entry12_activate" : self.enviar,
-			"on_entry13_activate" : self.enviar,
-			"on_entry14_activate" : self.enviar,
-			"on_entry15_activate" : self.enviar,
-			"on_entry16_activate" : self.enviar,
 			"on_text_titulo_activate" : self.enviar,
 			"on_text_autor_activate" : self.enviar,			
 			"on_text_titulo_activate":self.enviar,
@@ -80,57 +64,13 @@ class nota_canaima:
 		self.vdis=0		
 		info="___________________ NOTA DE USUARIO ___________________\n\n"				
 		info+="-\n"			
-		texto =self.widgets.get_widget('entry1')	
-		self.t = texto.get_text()
-		info+= texto.get_text()
-	        info+="-\n"
 		self.vnota=1
-		texto =self.widgets.get_widget('entry2')	  	
-		info+= texto.get_text()
+		texto =self.widgets.get_widget('textview1')
+		buffer = texto.get_buffer()
+		start, end = buffer.get_bounds()
+
+		info+= buffer.get_text(start,end)
 	        info+="-\n"		
-		texto =self.widgets.get_widget('entry3')	  	
-		info+= texto.get_text()
-		info+="-\n"		
-		texto =self.widgets.get_widget('entry4')	  	
-		info+= texto.get_text()
-		info+="-\n"		
-		texto =self.widgets.get_widget('entry5')	  	
-		info+= texto.get_text()
-		info+="-\n"		
-		texto =self.widgets.get_widget('entry6')	  	
-		info+= texto.get_text()
-		info+="-\n"		
-		texto =self.widgets.get_widget('entry7')	  	
-		info+= texto.get_text()
-		info+="-\n"		
-		texto =self.widgets.get_widget('entry8')	  	
-		info+= texto.get_text()
-		info+="-\n"		
-		texto =self.widgets.get_widget('entry9')	  	
-		info+= texto.get_text()
-		info+="-\n"		
-		texto =self.widgets.get_widget('entry10')	  	
-		info+= texto.get_text()
-		info+="-\n"		
-		texto =self.widgets.get_widget('entry11')	  	
-		info+= texto.get_text()
-		info+="-\n"		
-		texto =self.widgets.get_widget('entry12')	  	
-		info+= texto.get_text()
-		info+="-\n"		
-		texto =self.widgets.get_widget('entry13')	  	
-		info+= texto.get_text()
-		info+="-\n"		
-		texto =self.widgets.get_widget('entry14')	  	
-		info+= texto.get_text()
-		info+="-\n"		
-		texto =self.widgets.get_widget('entry15')	  	
-		info+= texto.get_text()
-		info+="-\n"		
-		texto =self.widgets.get_widget('entry16')	  	
-		info+= texto.get_text()
-		#print info		
-		info+="-\n"
 		if self.widgets.get_widget("pci").get_active() == True:
 			info+="----- Dispositivos conectados por PCI:\n"
 			info+="-\n"		
@@ -199,7 +139,7 @@ class nota_canaima:
 		if self.widgets.get_widget("xorg").get_active() == True:
 			info+="----- Información del servidor de pantallas:\n\n"
 			info+="-\n"
-			info+=os.popen("cat /etc/X11/xorg.conf").read()
+			info+=os.popen("cat /etc/X11/XF86Config").read()
 			info+="-\n"
 			self.vdis=1
 			
@@ -234,10 +174,6 @@ class nota_canaima:
 		self.ti = titulo1.get_text()
 		self.aut = autor1.get_text()
 		
-		if (self.t==""):
-			md=gtk.MessageDialog(parent=None, flags=0, type=gtk.MESSAGE_QUESTION, buttons=gtk.BUTTONS_CLOSE, message_format="Por Favor!:\nDebes escribir\nen el cuadro de notas")
-			md.run()
-			md.destroy()
 		if (self.vdis==0):			
 			md=gtk.MessageDialog(parent=None, flags=0, type=gtk.MESSAGE_QUESTION, buttons=gtk.BUTTONS_CLOSE, message_format="Por Favor!:\nSeleccione al menos una opción a consultar\nen el cuadro de información")
 			md.run()
@@ -251,7 +187,7 @@ class nota_canaima:
 			md.run()
 			md.destroy()
 			
-		if (self.vdis==0 or self.t=="" or self.ti=="" or self.aut==""):
+		if (self.vdis==0 or self.ti=="" or self.aut==""):
 			md=gtk.MessageDialog(parent=None, flags=0, type=gtk.MESSAGE_ERROR, buttons=gtk.BUTTONS_CLOSE, message_format="No es posible enviar la nota")
 			md.run()
 			md.destroy()

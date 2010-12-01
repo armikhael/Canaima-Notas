@@ -17,220 +17,26 @@
     <child>
       <widget class="GtkFixed" id="fixed1">
         <property name="width_request">600</property>
-        <property name="height_request">630</property>
+        <property name="height_request">670</property>
         <property name="visible">True</property>
         <child>
           <widget class="GtkFrame" id="marco_1">
-            <property name="width_request">594</property>
-            <property name="height_request">341</property>
+            <property name="width_request">590</property>
+            <property name="height_request">250</property>
             <property name="visible">True</property>
             <property name="label_xalign">0</property>
             <property name="shadow_type">in</property>
             <child>
               <widget class="GtkAlignment" id="alignment1">
                 <property name="visible">True</property>
-                <property name="left_padding">12</property>
+                <property name="top_padding">10</property>
+                <property name="bottom_padding">10</property>
+                <property name="left_padding">10</property>
+                <property name="right_padding">10</property>
                 <child>
-                  <widget class="GtkVBox" id="vbox1">
-                    <property name="width_request">0</property>
-                    <property name="height_request">0</property>
+                  <widget class="GtkTextView" id="textview1">
                     <property name="visible">True</property>
-                    <property name="border_width">9</property>
-                    <property name="resize_mode">immediate</property>
-                    <property name="homogeneous">True</property>
-                    <child>
-                      <widget class="GtkEntry" id="entry1">
-                        <property name="visible">True</property>
-                        <property name="can_focus">True</property>
-                        <property name="max_length">82</property>
-                        <property name="has_frame">False</property>
-                        <property name="width_chars">82</property>
-                        <signal name="activate" handler="on_entry1_activate"/>
-                      </widget>
-                      <packing>
-                        <property name="position">0</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <widget class="GtkEntry" id="entry2">
-                        <property name="visible">True</property>
-                        <property name="can_focus">True</property>
-                        <property name="max_length">82</property>
-                        <property name="has_frame">False</property>
-                        <signal name="activate" handler="on_entry2_activate"/>
-                      </widget>
-                      <packing>
-                        <property name="position">1</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <widget class="GtkEntry" id="entry3">
-                        <property name="visible">True</property>
-                        <property name="can_focus">True</property>
-                        <property name="max_length">82</property>
-                        <property name="has_frame">False</property>
-                        <signal name="activate" handler="on_entry3_activate"/>
-                      </widget>
-                      <packing>
-                        <property name="position">2</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <widget class="GtkEntry" id="entry4">
-                        <property name="visible">True</property>
-                        <property name="can_focus">True</property>
-                        <property name="max_length">82</property>
-                        <property name="has_frame">False</property>
-                        <signal name="activate" handler="on_entry4_activate"/>
-                      </widget>
-                      <packing>
-                        <property name="position">3</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <widget class="GtkEntry" id="entry5">
-                        <property name="visible">True</property>
-                        <property name="can_focus">True</property>
-                        <property name="max_length">82</property>
-                        <property name="has_frame">False</property>
-                        <signal name="activate" handler="on_entry5_activate"/>
-                      </widget>
-                      <packing>
-                        <property name="position">4</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <widget class="GtkEntry" id="entry6">
-                        <property name="visible">True</property>
-                        <property name="can_focus">True</property>
-                        <property name="max_length">82</property>
-                        <property name="has_frame">False</property>
-                        <signal name="activate" handler="on_entry6_activate"/>
-                      </widget>
-                      <packing>
-                        <property name="position">5</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <widget class="GtkEntry" id="entry7">
-                        <property name="visible">True</property>
-                        <property name="can_focus">True</property>
-                        <property name="max_length">82</property>
-                        <property name="has_frame">False</property>
-                        <signal name="activate" handler="on_entry7_activate"/>
-                      </widget>
-                      <packing>
-                        <property name="position">6</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <widget class="GtkEntry" id="entry8">
-                        <property name="visible">True</property>
-                        <property name="can_focus">True</property>
-                        <property name="max_length">82</property>
-                        <property name="has_frame">False</property>
-                        <signal name="activate" handler="on_entry8_activate"/>
-                      </widget>
-                      <packing>
-                        <property name="position">7</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <widget class="GtkEntry" id="entry9">
-                        <property name="visible">True</property>
-                        <property name="can_focus">True</property>
-                        <property name="max_length">82</property>
-                        <property name="has_frame">False</property>
-                        <signal name="activate" handler="on_entry9_activate"/>
-                      </widget>
-                      <packing>
-                        <property name="position">8</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <widget class="GtkEntry" id="entry10">
-                        <property name="visible">True</property>
-                        <property name="can_focus">True</property>
-                        <property name="max_length">82</property>
-                        <property name="has_frame">False</property>
-                        <signal name="activate" handler="on_entry10_activate"/>
-                      </widget>
-                      <packing>
-                        <property name="position">9</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <widget class="GtkEntry" id="entry11">
-                        <property name="visible">True</property>
-                        <property name="can_focus">True</property>
-                        <property name="max_length">82</property>
-                        <property name="has_frame">False</property>
-                        <signal name="activate" handler="on_entry11_activate"/>
-                      </widget>
-                      <packing>
-                        <property name="position">10</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <widget class="GtkEntry" id="entry12">
-                        <property name="visible">True</property>
-                        <property name="can_focus">True</property>
-                        <property name="max_length">82</property>
-                        <property name="has_frame">False</property>
-                        <signal name="activate" handler="on_entry12_activate"/>
-                      </widget>
-                      <packing>
-                        <property name="position">11</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <widget class="GtkEntry" id="entry13">
-                        <property name="visible">True</property>
-                        <property name="can_focus">True</property>
-                        <property name="max_length">82</property>
-                        <property name="has_frame">False</property>
-                        <signal name="activate" handler="on_entry13_activate"/>
-                      </widget>
-                      <packing>
-                        <property name="position">12</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <widget class="GtkEntry" id="entry14">
-                        <property name="visible">True</property>
-                        <property name="can_focus">True</property>
-                        <property name="max_length">82</property>
-                        <property name="has_frame">False</property>
-                        <signal name="activate" handler="on_entry14_activate"/>
-                      </widget>
-                      <packing>
-                        <property name="position">13</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <widget class="GtkEntry" id="entry15">
-                        <property name="visible">True</property>
-                        <property name="can_focus">True</property>
-                        <property name="max_length">82</property>
-                        <property name="has_frame">False</property>
-                        <signal name="activate" handler="on_entry15_activate"/>
-                      </widget>
-                      <packing>
-                        <property name="position">14</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <widget class="GtkEntry" id="entry16">
-                        <property name="visible">True</property>
-                        <property name="can_focus">True</property>
-                        <property name="max_length">82</property>
-                        <property name="has_frame">False</property>
-                        <signal name="activate" handler="on_entry16_activate"/>
-                      </widget>
-                      <packing>
-                        <property name="position">15</property>
-                      </packing>
-                    </child>
+                    <property name="can_focus">True</property>
                   </widget>
                 </child>
               </widget>
@@ -248,63 +54,51 @@
             </child>
           </widget>
           <packing>
-            <property name="x">3</property>
-            <property name="y">100</property>
+            <property name="x">5</property>
+            <property name="y">160</property>
           </packing>
         </child>
         <child>
           <widget class="GtkLabel" id="label2">
-            <property name="width_request">44</property>
-            <property name="height_request">20</property>
+            <property name="width_request">50</property>
+            <property name="height_request">30</property>
             <property name="visible">True</property>
             <property name="label" translatable="yes">Titulo:</property>
           </widget>
           <packing>
-            <property name="x">20</property>
-            <property name="y">568</property>
+            <property name="x">10</property>
+            <property name="y">560</property>
           </packing>
         </child>
         <child>
           <widget class="GtkEntry" id="text_titulo">
             <property name="width_request">230</property>
-            <property name="height_request">24</property>
+            <property name="height_request">30</property>
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <signal name="activate" handler="on_text_titulo_activate"/>
           </widget>
           <packing>
-            <property name="x">67</property>
-            <property name="y">568</property>
-          </packing>
-        </child>
-        <child>
-          <widget class="GtkLabel" id="label3">
-            <property name="width_request">52</property>
-            <property name="height_request">21</property>
-            <property name="visible">True</property>
-            <property name="label" translatable="yes">Autor:</property>
-          </widget>
-          <packing>
-            <property name="x">303</property>
-            <property name="y">568</property>
+            <property name="x">60</property>
+            <property name="y">560</property>
           </packing>
         </child>
         <child>
           <widget class="GtkEntry" id="text_autor">
             <property name="width_request">230</property>
-            <property name="height_request">24</property>
+            <property name="height_request">30</property>
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <signal name="activate" handler="on_text_autor_activate"/>
           </widget>
           <packing>
-            <property name="x">358</property>
-            <property name="y">568</property>
+            <property name="x">350</property>
+            <property name="y">560</property>
           </packing>
         </child>
         <child>
           <widget class="GtkFrame" id="marco_2">
-            <property name="width_request">594</property>
+            <property name="width_request">590</property>
             <property name="height_request">110</property>
             <property name="visible">True</property>
             <property name="label_xalign">0</property>
@@ -522,23 +316,24 @@
             </child>
           </widget>
           <packing>
-            <property name="x">3</property>
-            <property name="y">447</property>
+            <property name="x">5</property>
+            <property name="y">430</property>
           </packing>
         </child>
         <child>
           <widget class="GtkButton" id="boton_cancelar">
-            <property name="label" translatable="yes">Cancelar</property>
-            <property name="width_request">148</property>
-            <property name="height_request">38</property>
+            <property name="label" translatable="yes">Cerrar</property>
+            <property name="width_request">150</property>
+            <property name="height_request">30</property>
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="receives_default">False</property>
+            <property name="relief">half</property>
             <signal name="clicked" handler="on_boton_cancelar_clicked"/>
           </widget>
           <packing>
-            <property name="x">228</property>
-            <property name="y">615</property>
+            <property name="x">50</property>
+            <property name="y">610</property>
           </packing>
         </child>
         <child>
@@ -555,28 +350,42 @@
         <child>
           <widget class="GtkButton" id="boton_enviar">
             <property name="label" translatable="yes">Enviar Nota</property>
-            <property name="width_request">148</property>
-            <property name="height_request">38</property>
+            <property name="width_request">150</property>
+            <property name="height_request">30</property>
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="receives_default">False</property>
             <signal name="clicked" handler="on_boton_enviar_clicked"/>
           </widget>
           <packing>
-            <property name="x">411</property>
-            <property name="y">615</property>
+            <property name="x">400</property>
+            <property name="y">610</property>
           </packing>
         </child>
         <child>
           <widget class="GtkLabel" id="label4">
             <property name="width_request">581</property>
-            <property name="height_request">30</property>
+            <property name="height_request">82</property>
             <property name="visible">True</property>
-            <property name="label" translatable="yes">ayudameeeeeeeeeeeeeeeeeeeee!</property>
+            <property name="label" translatable="yes">Bienvenido a Canaima Notas. A trav&#xE9;s de &#xE9;sta aplicaci&#xF3;n podr&#xE1;s enviar texto a la plataforma Canaima, de forma tal que sirva como referencia a cualquiera que quiera ayudarte con un tema en particular, incluyendo problemas de hardware y/o software en Canaima GNU/Linux. Opcionalmente puedes elegir varios datos a incluir en la nota, como por ejemplo: Tarjeta gr&#xE1;fica, Kernel, entre otros. </property>
+            <property name="justify">fill</property>
+            <property name="wrap">True</property>
           </widget>
           <packing>
             <property name="x">9</property>
             <property name="y">69</property>
+          </packing>
+        </child>
+        <child>
+          <widget class="GtkLabel" id="label3">
+            <property name="width_request">50</property>
+            <property name="height_request">30</property>
+            <property name="visible">True</property>
+            <property name="label" translatable="yes">Autor:</property>
+          </widget>
+          <packing>
+            <property name="x">300</property>
+            <property name="y">560</property>
           </packing>
         </child>
       </widget>
