@@ -1,3 +1,13 @@
+canaima-notas (1.0+12) unstable; urgency=low
+
+  [ Francisco Vasquez ]
+  * [c9b19ea] agregando etiqueta de identificación de canaima notas
+
+  [ Luis Alejandro Martínez Faneyth ]
+  * [c053826] Agregando mejoras
+
+ -- Luis Alejandro Martínez Faneyth <martinez.faneyth@gmail.com>  Wed, 01 Dec 2010 18:44:50 -0430
+
 canaima-notas (1.0+11) unstable; urgency=low
 
   * [28e3401] Realizando cambios en la estructura de archivos
