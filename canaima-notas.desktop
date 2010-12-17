@@ -2,7 +2,7 @@
 Version=1.0
 Encoding=UTF-8
 Name=Canaima Notas
-Icon=/usr/share/icons/canaima-iconos/128x128/apps-extra/preferences-certificates.png
+Icon=/usr/share/icons/canaima-iconos/apps/48/tomboy.png
 Comment=Canaima notas: Cliente canaima notas
 Exec=/usr/bin/canaima-notas
 Terminal=false
