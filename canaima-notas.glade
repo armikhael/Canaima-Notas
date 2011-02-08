@@ -1,18 +1,19 @@
 <?xml version="1.0"?>
 <glade-interface>
-  <!-- interface-requires gtk+ 2.6 -->
+  <!-- interface-requires gtk+ 2.16 -->
   <!-- interface-naming-policy toplevel-contextual -->
   <widget class="GtkWindow" id="ventana_principal">
     <property name="width_request">600</property>
     <property name="height_request">670</property>
     <property name="visible">True</property>
     <property name="border_width">1</property>
-    <property name="title" translatable="yes" comments="Cliente de la pataforma canaima notas ">Canaima Notas</property>
+    <property name="title" translatable="yes" comments="Cliente de la Plataforma Canaima Notas ">Canaima Notas</property>
     <property name="resizable">False</property>
     <property name="modal">True</property>
     <property name="window_position">center-always</property>
     <property name="default_width">600</property>
     <property name="default_height">670</property>
+    <property name="deletable">False</property>
     <signal name="destroy" handler="gtk_main_quit"/>
     <child>
       <widget class="GtkFixed" id="fixed1">
@@ -341,11 +342,8 @@
             <property name="width_request">600</property>
             <property name="height_request">65</property>
             <property name="visible">True</property>
-            <property name="pixbuf">arriba2.png</property>
+            <property name="pixbuf">/usr/share/canaima-estilo-visual/arte/banner-app-top.png</property>
           </widget>
-          <packing>
-            <property name="y">-1</property>
-          </packing>
         </child>
         <child>
           <widget class="GtkButton" id="boton_enviar">
@@ -365,7 +363,7 @@
         <child>
           <widget class="GtkLabel" id="label4">
             <property name="width_request">581</property>
-            <property name="height_request">82</property>
+            <property name="height_request">90</property>
             <property name="visible">True</property>
             <property name="label" translatable="yes">Bienvenido a Canaima Notas. A trav&#xE9;s de &#xE9;sta aplicaci&#xF3;n podr&#xE1;s enviar texto a la plataforma Canaima, de forma tal que sirva como referencia a cualquiera que quiera ayudarte con un tema en particular, incluyendo problemas de hardware y/o software en Canaima GNU/Linux. Opcionalmente puedes elegir varios datos a incluir en la nota, como por ejemplo: Tarjeta gr&#xE1;fica, Kernel, entre otros. </property>
             <property name="justify">fill</property>

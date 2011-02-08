@@ -15,7 +15,7 @@ install:
 	# Installing shared data
 	mkdir -p $(DESTDIR)/usr/share/canaima-notas/.notas/
 	mkdir -p $(DESTDIR)/usr/share/applications/
-	cp arriba2.png canaima-notas.glade canaima-notas.py  $(DESTDIR)/usr/share/canaima-notas/
+	cp canaima-notas.glade canaima-notas.py  $(DESTDIR)/usr/share/canaima-notas/
 	cp canaima-notas.desktop $(DESTDIR)/usr/share/applications/
 
 	# Installing executables
