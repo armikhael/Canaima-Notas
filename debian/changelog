@@ -1,10 +1,13 @@
 canaima-notas (1.0+11) unstable; urgency=low
 
+  [ Luis Alejandro Martínez Faneyth ]
   * [28e3401] Realizando cambios en la estructura de archivos
   * [162fefc] Modificando string del Nombre
   * [953788a] Corrigiendo Makefile, removiendo imagen no utilizada
 
- -- Luis Alejandro Martínez Faneyth <martinez.faneyth@gmail.com>  Wed, 01 Dec 2010 15:09:30 -0430
+  [ Francisco Vasquez ]
+
+ -- Francisco Vasquez <fvasquez@cnti.gob.ve>  Tue, 15 Mar 2011 11:28:44 -0430
 
 canaima-notas (1.0+10) unstable; urgency=low
 
