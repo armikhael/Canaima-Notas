@@ -3,5 +3,5 @@
 cd /usr/share/canaima-notas/
 if [ -e /usr/share/canaima-notas/.notas ]
 then
-	python canaima-notas.py
+	python Canaima-Notas.py
 fi

@@ -1,7 +1,7 @@
 #!/bin/bash -e
 #
 # ==============================================================================
-# PAQUETE: canaima-notas
+# PAQUETE: canaima-notas documentador de fallas
 # ARCHIVO: postinst
 # DESCRIPCIÓN: Configura el sistema despues la instalación del paquete.
 # COPYRIGHT:
