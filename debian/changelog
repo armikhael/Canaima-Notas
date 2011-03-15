@@ -1,3 +1,39 @@
+canaima-notas (1.0+16) unstable; urgency=low
+
+  * [d2cec76] Cambiando imágenes locales a configuración global
+  * [8219601] Agregando dependencia a canaima-estilo-visual
+
+ -- Luis Alejandro Martínez Faneyth <martinez.faneyth@gmail.com>  Tue, 08 Feb 2011 01:42:22 -0430
+
+canaima-notas (1.0+15) unstable; urgency=low
+
+  * [e2ca186] Cambiando ícono para el nuevo tema de Canaima 3.0
+
+ -- Luis Alejandro Martínez Faneyth <martinez.faneyth@gmail.com>  Fri, 17 Dec 2010 11:50:27 -0430
+
+canaima-notas (1.0+14) unstable; urgency=low
+
+  * [b871c87] Corrigiendo errores de lintian
+
+ -- Luis Alejandro Martínez Faneyth <martinez.faneyth@gmail.com>  Wed, 01 Dec 2010 19:10:17 -0430
+
+canaima-notas (1.0+13) unstable; urgency=low
+
+  * [81e97f1] Corrigiendo erroes arrojados por lintian
+  * [942e82d] Arreglando debian/copyright
+
+ -- Luis Alejandro Martínez Faneyth <martinez.faneyth@gmail.com>  Wed, 01 Dec 2010 19:05:50 -0430
+
+canaima-notas (1.0+12) unstable; urgency=low
+
+  [ Francisco Vasquez ]
+  * [c9b19ea] agregando etiqueta de identificación de canaima notas
+
+  [ Luis Alejandro Martínez Faneyth ]
+  * [c053826] Agregando mejoras
+
+ -- Luis Alejandro Martínez Faneyth <martinez.faneyth@gmail.com>  Wed, 01 Dec 2010 18:44:50 -0430
+
 canaima-notas (1.0+11) unstable; urgency=low
 
   [ Luis Alejandro Martínez Faneyth ]
@@ -93,7 +129,7 @@ canaima-notas (1.0-2) unstable; urgency=low
 
 canaima-notas (1.0-1) unstable; urgency=low
 
-  * Initial release (Closes: #nnnn)  <nnnn is the bug number of your ITP>
+  * Versión Inicial
 
  -- Francisco Javier Vasquez Guerrero <fvasquez@cnti.gob.ve>  Tue, 31 Aug 2010 14:19:28 -0430
 
