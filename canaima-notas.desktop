@@ -1,0 +1,12 @@
+[Desktop Entry]
+Version=1.0
+Encoding=UTF-8
+Name=Canaima Notas
+Icon=/usr/share/icons/canaima-iconos/apps/48/tomboy.png
+Comment=Canaima notas: Cliente canaima notas
+Exec=/usr/bin/canaima-notas
+Terminal=false
+Type=Application
+Categories=GNOME;Utility;
+StartupNotify=False
+Name[es_VE]=Canaima Notas
