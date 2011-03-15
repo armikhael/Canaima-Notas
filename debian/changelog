@@ -22,7 +22,12 @@ canaima-notas (1.0+11) unstable; urgency=low
 
   [ Francisco Vasquez ]
 
- -- Francisco Vasquez <fvasquez@fvasquez.cnti.gob.ve>  Tue, 15 Mar 2011 12:05:51 -0430
+  [ Francisco Vasquez Guerrero ]
+  * [2222db4] corrigiendo error del makefile
+
+  [ Francisco Vasquez ]
+
+ -- Francisco Vasquez <fvasquez@fvasquez.cnti.gob.ve>  Tue, 15 Mar 2011 12:20:54 -0430
 
 canaima-notas (1.0+10) unstable; urgency=low
 
