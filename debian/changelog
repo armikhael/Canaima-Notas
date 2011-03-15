@@ -7,7 +7,12 @@ canaima-notas (1.0+11) unstable; urgency=low
 
   [ Francisco Vasquez ]
 
- -- Francisco Vasquez <fvasquez@cnti.gob.ve>  Tue, 15 Mar 2011 11:28:44 -0430
+  [ Francisco Vasquez Guerrero ]
+  * [c33199c] creando la carpeta /usr/share/canaima-notas/
+
+  [ Francisco Vasquez ]
+
+ -- Francisco Vasquez <fvasquez@fvasquez.cnti.gob.ve>  Tue, 15 Mar 2011 11:42:26 -0430
 
 canaima-notas (1.0+10) unstable; urgency=low
 
