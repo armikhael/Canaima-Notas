@@ -15,6 +15,7 @@ install:
 	# Installing shared data
 	mkdir -p $(DESTDIR)/usr/share/canaima-notas/
 	mkdir -p $(DESTDIR)/usr/share/canaima-notas/.notas/
+	mkdir -p $(DESTDIR)/usr/bin/canaima-notas/
 	mkdir -p $(DESTDIR)/usr/share/applications/
 	cp Canaima-Notas.py AUTHORS COPYING README THANKS  $(DESTDIR)/usr/share/canaima-notas/
 	cp -R catpcha/  $(DESTDIR)/usr/share/canaima-notas/
