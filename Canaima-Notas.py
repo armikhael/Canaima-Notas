@@ -26,7 +26,7 @@ class Main(gtk.Window):
 		gtk.Window.__init__(self, gtk.WINDOW_TOPLEVEL)
 		gtk.Window.set_position(self, gtk.WIN_POS_CENTER_ALWAYS)
 		self.set_title('DOCUMENTADOR DE FALLAS')
-		self.set_size_request(600, 560)
+		self.set_size_request(600, 570)
 		self.set_resizable(False)
 		#icono del panel
 		self.set_icon_from_file('/usr/share/icons/canaima-iconos/apps/48/tomboy.png')
@@ -73,7 +73,7 @@ Tarjeta gráfica, Kernel, entre otros.\n</b></span>")
 		#<<<<<<<<<<<<<<<<Sección de informaión del sistema>>>>>>>>>>>>>>>>>>>>>>>>>
 		self.tabla1 =  gtk.Table(4,4,True)
 
-		self.check_acelgraf = gtk.CheckButton("Aceleración Gráfica.")
+		self.check_acelgraf = gtk.CheckButton("Aceleración Gráfica")
 		self.check_acelgraf.set_active(False)
 		self.check_xorg = gtk.CheckButton("Servidor Pantalla")
 		self.check_xorg.set_active(False)
@@ -177,7 +177,8 @@ Tarjeta gráfica, Kernel, entre otros.\n</b></span>")
 
 		titulo = gtk.Label("Titulo:")
 		autor = gtk.Label("Autor:")
-		validador = gtk.Label("CAPTCHA -->")
+		validador = gtk.Label("Escribe lo que")
+		validador2 = gtk.Label("ves en la imagen")
 
 		captcha = gtk.Image()
 		captcha.set_size_request(70,24)
@@ -202,7 +203,8 @@ Tarjeta gráfica, Kernel, entre otros.\n</b></span>")
 		self.tabla_T.show()
 
 		self.tabla_V = gtk.Table(1,5,True)
-		self.tabla_V.attach(validador, 1, 2, 0, 1)
+		self.tabla_V.attach(validador, 0, 1, 0, 1)
+		self.tabla_V.attach(validador2, 1, 2, 0, 1)
 		self.tabla_V.attach(captcha, 2, 3, 0, 1)
 		self.tabla_V.attach(self.Dato, 3, 4, 0, 1)
 		self.tabla_V.show()
@@ -221,7 +223,7 @@ Tarjeta gráfica, Kernel, entre otros.\n</b></span>")
 		button_box.pack_start(self.aceptar, False, False)
 
 		vbox = gtk.VBox(False, 0)
-		vbox.pack_start(image, False, False, 0)
+		vbox.pack_start(image, False, False, 6)
 		#vbox.pack_start(titulo, False, False, 0)
 		vbox.pack_start(descripcion, False, False, 0)
 		vbox.pack_start(marco, False, False, 4)
@@ -376,6 +378,21 @@ para solucionar problemas en su sistema \
 			start, end = self.textbuffer.get_bounds()
 			self.dnota = self.textbuffer.get_text(start,end)
 
+			#--------------------capchat---------------------------
+			captcha.clear()
+			captcha.set_size_request(70,24)
+			self.ran_word = random.choice(ita_words)
+			self.v = ita_words.index(self.ran_word)
+			posi.insert(0, self.v)
+			captcha.set_from_file(self.ran_word)
+			self.tabla_V.attach(captcha, 2, 3, 0, 1)
+			#--------------------capchat---------------------------
+
+			#Titulo de la Nota
+			titulo  = self.Titulo.get_text()
+			autor = self.Autor.get_text()
+
+
 			info+= self.textbuffer.get_text(start,end)
 			info+="-\n"
 			if self.check_lspci.get_active() == True:
@@ -452,7 +469,7 @@ para solucionar problemas en su sistema \
 			if self.check_logsys.get_active() == True:
 				info+="----- Log del Systema:\n\n"
 				info+="-\n"
-				info+=os.popen("cat /var/log/cat syslog | grep 'error'").read()
+				info+=os.popen("cat /var/log/syslog | grep 'error'").read()
 				info+="-\n"
 				self.vdis=1
 
@@ -489,24 +506,14 @@ para solucionar problemas en su sistema \
 				info+="-*- Información Enviada automáticamente desde el Documentador de Fallas (Cliente Notas Canaima):\n\n"
 				self.vdis=1
 
-			captcha.clear()
-			captcha.set_size_request(70,24)
-			self.ran_word = random.choice(ita_words)
-			self.v = ita_words.index(self.ran_word)
-			posi.insert(0, self.v)
-			captcha.set_from_file(self.ran_word)
-			self.tabla_V.attach(captcha, 2, 3, 0, 1)
-
-			#Titulo de la Nota
-			titulo  = self.Titulo.get_text()
-			autor = self.Autor.get_text()
 
 			if self.dnota == "":
-				md=gtk.MessageDialog(parent=None, flags=0, type=gtk.MESSAGE_QUESTION, buttons=gtk.BUTTONS_CLOSE, message_format="Por Favor!:\nTomese unos instantes y describa su situación o inconveniente\n Cuadro de Notas")
+				md=gtk.MessageDialog(parent=None, flags=0, type=gtk.MESSAGE_QUESTION, buttons=gtk.BUTTONS_CLOSE, message_format="Por Favor!:\nTomese unos instantes y describa su situación o inconveniente\n en el Cuadro de Documentar Falla")
 				md.run()
 				md.destroy()
+				#self.__close2()
 			if (self.vdis==0):
-				md=gtk.MessageDialog(parent=None, flags=0, type=gtk.MESSAGE_QUESTION, buttons=gtk.BUTTONS_CLOSE, message_format="Por Favor!:\nSeleccione al menos una opción a consultar\nen el cuadro de información")
+				md=gtk.MessageDialog(parent=None, flags=0, type=gtk.MESSAGE_QUESTION, buttons=gtk.BUTTONS_CLOSE, message_format="Por Favor!:\nSeleccione al menos una opción a consultar\ndel cuadro Seleccione datos a enviar")
 				md.run()
 				md.destroy()
 			if (self.Titulo.get_text()==""):
@@ -518,10 +525,11 @@ para solucionar problemas en su sistema \
 				md.run()
 				md.destroy()
 
-			if (self.vdis==0 or self.Titulo.get_text()=="" or self.Autor.get_text()==""):
-				md=gtk.MessageDialog(parent=None, flags=0, type=gtk.MESSAGE_ERROR, buttons=gtk.BUTTONS_CLOSE, message_format="No es posible enviar la nota")
+			if (self.dnota == "" or self.vdis==0 or self.Titulo.get_text()=="" or self.Autor.get_text()==""):
+				md=gtk.MessageDialog(parent=None, flags=0, type=gtk.MESSAGE_ERROR, buttons=gtk.BUTTONS_CLOSE, message_format="No es posible enviar la nota o ver el informe")
 				md.run()
 				md.destroy()
+
 			else:
 
 				if self.check_gdocum.get_active() == True:
@@ -534,13 +542,18 @@ para solucionar problemas en su sistema \
 				else:
 					params = urllib.urlencode({'codigo_form': info, 'titulo_form': titulo,'nombre_form': autor})
 					f = urllib.urlopen("http://notas.canaima.softwarelibre.gob.ve/enviar_consola", params)
-					print f.read()
-					md=gtk.MessageDialog(parent=None, flags=0, type=gtk.MESSAGE_INFO, buttons=gtk.BUTTONS_CLOSE, message_format="El envio de la nota a\nhttp://notas.canaima.softwarelibre.gob.ve\nfue exitoso !")
+					#print f.read()
+					self.mes = f.read()
+					md=gtk.MessageDialog(parent=None, flags=0, type=gtk.MESSAGE_INFO, buttons=gtk.BUTTONS_CLOSE, message_format= "El envio de la nota fue exitoso..!\n "+str(self.mes))
 					md.run()
 					md.destroy()
 
 		self.aceptar.set_sensitive(True)
 		self.cerrar.set_sensitive(True)
+
+	#def __close2(self, widget=None):
+		#self.destroy()
+
 
 	def __close(self, widget=None):
 		self.destroy()
