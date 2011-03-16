@@ -1,9 +1,15 @@
 canaima-notas (1.0+18) unstable; urgency=low
 
+  [ root ]
   * [bd45d38] modificando apariencia de canaima notas o documenteador de
     fallas
 
- -- root <root@fvasquez.cnti.gob.ve>  Wed, 16 Mar 2011 12:05:09 -0430
+  [ Francisco Vasquez Guerrero ]
+  * [2e98708] editando imagende del catpcha
+
+  [ Francisco Vasquez ]
+
+ -- Francisco Vasquez <fvasquez@fvasquez.cnti.gob.ve>  Wed, 16 Mar 2011 13:48:22 -0430
 
 canaima-notas (1.0+17) unstable; urgency=low
 
