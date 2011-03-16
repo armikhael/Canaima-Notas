@@ -177,7 +177,7 @@ Tarjeta gráfica, Kernel, entre otros.\n</b></span>")
 
 		titulo = gtk.Label("Titulo:")
 		autor = gtk.Label("Autor:")
-		validador = gtk.Label("Escribe lo que")
+		validador = gtk.Label("        Escribe lo que")
 		validador2 = gtk.Label("ves en la imagen")
 
 		captcha = gtk.Image()
