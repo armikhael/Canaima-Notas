@@ -35,7 +35,7 @@ class Main(gtk.Window):
 		image.set_from_file('/usr/share/canaima-estilo-visual/arte/banner-app-top.png')
 		descripcion = gtk.Label()
 		descripcion.set_use_markup(True)
-		descripcion.set_markup("<span size='medium'><b> Bienvenido(a) a Canaima Notas. A través de ésta aplicación podrás enviar\n \
+		descripcion.set_markup("<span size='medium'><b> Bienvenido(a) a Canaima Notas. A través de esta herramienta podrás enviar\n \
 texto a la plataforma Canaima, de forma tal que sirva  como referencia  a\n \
 cualquiera  que  quiera   ayudarte  con  un  tema  en particular, incluyendo\n \
 problemas   de   hardware  y/o software en Canaima  GNU/Linux.\n \
