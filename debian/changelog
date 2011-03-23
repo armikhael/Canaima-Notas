@@ -1,3 +1,14 @@
+canaima-notas (1.0+19) unstable; urgency=low
+
+  [ Francisco Vasquez Guerrero ]
+  * [8577a11] modificado el changelog
+  * [7bb1e13] corriegiendo bug
+  * [72b1823] corriendo error del trac y código
+
+  [ Francisco Vasquez ]
+
+ -- Francisco Vasquez <fvasquez@fvasquez.cnti.gob.ve>  Wed, 23 Mar 2011 10:47:56 -0430
+
 canaima-notas (1.0+18) unstable; urgency=low
 
   [ root ]
