@@ -85,8 +85,8 @@ Tarjeta gráfica, Kernel, entre otros.\n</b></span>")
 		self.check_prefe.set_active(False)
 		self.check_ired = gtk.CheckButton("Interfaces de RED")
 		self.check_ired.set_active(False)
-		self.check_logsys = gtk.CheckButton("LOG del systema")
-		self.check_logsys.set_active(False)
+		#self.check_logsys = gtk.CheckButton("LOG del systema")
+		#self.check_logsys.set_active(False)
 
 		buttonIsys = self.check_all2 = gtk.CheckButton("Seleccionar Todos")
 		buttonIsys.connect("toggled", self.selectalldis2, "Todos")
@@ -101,7 +101,7 @@ Tarjeta gráfica, Kernel, entre otros.\n</b></span>")
 		self.tabla1.attach(self.check_prefe, 1, 2, 1, 2)
 		self.tabla1.attach(self.check_ired, 1, 2, 2, 3)
 
-		self.tabla1.attach(self.check_logsys, 2, 3, 0, 1)
+		#self.tabla1.attach(self.check_logsys, 2, 3, 0, 1)
 
 		# Check box para seleccionar todos
 		self.tabla1.attach(self.check_all2, 3, 4, 0, 1)
@@ -466,12 +466,12 @@ para solucionar problemas en su sistema \
 				info+="-\n"
 				self.vdis=1
 
-			if self.check_logsys.get_active() == True:
-				info+="----- Log del Systema:\n\n"
-				info+="-\n"
-				info+=os.popen("cat /var/log/syslog | grep 'error'").read()
-				info+="-\n"
-				self.vdis=1
+			#if self.check_logsys.get_active() == True:
+			#	info+="----- Log del Systema:----------\n\n"
+			#	info+="-\n"
+			#	info+=os.popen("gksu cat /var/log/syslog|grep 'error'").read()
+			#	info+="-\n"
+			#	self.vdis=1
 
 			if self.check_xorg.get_active() == True:
 				info+="----- Información del servidor de pantallas en Canaima 2.1 (lenny):\n\n"
