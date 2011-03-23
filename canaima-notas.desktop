@@ -7,6 +7,6 @@ Comment=Canaima notas: Cliente canaima notas
 Exec=/usr/bin/canaima-notas
 Terminal=false
 Type=Application
-Categories=GNOME;Utility;
+Categories=GNOME;GTK;System;
 StartupNotify=False
 Name[es_VE]=Documentador de Fallas
