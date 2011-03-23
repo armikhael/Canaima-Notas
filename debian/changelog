@@ -1,3 +1,12 @@
+canaima-notas (1.0+21) unstable; urgency=low
+
+  [ Francisco Vasquez Guerrero ]
+  * [f4c38c8] redireccionandocanaima notas al herramientas de sistemas
+
+  [ Francisco Vasquez ]
+
+ -- Francisco Vasquez <fvasquez@fvasquez.cnti.gob.ve>  Wed, 23 Mar 2011 15:52:48 -0430
+
 canaima-notas (1.0+20) unstable; urgency=low
 
   [ Francisco Vasquez Guerrero ]
