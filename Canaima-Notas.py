@@ -26,7 +26,7 @@ class Main(gtk.Window):
 		gtk.Window.__init__(self, gtk.WINDOW_TOPLEVEL)
 		gtk.Window.set_position(self, gtk.WIN_POS_CENTER_ALWAYS)
 		self.set_title('DOCUMENTADOR DE FALLAS')
-		self.set_size_request(600, 570)
+		self.set_size_request(600, 520)
 		self.set_resizable(False)
 		#icono del panel
 		self.set_icon_from_file('/usr/share/icons/canaima-iconos/apps/48/tomboy.png')
@@ -35,12 +35,11 @@ class Main(gtk.Window):
 		image.set_from_file('/usr/share/canaima-estilo-visual/arte/banner-app-top.png')
 		descripcion = gtk.Label()
 		descripcion.set_use_markup(True)
-		descripcion.set_markup("<span size='medium'><b> Bienvenido(a) a Canaima Notas. A través de esta herramienta podrás enviar\n \
-texto a la plataforma Canaima, de forma tal que sirva  como referencia  a\n \
-cualquiera  que  quiera   ayudarte  con  un  tema  en particular, incluyendo\n \
-problemas   de   hardware  y/o software en Canaima  GNU/Linux.\n \
-Opcionalmente puedes elegir varios datos de las pestañas, por ejemplo la \n \
-Tarjeta gráfica, Kernel, entre otros.\n</b></span>")
+		descripcion.set_markup("<span size='small'><b> Bienvenido(a) al documentador de fallas. A través de esta herramienta podrás enviar\n \
+texto a la plataforma Canaima, de forma tal que sirva  como  referencia  a  cualquiera\n \
+que quiera ayudarte con un tema en particular, incluyendo problemas de hardware y/o\n \
+software en  Canaima  GNU/Linux. Opcionalmente  puedes  elegir  varios datos de las\n \
+pestañas, por ejemplo la Tarjeta gráfica, Kernel, entre otros.</b></span>")
 		#<<<<<<<<<<<<<<<<Sección de Dispositivos>>>>>>>>>>>>>>>>>>>>>>
 		self.tabla =  gtk.Table(4,4,True)
 		self.check_lspci = gtk.CheckButton("PCI")
