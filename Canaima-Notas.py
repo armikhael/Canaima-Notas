@@ -303,13 +303,13 @@ pestañas, por ejemplo la Tarjeta gráfica, Kernel, entre otros.</b></span>")
 		about.set_logo(gtk.gdk.pixbuf_new_from_file('/usr/share/icons/canaima-iconos/apps/48/tomboy.png'))#canaima.png
 		about.set_name('Documentador de Fallas')
 		about.set_comments("CLIENTE DE LA PLATAFORMA DE NOTAS\
-\n\n  Permite Documentar las fallas del sistema, utilizandos comandos especializados de linux. \
-El usuario en el cuadro 'Documentar Falla' podrá escribir su persección del problema. \
+\n\n  Permite Documentar las fallas del sistema, utilizando comandos especializados de GNU/linux. \
+El usuario en el cuadro 'Documentar Falla' podrá escribir su percepción del problema. \
 El cuadro 'Seleccione datos a enviar' son una serie de comandos predefinidos, que diagnosticaran el sistemas dependiendo \
- de la categoria en que se encuentre como 'Dispositivos', 'Información de sistema' o 'Kernel'. \n\nLuego \
-el boton ACEPTAR, envia todos estos datos a la plataforma de 'http://notas.canaima.softwarelibre.gob.ve/' ó si lo desea prodra ver el documento que el sistema genera.\n\
-Seleccionando la opción de 'Ver documento'\n\n Nota: toda la información propocionada es utilizada por los técnicos de Canaima \
-para solucionar problemas en su sistema \
+ de la categoría en que se encuentre como 'Dispositivos', 'Información de sistema' o 'Kernel'. \n\nLuego \
+el botón ACEPTAR, envía todos estos datos a la plataforma de 'http://notas.canaima.softwarelibre.gob.ve/' ó si lo desea podrá ver el documento que el sistema genera.\n\
+Seleccionando la opción de 'Ver documento'\n\n Nota: toda la información proporcionada es utilizada por los técnicos de la comunidad Canaima \
+para solucionar el problema de su sistema. \
 ")
 		about.set_transient_for(self)
 		about.set_position(gtk.WIN_POS_CENTER_ON_PARENT)
