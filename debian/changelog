@@ -6,7 +6,12 @@ canaima-notas (1.0+22) unstable; urgency=low
 
   [ Francisco Vasquez ]
 
- -- Francisco Vasquez <fvasquez@fvasquez.cnti.gob.ve>  Sat, 26 Mar 2011 09:33:41 -0430
+  [ Francisco Vasquez Guerrero ]
+  * [2ab08cd] prueba
+  * [e9f9633] ahora si
+  * [22bd8ad] corrigiendo ticket 250 de canaima notas
+
+ -- Francisco Vasquez Guerrero <fvasquez@cnti.gob.ve>  Mon, 25 Apr 2011 11:21:31 -0430
 
 canaima-notas (1.0+21) unstable; urgency=low
 
