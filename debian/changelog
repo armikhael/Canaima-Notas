@@ -1,3 +1,9 @@
+canaima-notas (1.0+23) unstable; urgency=low
+
+  * [d25d2ae] corregido error de lintian sobre los copyringht
+
+ -- Francisco Vasquez Guerrero <fvasquez@cnti.gob.ve>  Thu, 28 Apr 2011 09:59:26 -0430
+
 canaima-notas (1.0+22) unstable; urgency=low
 
   [ Francisco Vasquez Guerrero ]
