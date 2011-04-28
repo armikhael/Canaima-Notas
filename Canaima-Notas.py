@@ -305,7 +305,7 @@ pestañas, por ejemplo la Tarjeta gráfica, Kernel, entre otros.</b></span>")
 		about.set_comments("CLIENTE DE LA PLATAFORMA DE NOTAS\
 \n\n  Permite Documentar las fallas del sistema, utilizando comandos especializados de GNU/linux. \
 El usuario en el cuadro 'Documentar Falla' podrá escribir su percepción del problema. \
-El cuadro 'Seleccione datos a enviar' son una serie de comandos predefinidos, que diagnosticaran el sistemas dependiendo \
+El cuadro 'Seleccione datos a enviar' son una serie de comandos predefinidos, que diagnosticaran el sistema dependiendo \
  de la categoría en que se encuentre como 'Dispositivos', 'Información de sistema' o 'Kernel'. \n\nLuego \
 el botón ACEPTAR, envía todos estos datos a la plataforma de 'http://notas.canaima.softwarelibre.gob.ve/' ó si lo desea podrá ver el documento que el sistema genera.\n\
 Seleccionando la opción de 'Ver documento'\n\n Nota: toda la información proporcionada es utilizada por los técnicos de la comunidad Canaima \
