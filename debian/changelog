@@ -1,3 +1,19 @@
+canaima-notas (1.0+24) unstable; urgency=low
+
+  [ Carlos Guerrero ]
+  * [70f1046] Corrigiendo sistemas por sistema
+  * [69b6f6b] Nueva versión
+
+  [ Francisco Vasquez Guerrero ]
+  * [eed4c27] realizando modificaciones puntuales a los archivos del
+    mantenedor y aplicación
+  * [581795c] corregido error en el copyright encontrado por lintian
+  * [f176c6f] corregido error emitido por lintian en el copyright
+
+  [ Francisco Vasquez ]
+
+ -- Francisco Vasquez <fvasquez@fvasquez.cnti.gob.ve>  Thu, 28 Apr 2011 11:12:59 -0430
+
 canaima-notas (1.0+23) unstable; urgency=low
 
   * [70f1046] Corrigiendo sistemas por sistema
