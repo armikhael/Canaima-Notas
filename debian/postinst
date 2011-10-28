@@ -1,7 +1,7 @@
 #!/bin/bash -e
 #
 # ==============================================================================
-# PAQUETE: canaima-notas documentador de fallas
+# PAQUETE: canaima-notas-gnome documentador de fallas
 # ARCHIVO: postinst
 # DESCRIPCIÓN: Configura el sistema despues la instalación del paquete.
 # COPYRIGHT:
@@ -15,7 +15,7 @@
 # Este programa es software libre. Puede redistribuirlo y/o modificarlo bajo los
 # términos de la Licencia Pública General de GNU (versión 3).
 
-PKG="canaima-notas"
+PKG="canaima-notas-gnome"
 
 case ${1} in
 

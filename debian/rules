@@ -4,4 +4,4 @@
 	dh ${@}
 
 override_dh_auto_install:
-	$(MAKE) DESTDIR=$(CURDIR)/debian/canaima-notas install
+	$(MAKE) DESTDIR=$(CURDIR)/debian/canaima-notas-gnome install

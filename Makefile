@@ -12,25 +12,19 @@ build:
 
 
 install:
-	# Installing shared data
-	mkdir -p $(DESTDIR)/usr/share/canaima-notas/
-	mkdir -p $(DESTDIR)/usr/share/canaima-notas/.notas/
+
+	mkdir -p $(DESTDIR)/usr/share/canaima-notas-gnome/.notas/
 	mkdir -p $(DESTDIR)/usr/share/applications/
-
-	cp Canaima-Notas.py AUTHORS COPYING README THANKS  $(DESTDIR)/usr/share/canaima-notas/
-	cp -R catpcha/  $(DESTDIR)/usr/share/canaima-notas/
-	cp canaima-notas.desktop $(DESTDIR)/usr/share/applications/
-
-	# Installing executables
 	mkdir -p $(DESTDIR)/usr/bin/
-	cp canaima-notas  $(DESTDIR)/usr/bin/
+
+	cp -r scripts/canaima-notas-gnome.py catpcha $(DESTDIR)/usr/share/canaima-notas-gnome/
+	cp desktop/canaima-notas-gnome.desktop $(DESTDIR)/usr/share/applications/
+	cp scripts/canaima-notas-gnome.sh  $(DESTDIR)/usr/bin/canaima-notas-gnome
 	
 uninstall:
-	# Uninstalling shared data
-	rm -rf $(DESTDIR)/usr/share/canaima-notas/
-	
-	# Uninstalling executables
-	rm -rf $(DESTDIR)/usr/bin/canaima-notas
+
+	rm -rf $(DESTDIR)/usr/share/canaima-notas-gnome/
+	rm -rf $(DESTDIR)/usr/bin/canaima-notas-gnome
 	
 clean:
 

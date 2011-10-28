@@ -17,7 +17,7 @@ gtk.gdk.threads_init()
 import time
 
 ita_words2 = ["PONTE", "UFICIO","LINUX","UFICIO","RORAIMA","CUNAGUARO","AREPA","CAYAPAS","OBIWAN","ARRAPC","APONWAO","GNU","FERAL","FJVG","TURPIAL","IDEAS","WARRIOR","HBEARS","REG3X","FRANJ","N3H0","SASHA","thelord","ALGOLIUS"]
-ita_words = ["/usr/share/canaima-notas/catpcha/c1.jpg","/usr/share/canaima-notas/catpcha/c2.jpg","/usr/share/canaima-notas/catpcha/c3.jpg","/usr/share/canaima-notas/catpcha/c4.jpg", "/usr/share/canaima-notas/catpcha/c5.jpg", "/usr/share/canaima-notas/catpcha/c18.jpg","/usr/share/canaima-notas/catpcha/c19.jpg", "/usr/share/canaima-notas/catpcha/c20.jpg", "/usr/share/canaima-notas/catpcha/c21.jpg","/usr/share/canaima-notas/catpcha/c22.jpg", "/usr/share/canaima-notas/catpcha/c6.jpg", "/usr/share/canaima-notas/catpcha/c7.jpg","/usr/share/canaima-notas/catpcha/c8.jpg", "/usr/share/canaima-notas/catpcha/c9.jpg", "/usr/share/canaima-notas/catpcha/c10.jpg","/usr/share/canaima-notas/catpcha/c11.jpg", "/usr/share/canaima-notas/catpcha/c12.jpg", "/usr/share/canaima-notas/catpcha/c13.jpg","/usr/share/canaima-notas/catpcha/c14.jpg", "/usr/share/canaima-notas/catpcha/c15.jpg", "/usr/share/canaima-notas/catpcha/c16.jpg", "/usr/share/canaima-notas/catpcha/c17.jpg", "/usr/share/canaima-notas/catpcha/c23.jpg", "/usr/share/canaima-notas/catpcha/c24.jpg"]
+ita_words = ["/usr/share/canaima-notas-gnome/catpcha/c1.jpg","/usr/share/canaima-notas-gnome/catpcha/c2.jpg","/usr/share/canaima-notas-gnome/catpcha/c3.jpg","/usr/share/canaima-notas-gnome/catpcha/c4.jpg", "/usr/share/canaima-notas-gnome/catpcha/c5.jpg", "/usr/share/canaima-notas-gnome/catpcha/c18.jpg","/usr/share/canaima-notas-gnome/catpcha/c19.jpg", "/usr/share/canaima-notas-gnome/catpcha/c20.jpg", "/usr/share/canaima-notas-gnome/catpcha/c21.jpg","/usr/share/canaima-notas-gnome/catpcha/c22.jpg", "/usr/share/canaima-notas-gnome/catpcha/c6.jpg", "/usr/share/canaima-notas-gnome/catpcha/c7.jpg","/usr/share/canaima-notas-gnome/catpcha/c8.jpg", "/usr/share/canaima-notas-gnome/catpcha/c9.jpg", "/usr/share/canaima-notas-gnome/catpcha/c10.jpg","/usr/share/canaima-notas-gnome/catpcha/c11.jpg", "/usr/share/canaima-notas-gnome/catpcha/c12.jpg", "/usr/share/canaima-notas-gnome/catpcha/c13.jpg","/usr/share/canaima-notas-gnome/catpcha/c14.jpg", "/usr/share/canaima-notas-gnome/catpcha/c15.jpg", "/usr/share/canaima-notas-gnome/catpcha/c16.jpg", "/usr/share/canaima-notas-gnome/catpcha/c17.jpg", "/usr/share/canaima-notas-gnome/catpcha/c23.jpg", "/usr/share/canaima-notas-gnome/catpcha/c24.jpg"]
 posi = ["", ""]
 
 
@@ -32,7 +32,7 @@ class Main(gtk.Window):
 		self.set_icon_from_file('/usr/share/icons/canaima-iconos/apps/48/tomboy.png')
 		self.worker = None
 		image = gtk.Image()
-		image.set_from_file('/usr/share/canaima-estilo-visual/arte/banner-app-top.png')
+		image.set_from_file('/usr/share/canaima-estilo-visual-gnome/arte/banner-app-top.png')
 		descripcion = gtk.Label()
 		descripcion.set_use_markup(True)
 		descripcion.set_markup("<span size='small'><b> Bienvenido(a) al documentador de fallas. A través de esta herramienta podrás enviar\n \
