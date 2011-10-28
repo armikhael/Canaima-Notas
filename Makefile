@@ -17,7 +17,7 @@ install:
 	mkdir -p $(DESTDIR)/usr/share/applications/
 	mkdir -p $(DESTDIR)/usr/bin/
 
-	cp -r scripts/canaima-notas-gnome.py catpcha $(DESTDIR)/usr/share/canaima-notas-gnome/
+	cp -r scripts/canaima-notas-gnome.py captcha $(DESTDIR)/usr/share/canaima-notas-gnome/
 	cp desktop/canaima-notas-gnome.desktop $(DESTDIR)/usr/share/applications/
 	cp scripts/canaima-notas-gnome.sh  $(DESTDIR)/usr/bin/canaima-notas-gnome
 	

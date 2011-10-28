@@ -6,13 +6,7 @@ Derechos de autor:
     Copyright (C) 2010 Francisco Javier Vásquez Guerrero
 
 Licencia:
-	GPL 3.0 Licence
 
-     Este programa es software libre: usted puede redistribuirlo y / o modificar
-     bajo los términos de la GNU General Public License publicada por
-     la Free Software Foundation, bien de la versión 3 de la Licencia, o
-     (a su elección) cualquier versión posterior.
-	
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
@@ -25,3 +19,6 @@ Licencia:
 
     You should have received a copy of the GNU General Public License
     along with this program. If not, see <http://www.gnu.org/licenses/>.
+
+    Puede encontrar una copia de esta licencia en la ubicación:
+    /usr/share/common-licenses/GPL-3
