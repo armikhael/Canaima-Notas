@@ -1,3 +1,9 @@
+canaima-notas-gnome (3.1-5) stable; urgency=low
+
+  * [33e9ecd] Utilizando formato de fuentes 3.0 (quilt)
+
+ -- Luis Alejandro Martínez Faneyth <martinez.faneyth@gmail.com>  Wed, 28 Dec 2011 16:52:06 -0430
+
 canaima-notas-gnome (3.1-4) stable; urgency=low
 
   * [2b5d71c] Agregando Provides, Conflicts y Replaces para activar
