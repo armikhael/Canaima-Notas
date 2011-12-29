@@ -12,8 +12,8 @@ Vcs-Browser: http://gitorious.org/canaima-gnu-linux/canaima-notas-gnome/trees/ma
 Package: canaima-notas-gnome
 Architecture: all
 Depends: python, python-gtk2, python-gobject, canaima-estilo-visual-gnome (>= 3.1), ${shlibs:Depends}, ${misc:Depends}
-Replaces: canaima-notas
-Conflicts: canaima-notas
+Replaces: canaima-notas (<< 3.1)
+Conflicts: canaima-notas (<< 3.1)
 Provides: canaima-notas
 Description: Cliente para la plataforma http://notas.canaima.softwarelibre.gob.ve/
  A través de Canaima Notas puedes enviar texto a la
@@ -22,3 +22,12 @@ Description: Cliente para la plataforma http://notas.canaima.softwarelibre.gob.v
  incluyendo problemas de hardware y/o software en Canaima
  GNU/Linux.
  Opcionalmente puedes elegir varios datos a incluir en la nota, como por ejemplo: Tarjeta gráfica, Kernel, entre otros.
+
+Package: canaima-notas
+Architecture: all
+Depends: canaima-notas-gnome (>= 3.1), ${shlibs:Depends}, ${misc:Depends}
+Description: Paquete transicional canaima-notas -> canaima-notas-gnome
+ Esto es un paquete transicional para que los usuarios puedan
+ actualizar de canaima-bienvenido a canaima-bienvenido-gnome sin muchos
+ problemas. Puede ser removido.
+
