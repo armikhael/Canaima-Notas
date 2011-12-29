@@ -1,3 +1,10 @@
+canaima-notas-gnome (3.1-6) stable; urgency=low
+
+  * [7255d3f] Agregando paquetes transicionales para facilitar la
+    migración de Canaima 3.0 -> Canaima 3.1
+
+ -- Luis Alejandro Martínez Faneyth <martinez.faneyth@gmail.com>  Wed, 28 Dec 2011 23:08:27 -0430
+
 canaima-notas-gnome (3.1-5) stable; urgency=low
 
   * [33e9ecd] Utilizando formato de fuentes 3.0 (quilt)
