@@ -11,7 +11,8 @@ Vcs-Browser: http://gitorious.org/canaima-gnu-linux/canaima-notas-gnome/trees/ma
 
 Package: canaima-notas-gnome
 Architecture: all
-Depends: python, python-gtk2, python-gobject, canaima-estilo-visual-gnome (>= 3.1), ${shlibs:Depends}, ${misc:Depends}
+Depends: python, python-gtk2, python-gobject, ${shlibs:Depends}, ${misc:Depends}
+Recommends: canaima-estilo-visual-gnome (>= 3.1)
 Replaces: canaima-notas (<< 3.1)
 Conflicts: canaima-notas (<< 3.1)
 Provides: canaima-notas

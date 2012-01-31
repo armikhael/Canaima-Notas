@@ -31,8 +31,10 @@ class Main(gtk.Window):
 		#icono del panel
 		self.set_icon_from_file('/usr/share/icons/canaima-iconos/apps/48/tomboy.png')
 		self.worker = None
-		image = gtk.Image()
-		image.set_from_file('/usr/share/canaima-estilo-visual-gnome/arte/banner-app-top.png')
+		if os.path.basename('/usr/share/canaima-estilo-visual-gnome/arte/banner-app-top.png') == 'banner-app-top.png':
+			image = gtk.Image()
+			image.set_from_file('/usr/share/canaima-estilo-visual/arte/banner-app-top.png')
+		
 		descripcion = gtk.Label()
 		descripcion.set_use_markup(True)
 		descripcion.set_markup("<span size='small'><b> Bienvenido(a) al documentador de fallas. A través de esta herramienta podrás enviar\n \
@@ -222,16 +224,16 @@ pestañas, por ejemplo la Tarjeta gráfica, Kernel, entre otros.</b></span>")
 		button_box.pack_start(self.aceptar, False, False)
 
 		vbox = gtk.VBox(False, 0)
-		vbox.pack_start(image, False, False, 6)
-		#vbox.pack_start(titulo, False, False, 0)
+		
+		
+		if os.path.isfile('/usr/share/canaima-estilo-visual-gnome/arte/banner-app-top.png'):
+			vbox.pack_start(image, False, False, 6)
+	
 		vbox.pack_start(descripcion, False, False, 0)
 		vbox.pack_start(marco, False, False, 4)
 		vbox.pack_start(marco_1, False, False, 4)
 		vbox.pack_start(self.scrolledwindow, True, True, 0)
 		vbox.pack_start(self.check_gdocum, False, False, 0)
-		#vbox.pack_start(descripcion2, False, False, 0)
-		#vbox.pack_start(box, False, False, 0)
-		#vbox.pack_start(notebook, False, False, 0)
 		vbox.pack_start(self.tabla_T, False, False, 0)
 		vbox.pack_start(self.tabla_V, False, False, 0)
 		vbox.pack_start(button_box, False, False, 4)
