@@ -1,3 +1,9 @@
+canaima-notas-gnome (3.1-7) stable; urgency=low
+
+  * [f392f92] desencadenando dependencia con canaima estilo visual
+
+ -- Francisco Javier Vásquez Guerrero <franjvasquezg@gmail.com>  Tue, 31 Jan 2012 09:35:50 -0430
+
 canaima-notas-gnome (3.1-6) stable; urgency=low
 
   * [7255d3f] Agregando paquetes transicionales para facilitar la
