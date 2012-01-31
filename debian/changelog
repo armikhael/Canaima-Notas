@@ -1,3 +1,9 @@
+canaima-notas-gnome (3.1-8) stable; urgency=low
+
+  * [a0cdf0f] corrección Advertencias
+
+ -- Francisco Javier Vásquez Guerrero <franjvasquezg@gmail.com>  Tue, 31 Jan 2012 11:32:39 -0430
+
 canaima-notas-gnome (3.1-7) stable; urgency=low
 
   * [f392f92] desencadenando dependencia con canaima estilo visual
