@@ -26,14 +26,17 @@ class Main(gtk.Window):
 		gtk.Window.__init__(self, gtk.WINDOW_TOPLEVEL)
 		gtk.Window.set_position(self, gtk.WIN_POS_CENTER_ALWAYS)
 		self.set_title('DOCUMENTADOR DE FALLAS')
-		self.set_size_request(600, 520)
+		if os.path.isfile('/usr/share/canaima-estilo-visual-gnome/arte/banner-app-top.png'):
+                	self.set_size_request(600, 520)
+		else:
+			self.set_size_request(600, 440)
 		self.set_resizable(False)
 		#icono del panel
 		self.set_icon_from_file('/usr/share/icons/canaima-iconos/apps/48/tomboy.png')
 		self.worker = None
 		if os.path.basename('/usr/share/canaima-estilo-visual-gnome/arte/banner-app-top.png') == 'banner-app-top.png':
 			image = gtk.Image()
-			image.set_from_file('/usr/share/canaima-estilo-visual/arte/banner-app-top.png')
+			image.set_from_file('/usr/share/canaima-estilo-visual-gnome/arte/banner-app-top.png')
 		
 		descripcion = gtk.Label()
 		descripcion.set_use_markup(True)
