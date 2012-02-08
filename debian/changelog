@@ -1,3 +1,9 @@
+canaima-notas-gnome (3.1-9) stable; urgency=low
+
+  * [23b9b00] corriendo omisión
+
+ -- Francisco Javier Vásquez Guerrero <franjvasquezg@gmail.com>  Wed, 08 Feb 2012 16:43:00 -0430
+
 canaima-notas-gnome (3.1-8) stable; urgency=low
 
   * [a0cdf0f] corrección Advertencias
