@@ -6,8 +6,10 @@ canaima-notas-gnome (4.0-1) stable; urgency=low
     banner-app-top.png canaima-notas-icons.png canaima-notas-gnome.py
     canaima-notas-gnome.sh canaima-notas.debhelper.log banner-app-
     top.png canaima-notas-icons.png
+  * [e2adaca] [ canaima-desarrollador ] Los siguientes archivos han sido
+    modificados/añadidos:
 
- -- Carlos Espinoza <carlosarmikhael@gmail.com>  Tue, 22 Jan 2013 12:48:46 -0430
+ -- Carlos Espinoza <carlosarmikhael@gmail.com>  Tue, 22 Jan 2013 12:48:50 -0430
 
 canaima-notas-gnome (3.1-9) stable; urgency=low
 
