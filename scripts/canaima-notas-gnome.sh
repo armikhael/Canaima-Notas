@@ -1,7 +1,9 @@
 #!/bin/bash
 
-cd /usr/share/canaima-notas-gnome/
-if [ -e /usr/share/canaima-notas-gnome/.notas ]
+APP_DIR=/usr/share/canaima-notas-gnome/scripts/
+
+if [ -e $APP_DIR ]
 then
+	cd $APP_DIR
 	python canaima-notas-gnome.py
 fi

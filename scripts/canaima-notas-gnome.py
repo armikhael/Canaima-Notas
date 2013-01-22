@@ -11,40 +11,107 @@ import gtk
 import sys
 import gobject
 import threading
+from threading import Thread
+
+from subprocess import Popen, PIPE, STDOUT
+
+#import random
+import Image
+import ImageFont
+import ImageDraw
+import ImageFilter
 
 gtk.gdk.threads_init()
 
 import time
 
-ita_words2 = ["PONTE", "UFICIO","LINUX","UFICIO","RORAIMA","CUNAGUARO","AREPA","CAYAPAS","OBIWAN","ARRAPC","APONWAO","GNU","FERAL","FJVG","TURPIAL","IDEAS","WARRIOR","HBEARS","REG3X","FRANJ","N3H0","SASHA","thelord","ALGOLIUS"]
-ita_words = ["/usr/share/canaima-notas-gnome/captcha/c1.jpg","/usr/share/canaima-notas-gnome/captcha/c2.jpg","/usr/share/canaima-notas-gnome/captcha/c3.jpg","/usr/share/canaima-notas-gnome/captcha/c4.jpg", "/usr/share/canaima-notas-gnome/captcha/c5.jpg", "/usr/share/canaima-notas-gnome/captcha/c18.jpg","/usr/share/canaima-notas-gnome/captcha/c19.jpg", "/usr/share/canaima-notas-gnome/captcha/c20.jpg", "/usr/share/canaima-notas-gnome/captcha/c21.jpg","/usr/share/canaima-notas-gnome/captcha/c22.jpg", "/usr/share/canaima-notas-gnome/captcha/c6.jpg", "/usr/share/canaima-notas-gnome/captcha/c7.jpg","/usr/share/canaima-notas-gnome/captcha/c8.jpg", "/usr/share/canaima-notas-gnome/captcha/c9.jpg", "/usr/share/canaima-notas-gnome/captcha/c10.jpg","/usr/share/canaima-notas-gnome/captcha/c11.jpg", "/usr/share/canaima-notas-gnome/captcha/c12.jpg", "/usr/share/canaima-notas-gnome/captcha/c13.jpg","/usr/share/canaima-notas-gnome/captcha/c14.jpg", "/usr/share/canaima-notas-gnome/captcha/c15.jpg", "/usr/share/canaima-notas-gnome/captcha/c16.jpg", "/usr/share/canaima-notas-gnome/captcha/c17.jpg", "/usr/share/canaima-notas-gnome/captcha/c23.jpg", "/usr/share/canaima-notas-gnome/captcha/c24.jpg"]
-posi = ["", ""]
+#----------------------------Ayuda-----------------------
+def clic_ayuda(self):
+	hilo = threading.Thread(target=ayuda_1, args=(self))
+	hilo.start()
+		
+def ayuda_1(self, widget=None):			
+	x= Popen(["yelp /usr/share/gnome/help/canaima-notas/es/c-n.xml"], shell=True, stdout=PIPE)
+#-------------------------------------------------------
 
+#--------------------------imagen construir---------------------------------------
+def gen_random_word(wordLen=6):
+    allowedChars = "abcdefghijklmnopqrstuvwzyzABCDEFGHIJKLMNOPQRSTUVWZYZ0123456789"
+    word = ""
+    for i in range(0, wordLen):
+        word = word + allowedChars[random.randint(0,0xffffff) % len(allowedChars)]
+    return word
+    
+def gen_captcha(text, fnt, fnt_sz, file_name, fmt='JPEG'):      
+    fgcolor = random.randint(0,1)
+    bgcolor = fgcolor ^ 0xffffff
+    font = ImageFont.truetype(fnt,fnt_sz)
+    dim = font.getsize(text)
+    im = Image.new('RGB', (dim[0]+5,dim[1]+5), bgcolor)
+    d = ImageDraw.Draw(im)
+    x, y = im.size
+    r = random.randint
+    for num in range(100):
+        d.rectangle((r(0,x),r(0,y),r(0,x),r(0,y)),fill=r(0,0xffffff))
+    d.text((3,3), text, font=font, fill=fgcolor)
+    im = im.filter(ImageFilter.EDGE_ENHANCE_MORE)
+    im.save(file_name, format=fmt)
+#-------------------------------------------------------------------------------
+#---------------------threading para la variable systema------------------------
+class TestThread(threading.Thread):
+    def __init__(self, mainview):
+        threading.Thread.__init__(self)
+
+    def run(self):
+        systema= os.system("gedit /tmp/Documento.txt")
+#--------------------------------------------------------------------------------
+class TestThread2(threading.Thread):
+    def __init__(self, mainview):
+        threading.Thread.__init__(self)
+
+    def run(self):
+        systema= os.system("cunaguaro http://notas.canaima.softwarelibre.gob.ve/")
 
 class Main(gtk.Window):
+	
 	def __init__(self):
+		self.word = gen_random_word()
+		gen_captcha(self.word.strip(), '/usr/share/fonts/truetype/ttf-dejavu/DejaVuSans.ttf', 20, '/tmp/test.jpg')
+		
 		gtk.Window.__init__(self, gtk.WINDOW_TOPLEVEL)
 		gtk.Window.set_position(self, gtk.WIN_POS_CENTER_ALWAYS)
-		self.set_title('DOCUMENTADOR DE FALLAS')
-		if os.path.isfile('/usr/share/canaima-estilo-visual-gnome/arte/banner-app-top.png'):
+		self.set_title('Documentador de Fallas')
+		#self.set_border_width(2)
+		self.connect("delete_event",self.on_delete)
+		if os.path.isfile('/usr/share/canaima-notas/img/banner-app-top.png'):
                 	self.set_size_request(600, 520)
 		else:
 			self.set_size_request(600, 440)
 		self.set_resizable(False)
 		#icono del panel
-		self.set_icon_from_file('/usr/share/icons/canaima-iconos/apps/48/tomboy.png')
+		self.set_icon_from_file('/usr/share/canaima-notas/img/canaima-notas-icons.png')
 		self.worker = None
-		if os.path.basename('/usr/share/canaima-estilo-visual-gnome/arte/banner-app-top.png') == 'banner-app-top.png':
+		if os.path.basename('/usr/share/canaima-notas/img/banner-app-top.png') == 'banner-app-top.png':
 			image = gtk.Image()
-			image.set_from_file('/usr/share/canaima-estilo-visual-gnome/arte/banner-app-top.png')
+			image.set_from_file('/usr/share/canaima-notas/img/banner-app-top.png')
 		
-		descripcion = gtk.Label()
-		descripcion.set_use_markup(True)
-		descripcion.set_markup("<span size='small'><b> Bienvenido(a) al documentador de fallas. A través de esta herramienta podrás enviar\n \
-texto a la plataforma Canaima, de forma tal que sirva  como  referencia  a  cualquiera\n \
-que quiera ayudarte con un tema en particular, incluyendo problemas de hardware y/o\n \
-software en  Canaima  GNU/Linux. Opcionalmente  puedes  elegir  varios datos de las\n \
-pestañas, por ejemplo la Tarjeta gráfica, Kernel, entre otros.</b></span>")
+		#--------------------------------Primera caja--------------------------------------------
+		self.descripcion = gtk.Label()
+		self.descripcion.set_markup("<b> Bienvenido al Documentador de Fallas</b>")
+		self.image_knotes = gtk.Image()
+		self.image_knotes.set_from_file('/usr/share/icons/canaima-iconos/apps/32/knotes.png')
+		#-------------------------Separadores
+		self.separator1 = gtk.HSeparator()
+		self.separator2 = gtk.HSeparator()
+		self.separator3 = gtk.HSeparator()
+		
+		#--------------------------------------
+		caja_1= gtk.HBox(False, False)
+		caja_1.pack_start(self.separator1, False, False,70)
+		caja_1.pack_start(self.image_knotes, False, False,0)
+		caja_1.pack_start(self.descripcion, False, False,0)	
+		#----------------------------------------------------------------------------------------
+		
 		#<<<<<<<<<<<<<<<<Sección de Dispositivos>>>>>>>>>>>>>>>>>>>>>>
 		self.tabla =  gtk.Table(4,4,True)
 		self.check_lspci = gtk.CheckButton("PCI")
@@ -162,8 +229,12 @@ pestañas, por ejemplo la Tarjeta gráfica, Kernel, entre otros.</b></span>")
 		self.alineacion = gtk.Alignment(xalign=0.5, yalign=0.3, xscale=0.98, yscale=0.5)
 
 		#text view
+		self.flags_buffer = True
 		self.textview = gtk.TextView()
 		self.textbuffer = self.textview.get_buffer()
+		self.textview.set_editable(True)
+		self.textbuffer.set_text("\n\n\t\t\t\tEscriba el problema que ocurrió en su computador")
+		self.textview.connect('event', self.on_entry_buffer_clicked)
 		#scroll
 		self.scrolledwindow.add(self.textview)
 		self.alineacion.add(self.scrolledwindow)
@@ -178,25 +249,22 @@ pestañas, por ejemplo la Tarjeta gráfica, Kernel, entre otros.</b></span>")
 		#self.borrar_usuario.set_active(True)
 
 		# Caja titulo autor y captcha
-
+		#------------------------------------------------------------------------
 		titulo = gtk.Label("Titulo:")
 		autor = gtk.Label("Autor:")
 		validador = gtk.Label("        Escribe lo que")
 		validador2 = gtk.Label("ves en la imagen")
 
-		captcha = gtk.Image()
-		captcha.set_size_request(70,24)
-		self.ran_word = random.choice(ita_words)
-		self.v = ita_words.index(self.ran_word)
-		posi.insert(0, self.v)
-
-		self.d = ita_words2[self.v]
-		captcha.set_from_file(self.ran_word)
-
-		self.Titulo = gtk.Entry(15)
-		self.Autor = gtk.Entry(15)
-		self.Dato = gtk.Entry(15)
-		self.i = str(self.v)
+		self.captcha_ima = gtk.Image()
+		self.captcha_ima.set_from_file('/tmp/test.jpg')
+		#self.captcha_ima.connect('clicked', self.refresh_captcha)
+		
+		#############################################################################################################3################------------
+	
+		self.Titulo = gtk.Entry(20)
+		self.Autor = gtk.Entry(30)
+		self.Dato = gtk.Entry(6)
+		
 		#self.Titulo.set_text(self.i)
 
 		self.tabla_T = gtk.Table(1,5,True)
@@ -209,44 +277,90 @@ pestañas, por ejemplo la Tarjeta gráfica, Kernel, entre otros.</b></span>")
 		self.tabla_V = gtk.Table(1,5,True)
 		self.tabla_V.attach(validador, 0, 1, 0, 1)
 		self.tabla_V.attach(validador2, 1, 2, 0, 1)
-		self.tabla_V.attach(captcha, 2, 3, 0, 1)
+		self.tabla_V.attach(self.captcha_ima, 2, 3, 0, 1)################################################################################33
 		self.tabla_V.attach(self.Dato, 3, 4, 0, 1)
 		self.tabla_V.show()
 
 		self.check_gdocum = gtk.CheckButton("Ver Documento (No enviar)")
 		self.check_gdocum.set_active(False)
 
-		# Creación de botones
+		# Creación de botones--------------------------caja botones----------------------------
 		self.cerrar = gtk.Button(stock=gtk.STOCK_CLOSE)
+		self.cerrar.set_size_request(80, 30)
 		self.aceptar = gtk.Button(stock=gtk.STOCK_OK)
+		self.aceptar.set_size_request(80, 30)
 		self.ayuda = gtk.Button(stock=gtk.STOCK_HELP)
-		button_box = gtk.HButtonBox()
-		button_box.set_layout(gtk.BUTTONBOX_SPREAD)
-		button_box.pack_start(self.ayuda, False, False)
-		button_box.pack_start(self.cerrar, False, False)
-		button_box.pack_start(self.aceptar, False, False)
+		self.ayuda.set_size_request(80, 30)
+		#button_box = gtk.HButtonBox()
+		button_box= gtk.HBox(False, False)
+		#button_box.set_layout(gtk.BUTTONBOX_SPREAD)
+		button_box.pack_start(self.cerrar, False, False,10)
+		button_box.pack_start(self.ayuda, False, False,5)
+		button_box.pack_start(self.aceptar, False, False,315)
 
+		#-------------------------------------caja entry de correo---------------------------
+		self.correo = gtk.Label()
+		self.correo.set_markup("Email:")
+		
+		self.flags_correo = True
+		self.entry_correo = gtk.Entry()
+		self.entry_correo.set_editable(True)
+		self.entry_correo.set_text("correo@ejemplo.com")
+		self.entry_correo.connect('event', self.on_entry_correo_clicked)
+		
+		self.label_1 = gtk.Label()
+		self.label_1.set_markup("")
+		
+		caja_correo= gtk.HBox(False, False)
+		caja_correo.pack_start(self.correo, False, False,40)
+		caja_correo.pack_start(self.entry_correo, True, True,0)
+		caja_correo.pack_start(self.label_1, False, False,60)
+
+		#----------------------------------------------------------------------------------------
+		
+		
+		#-----------------------------------CAJA DE WINDOW-------------------------------------
 		vbox = gtk.VBox(False, 0)
-		
-		
-		if os.path.isfile('/usr/share/canaima-estilo-visual-gnome/arte/banner-app-top.png'):
-			vbox.pack_start(image, False, False, 6)
-	
-		vbox.pack_start(descripcion, False, False, 0)
-		vbox.pack_start(marco, False, False, 4)
-		vbox.pack_start(marco_1, False, False, 4)
-		vbox.pack_start(self.scrolledwindow, True, True, 0)
-		vbox.pack_start(self.check_gdocum, False, False, 0)
-		vbox.pack_start(self.tabla_T, False, False, 0)
-		vbox.pack_start(self.tabla_V, False, False, 0)
-		vbox.pack_start(button_box, False, False, 4)
+		marco.set_border_width(2)
+		marco_1.set_border_width(2)
 
+		if os.path.isfile('/usr/share/canaima-notas/img/banner-app-top.png'):
+			vbox.pack_start(image, False, False, 3)
+		
+		#~ vbox.pack_start(caja_1, False, False, 0)
+		#~ vbox.pack_start(self.separator2, False, False,5)
+		#~ vbox.pack_start(self.tabla_T, False, False, 0)
+		#~ vbox.pack_start(caja_correo, True, True, 5)
+		#~ vbox.pack_start(marco, False, False, 0)
+		#~ vbox.pack_start(marco_1, False, False, 0)
+		#~ #vbox.pack_start(self.scrolledwindow, True, True, 0)#----------------------error---------------------------------
+		#~ vbox.pack_start(self.check_gdocum, False, False, 0)	
+		#~ vbox.pack_start(self.tabla_V, False, False, 0)
+		#~ vbox.pack_start(self.separator3, False, False,5)
+		#~ vbox.pack_start(button_box, False, False, 0)
+		
+		#vbox.add(caja_1)
+		vbox.add(self.separator2)
+		vbox.add(self.tabla_T)
+		vbox.add(caja_correo)
+		vbox.add(marco)
+		vbox.add(marco_1)
+		#vbox.pack_start(self.scrolledwindow, True, True, 0)#----------------------error---------------------------------
+		vbox.add(self.check_gdocum)	
+		vbox.add(self.tabla_V)
+		vbox.add(self.separator3)
+		#vbox.add(button_box)
+		vbox.pack_start(button_box, False, False, 0)
+		
 		self.add(vbox)
-
-		self.ayuda.connect("clicked", self.__acerca_de)
+		#-------------------------------------------------------------------------------
+		
+		#----------------------conectar botones a las funciones------------------
+		self.ayuda.connect("clicked", clic_ayuda)
 		self.cerrar.connect("clicked", self.__close)
-		self.aceptar.connect("clicked", self.__validate, posi, captcha, self.textview)
-
+		self.aceptar.connect("clicked", self.__validate, self.textview)
+		#---------------------------------------------------------------------------
+		
 		#vbox.pack_start(scrolledwindow, True, True, 0)
 		#scrolledwindow.add(self.textview)
 
@@ -302,267 +416,318 @@ pestañas, por ejemplo la Tarjeta gráfica, Kernel, entre otros.</b></span>")
 			self.check_vers.set_active(False)
 			self.check_modu.set_active(False)
 
-	def __acerca_de(self, widget):
-		about = gtk.AboutDialog()
-		about.set_type_hint(gtk.gdk.WINDOW_TYPE_HINT_DIALOG)
-		about.set_logo(gtk.gdk.pixbuf_new_from_file('/usr/share/icons/canaima-iconos/apps/48/tomboy.png'))#canaima.png
-		about.set_name('Documentador de Fallas')
-		about.set_comments("CLIENTE DE LA PLATAFORMA DE NOTAS\
-\n\n  Permite Documentar las fallas del sistema, utilizando comandos especializados de GNU/linux. \
-El usuario en el cuadro 'Documentar Falla' podrá escribir su percepción del problema. \
-El cuadro 'Seleccione datos a enviar' son una serie de comandos predefinidos, que diagnosticaran el sistema dependiendo \
- de la categoría en que se encuentre como 'Dispositivos', 'Información de sistema' o 'Kernel'. \n\nLuego \
-el botón ACEPTAR, envía todos estos datos a la plataforma de 'http://notas.canaima.softwarelibre.gob.ve/' o si lo desea podrá ver el documento que el sistema genera.\n\
-Seleccionando la opción de 'Ver documento'\n\n Nota: toda la información proporcionada es utilizada por los técnicos de la comunidad Canaima \
-para solucionar el problema de su sistema. \
-")
-		about.set_transient_for(self)
-		about.set_position(gtk.WIN_POS_CENTER_ON_PARENT)
+	def __validate(self, widget, textview):
 
-		authors = []
-		try:
-			f = file('AUTHORS', 'r')
-			for line in f:
-				authors.append(line.strip('\n'))
-			f.close()
-		except Exception, msg:
-			authors = [_("File 'AUTHORS' not found")]
-		about.set_authors(authors)
-		about.connect("response", self.__about_response)
-		about.connect("close", self.__about_close)
-		about.connect("delete_event", self.__about_close)
-		about.run()
+		if self.Titulo.get_text():
+			
+			if self.Autor.get_text():
+				
+				if re.match('^[(a-z0-9\_\-\.)]+@[(a-z0-9\_\-\.)]+\.[(a-z)]{2,4}$',self.entry_correo.get_text().lower()):
+					
+					self.textbuffer = textview.get_buffer()
+					start, end = self.textbuffer.get_bounds()
+					self.dnota = self.textbuffer.get_text(start,end)
+					
+					if self.dnota:
+				
+						#validacion del captcha
+						if  self.Dato.get_text() != self.word:
 
-	def __about_response(self, dialog, response, *args):
-		if response < 0:
-			dialog.destroy()
-			dialog.emit_stop_by_name('response')
+							md=gtk.MessageDialog(parent=None, flags=0, type=gtk.MESSAGE_ERROR, buttons=gtk.BUTTONS_CLOSE, message_format="El valor introducido no coincide con el captcha intente de nuevo")
+							md.run()
+							md.destroy()
+							self.refresh_captcha()
+							self.Dato.set_text("")													
+																				
+						else:
+							self.refresh_captcha()
+							self.vdis=0
+							info= "DIRECCIÓN DE CORREO ELECTRÓNICO: "+ self.entry_correo.get_text()+"\n\n"
+							info+="-"
+							info+="\n___________________ NOTA DE USUARIO ___________________\n\n"
+							info+="-\n"
+							
+							#--------------------capchat---------------------------
+							
+							#--------------------capchat---------------------------
 
-	def __about_close(self, widget, event=None):
-		widget.destroy()
-		return True
-
-	def __reset(self, user=True, root=True):
-		if user:
-			self.user_passwd1.set_text('')
-			self.user_passwd2.set_text('')
-		if root:
-			self.admin_passwd1.set_text('')
-			self.admin_passwd2.set_text('')
-
-	def __validate(self, widget, posi, captcha, textview):
+							#Titulo de la Nota
+							titulo_1  = self.Titulo.get_text()
+							autor_1 = self.Autor.get_text()
+							
+							titulo_2  = "TITULO: "+self.Titulo.get_text()+"\n\n"
+							autor_2 = "AUTOR: "+self.Autor.get_text()+"\n\n"
 
 
-		h = posi.pop(0)
-		h2 = int(h)
-		self.d = ita_words2[h2]
+							info+= self.textbuffer.get_text(start,end)
+							info+="\n"
+							if self.check_lspci.get_active() == True:
+								info+="-\n"
+								info+="__________________________________________________________"
+								info+="\n\n----- Dispositivos conectados por PCI:\n"
+								info+="-\n"
+								info+=os.popen("lspci").read()
+								info+="-\n"
+								self.vdis=1
 
-		#validacion del captcha
-		if  self.Dato.get_text() != self.d or self.Dato.get_text() == '':
+							if self.check_tm.get_active() == True:
+								info+="----- Tarjeta Madre -----:\n"
+								info+="-\n"
+								info+=os.popen("lspci | grep 'Host bridge:'").read()
+								info+="-\n"
+								self.vdis=1
 
-			md=gtk.MessageDialog(parent=None, flags=0, type=gtk.MESSAGE_ERROR, buttons=gtk.BUTTONS_CLOSE, message_format="El valor introducido no coincide con el captcha intente de nuevo")
-			md.run()
-			md.destroy()
+							if self.check_lsusb.get_active() == True:
+								info+="----- Dispositivos conectados por puerto USB:\n\n"
+								info+="-\n"
+								info+=os.popen("lsusb").read()
+								info+="-\n"
+								self.vdis=1
 
-			captcha.clear()
-			captcha.set_size_request(70,24)
-			self.ran_word = random.choice(ita_words)
-			self.v = ita_words.index(self.ran_word)
-			posi.insert(0, self.v)
-			captcha.set_from_file(self.ran_word)
-			self.tabla_V.attach(captcha, 2, 3, 0, 1)
+							if self.check_acelgraf.get_active() == True:
+								info+="----- Información sobre su aceleración gráfica:\n\n"
+								info+="-\n"
+								info+=os.popen("glxinfo | grep -A4 'name of display:'").read()
+								info+="-\n"
+								self.vdis=1
 
-		else:
+							if self.check_ired.get_active() == True:
+								info+="----- Información interfaces de RED:\n\n"
+								info+="-\n"
+								info+=os.popen("cat /etc/network/interfaces").read()
+								info+="-\n"
+								self.vdis=1
 
-			self.vdis=0
-			info="\n___________________ NOTA DE USUARIO ___________________\n\n"
-			info+="-\n"
+							if self.check_prefe.get_active() == True:
+								info+="----- Información /etc/apt/preferences:\n\n"
+								info+="-\n"
+								info+=os.popen("cat /etc/apt/preferences").read()
+								info+="-\n"
+								self.vdis=1
 
-			self.textbuffer = textview.get_buffer()
-			start, end = self.textbuffer.get_bounds()
-			self.dnota = self.textbuffer.get_text(start,end)
+							if self.check_ram.get_active() == True:
+								info+="----- Información sobre su memoria RAM, Swap, y Buffer (en MB):\n\n"
+								info+="-\n"
+								info+=os.popen("free -m").read()
+								info+="-\n"
+								self.vdis=1
 
-			#--------------------capchat---------------------------
-			captcha.clear()
-			captcha.set_size_request(70,24)
-			self.ran_word = random.choice(ita_words)
-			self.v = ita_words.index(self.ran_word)
-			posi.insert(0, self.v)
-			captcha.set_from_file(self.ran_word)
-			self.tabla_V.attach(captcha, 2, 3, 0, 1)
-			#--------------------capchat---------------------------
+							if self.check_df.get_active() == True:
+								info+="----- Espacio libre en los dispositivos de almacenamiento :\n\n"
+								info+="S.ficheros| Tamaño Usado | Disp | Uso% | Montado en\n"
+								info+="-\n"
+								info+=os.popen("df -h").read()
+								info+="-\n"
+								self.vdis=1
 
-			#Titulo de la Nota
-			titulo  = self.Titulo.get_text()
-			autor = self.Autor.get_text()
+							if self.check_tpart.get_active() == True:
+								info+="----- Información tabla de partición:\n\n"
+								info+="-\n"
+								info+=os.popen("fdisk -l").read()
+								info+="-\n"
+								self.vdis=1
 
+							if self.check_cpu.get_active() == True:
+								info+="----- Información del procesador:\n\n"
+								info+="-\n"
+								info+=os.popen("cat /proc/cpuinfo").read()
+								info+="-\n"
+								self.vdis=1
 
-			info+= self.textbuffer.get_text(start,end)
-			info+="-\n"
-			if self.check_lspci.get_active() == True:
-				info+="----- Dispositivos conectados por PCI:\n"
-				info+="-\n"
-				info+=os.popen("lspci").read()
-				info+="-\n"
-				self.vdis=1
+							#if self.check_logsys.get_active() == True:
+							#	info+="----- Log del Systema:----------\n\n"
+							#	info+="-\n"
+							#	info+=os.popen("gksu cat /var/log/syslog|grep 'error'").read()
+							#	info+="-\n"
+							#	self.vdis=1
 
-			if self.check_tm.get_active() == True:
-				info+="----- Tarjeta Madre -----:\n"
-				info+="-\n"
-				info+=os.popen("lspci | grep 'Host bridge:'").read()
-				info+="-\n"
-				self.vdis=1
+							if self.check_xorg.get_active() == True:
+								info+="----- Información del servidor de pantallas en Canaima 2.1 (lenny):\n\n"
+								info+="-\n"
+								info+=os.popen("cat /etc/X11/xorg.conf").read()
+								info+="-\n"
+								info+="----- Información  log error de xorg en Canaima 3.0 (squeeze):\n\n"
+								info+="-\n"
+								info+=os.popen("cat /var/log/Xorg.0.log | grep 'error'").read()
+								info+="-\n"
+								self.vdis=1
 
-			if self.check_lsusb.get_active() == True:
-				info+="----- Dispositivos conectados por puerto USB:\n\n"
-				info+="-\n"
-				info+=os.popen("lsusb").read()
-				info+="-\n"
-				self.vdis=1
+							if self.check_repo.get_active() == True:
+								info+="----- Información de los repositorios :\n\n"
+								info+="-\n"
+								info+=os.popen("cat /etc/apt/sources.list").read()
+								info+="-\n"
+								self.vdis=1
 
-			if self.check_acelgraf.get_active() == True:
-				info+="----- Información sobre su aceleración gráfica:\n\n"
-				info+="-\n"
-				info+=os.popen("glxinfo | grep -A4 'name of display:'").read()
-				info+="-\n"
-				self.vdis=1
+							if self.check_modu.get_active() == True:
+								info+="----- Listado de los modulos del kernel:\n\n"
+								info+="-\n"
+								info+=os.popen("lsmod").read()
+								info+="-\n"
+								self.vdis=1
 
-			if self.check_ired.get_active() == True:
-				info+="----- Información interfaces de RED:\n\n"
-				info+="-\n"
-				info+=os.popen("cat /etc/network/interfaces").read()
-				info+="-\n"
-				self.vdis=1
+							if self.check_vers.get_active() == True:
+								info+="-----Versión del Kernel :\n\n"
+								info+="-\n"
+								info+=os.popen("uname -a").read()
+								info+="-\n"
+								info+="-*- Información Enviada automáticamente desde el Documentador de Fallas (Cliente Notas Canaima):\n\n"
+								self.vdis=1
 
-			if self.check_prefe.get_active() == True:
-				info+="----- Información /etc/apt/preferences:\n\n"
-				info+="-\n"
-				info+=os.popen("cat /etc/apt/preferences").read()
-				info+="-\n"
-				self.vdis=1
+							#~ if (self.Titulo.get_text()==""):
+								#~ md=gtk.MessageDialog(parent=None, flags=0, type=gtk.MESSAGE_ERROR, buttons=gtk.BUTTONS_CLOSE, message_format="Es necesario que coloque un título.")
+								#~ md.run()
+								#~ md.destroy()
+							
+							#~ if (self.Autor.get_text()==""):
+								#~ md=gtk.MessageDialog(parent=None, flags=0, type=gtk.MESSAGE_ERROR, buttons=gtk.BUTTONS_CLOSE, message_format="Es necesario que coloque un Autor.")
+								#~ md.run()
+								#~ md.destroy()
+							
+							#~ if (self.entry_correo.get_text()==""):
+								#~ md=gtk.MessageDialog(parent=None, flags=0, type=gtk.MESSAGE_ERROR, buttons=gtk.BUTTONS_CLOSE, message_format="Es necesario que coloque una Dirección de correo electrónico.")
+								#~ md.run()
+								#~ md.destroy()
+								
+							#~ if self.dnota == "":
+								#~ md=gtk.MessageDialog(parent=None, flags=0, type=gtk.MESSAGE_ERROR, buttons=gtk.BUTTONS_CLOSE, message_format="Por Favor!:\nTomese unos instantes y describa su situación o inconveniente\n en el Cuadro de Documentar Falla.")
+								#~ md.run()
+								#~ md.destroy()
+								#~ #self.__close2()
+							
+							if (self.vdis==0):
+								md=gtk.MessageDialog(parent=None, flags=0, type=gtk.MESSAGE_ERROR, buttons=gtk.BUTTONS_CLOSE, message_format="Por Favor!:\nSeleccione al menos una opción a consultar\ndel cuadro Seleccione datos a enviar.")
+								md.run()
+								md.destroy()		
 
-			if self.check_ram.get_active() == True:
-				info+="----- Información sobre su memoria RAM, Swap, y Buffer (en MB):\n\n"
-				info+="-\n"
-				info+=os.popen("free -m").read()
-				info+="-\n"
-				self.vdis=1
+							if (self.dnota == "" or self.vdis==0 or self.Titulo.get_text()=="" or self.Autor.get_text()==""):
+								md=gtk.MessageDialog(parent=None, flags=0, type=gtk.MESSAGE_ERROR, buttons=gtk.BUTTONS_CLOSE, message_format="No es posible enviar la nota o ver el informe.")
+								md.run()
+								md.destroy()
 
-			if self.check_df.get_active() == True:
-				info+="----- Espacio libre en los dispositivos de almacenamiento :\n\n"
-				info+="S.ficheros| Tamaño Usado | Disp | Uso% | Montado en\n"
-				info+="-\n"
-				info+=os.popen("df -h").read()
-				info+="-\n"
-				self.vdis=1
+							else:
 
-			if self.check_tpart.get_active() == True:
-				info+="----- Información tabla de partición:\n\n"
-				info+="-\n"
-				info+=os.popen("fdisk -l").read()
-				info+="-\n"
-				self.vdis=1
-
-			if self.check_cpu.get_active() == True:
-				info+="----- Información del procesador:\n\n"
-				info+="-\n"
-				info+=os.popen("cat /proc/cpuinfo").read()
-				info+="-\n"
-				self.vdis=1
-
-			#if self.check_logsys.get_active() == True:
-			#	info+="----- Log del Systema:----------\n\n"
-			#	info+="-\n"
-			#	info+=os.popen("gksu cat /var/log/syslog|grep 'error'").read()
-			#	info+="-\n"
-			#	self.vdis=1
-
-			if self.check_xorg.get_active() == True:
-				info+="----- Información del servidor de pantallas en Canaima 2.1 (lenny):\n\n"
-				info+="-\n"
-				info+=os.popen("cat /etc/X11/xorg.conf").read()
-				info+="-\n"
-				info+="----- Información  log error de xorg en Canaima 3.0 (squeeze):\n\n"
-				info+="-\n"
-				info+=os.popen("cat /var/log/Xorg.0.log | grep 'error'").read()
-				info+="-\n"
-				self.vdis=1
-
-			if self.check_repo.get_active() == True:
-				info+="----- Información de los repositorios :\n\n"
-				info+="-\n"
-				info+=os.popen("cat /etc/apt/sources.list").read()
-				info+="-\n"
-				self.vdis=1
-
-			if self.check_modu.get_active() == True:
-				info+="----- Listado de los modulos del kernel:\n\n"
-				info+="-\n"
-				info+=os.popen("lsmod").read()
-				info+="-\n"
-				self.vdis=1
-
-			if self.check_vers.get_active() == True:
-				info+="-----Versión del Kernel :\n\n"
-				info+="-\n"
-				info+=os.popen("uname -a").read()
-				info+="-\n"
-				info+="-*- Información Enviada automáticamente desde el Documentador de Fallas (Cliente Notas Canaima):\n\n"
-				self.vdis=1
-
-
-			if self.dnota == "":
-				md=gtk.MessageDialog(parent=None, flags=0, type=gtk.MESSAGE_QUESTION, buttons=gtk.BUTTONS_CLOSE, message_format="Por Favor!:\nTomese unos instantes y describa su situación o inconveniente\n en el Cuadro de Documentar Falla")
-				md.run()
-				md.destroy()
-				#self.__close2()
-			if (self.vdis==0):
-				md=gtk.MessageDialog(parent=None, flags=0, type=gtk.MESSAGE_QUESTION, buttons=gtk.BUTTONS_CLOSE, message_format="Por Favor!:\nSeleccione al menos una opción a consultar\ndel cuadro Seleccione datos a enviar")
-				md.run()
-				md.destroy()
-			if (self.Titulo.get_text()==""):
-				md=gtk.MessageDialog(parent=None, flags=0, type=gtk.MESSAGE_QUESTION, buttons=gtk.BUTTONS_CLOSE, message_format="Es necesario:\nUn título")
-				md.run()
-				md.destroy()
-			if (self.Autor.get_text()==""):
-				md=gtk.MessageDialog(parent=None, flags=0, type=gtk.MESSAGE_QUESTION, buttons=gtk.BUTTONS_CLOSE, message_format="Es necesario:\nUn autor")
-				md.run()
-				md.destroy()
-
-			if (self.dnota == "" or self.vdis==0 or self.Titulo.get_text()=="" or self.Autor.get_text()==""):
-				md=gtk.MessageDialog(parent=None, flags=0, type=gtk.MESSAGE_ERROR, buttons=gtk.BUTTONS_CLOSE, message_format="No es posible enviar la nota o ver el informe")
-				md.run()
-				md.destroy()
-
-			else:
-
-				if self.check_gdocum.get_active() == True:
-					filedf = open('/tmp/Documento.txt','w')
-					filedf.writelines(titulo)
-					filedf.writelines(autor)
-					filedf.writelines(info)
-					filedf.close()
-					os.popen("gedit /tmp/Documento.txt")
+								if self.check_gdocum.get_active() == True:
+									filedf = open('/tmp/Documento.txt','w')
+									filedf.writelines(titulo_2)
+									filedf.writelines(autor_2)
+									filedf.writelines(info)
+									filedf.close()									
+									worker = TestThread(self)
+									worker.start()
+									#os.popen("gedit /tmp/Documento.txt")
+																										
+								else:
+									
+									def prueba_inter(self):
+										pru = os.system("wget -P /tmp http://www.google.co.ve/")
+										t = next(os.walk('/tmp/'))[2]
+										a = 'index.html'
+										b = ''
+										for b in t:
+											if b == a:					
+												borrar = os.system('rm /tmp/index.html')
+												return True
+											else:
+												pass
+					
+									if prueba_inter(self) == True:
+									
+										params = urllib.urlencode({'codigo_form': info, 'titulo_form': titulo_1,'nombre_form': autor_1})
+										f = urllib.urlopen("http://notas.canaima.softwarelibre.gob.ve/enviar_consola", params)									
+										self.mes = f.read()
+										#print self.mes
+										md=gtk.MessageDialog(parent=None, flags=0, type=gtk.MESSAGE_INFO, buttons=gtk.BUTTONS_CLOSE, message_format= "El envio de la nota fue exitoso...!\n "+str(self.mes))
+										md.run()
+										md.destroy()
+										worker = TestThread2(self)
+										worker.start()
+										#systema= os.system("cunaguaro http://notas.canaima.softwarelibre.gob.ve/")
+										
+									else:
+										
+										md=gtk.MessageDialog(parent=None, flags=0, type=gtk.MESSAGE_ERROR, buttons=gtk.BUTTONS_CLOSE, message_format="\tEl reporte no podrá ser enviado a la plataforma de \t\n\tCanaima, porque no posee una conexión a internet.\n\n\tPero puedo verlo en el sistema con la opción \n\tVer Documento (No Enviar).")
+										md.set_title('Error en Conexión')
+										md.run()
+										md.destroy()
+										self.check_gdocum.set_active(True)
+												
+					else:
+						md=gtk.MessageDialog(parent=None, flags=0, type=gtk.MESSAGE_ERROR, buttons=gtk.BUTTONS_CLOSE, message_format="Por Favor!:\nTomese unos instantes y describa su situación o inconveniente\n en el Cuadro de Documentar Falla.")
+						md.run()
+						md.destroy()
+						self.refresh_captcha()
+						
 				else:
-					params = urllib.urlencode({'codigo_form': info, 'titulo_form': titulo,'nombre_form': autor})
-					f = urllib.urlopen("http://notas.canaima.softwarelibre.gob.ve/enviar_consola", params)
-					#print f.read()
-					self.mes = f.read()
-					md=gtk.MessageDialog(parent=None, flags=0, type=gtk.MESSAGE_INFO, buttons=gtk.BUTTONS_CLOSE, message_format= "El envio de la nota fue exitoso..!\n "+str(self.mes))
+					md=gtk.MessageDialog(parent=None, flags=0, type=gtk.MESSAGE_ERROR, buttons=gtk.BUTTONS_CLOSE, message_format="Es necesario que coloque una Dirección de correo electrónico.\n\n\t\t Ejemplo : correo@ejemplo.com")
 					md.run()
 					md.destroy()
-
-		self.aceptar.set_sensitive(True)
-		self.cerrar.set_sensitive(True)
+					self.refresh_captcha()			
+			else:
+				md=gtk.MessageDialog(parent=None, flags=0, type=gtk.MESSAGE_ERROR, buttons=gtk.BUTTONS_CLOSE, message_format="Es necesario que coloque un Autor.")
+				md.run()
+				md.destroy()
+				self.refresh_captcha()
+					
+		else:		
+			md=gtk.MessageDialog(parent=None, flags=0, type=gtk.MESSAGE_ERROR, buttons=gtk.BUTTONS_CLOSE, message_format="Es necesario que coloque un título.")
+			md.run()
+			md.destroy()
+			self.refresh_captcha()
+	
+		#self.aceptar.set_sensitive(True)
+		#self.cerrar.set_sensitive(True)
 
 	#def __close2(self, widget=None):
 		#self.destroy()
-
+	def refresh_captcha(self):
+		self.word = gen_random_word()
+		gen_captcha(self.word.strip(), '/usr/share/fonts/truetype/freefont/FreeSansBoldOblique.ttf', 20, '/tmp/test.jpg')
+		self.captcha_ima.set_from_file('/tmp/test.jpg')
 
 	def __close(self, widget=None):
-		self.destroy()
-		gtk.main_quit()
-		sys.exit(0)
+		if self.Titulo.get_text() or self.Autor.get_text():
+			md=gtk.MessageDialog(parent=None, flags=0, type=gtk.MESSAGE_QUESTION, buttons=gtk.BUTTONS_YES_NO, message_format="Al cerrar, todos los procedimientos que este generando el Documentador de Fallas serán cerrados.\n\n\t¿Desea salir de la aplicación?")
+			md.set_title('Cerrar')
+			respuesta = md.run()
+			md.destroy()
+		
+			if respuesta == gtk.RESPONSE_YES:
+				systema= os.system("rm /tmp/test.jpg")
+				self.destroy()
+				gtk.main_quit()
+			
+		else:
+			systema= os.system("rm /tmp/test.jpg")
+			self.destroy()
+			gtk.main_quit()
+			#sys.exit(0)
+	
+	def on_entry_correo_clicked(self, widget, event, data=None):	
+		if (self.flags_correo):
+			if event.type == gtk.gdk.BUTTON_RELEASE:
+				self.entry_correo.set_text("")
+				self.flags_correo = False
+	
+	def on_entry_buffer_clicked(self, widget, event, data=None):	
+		if (self.flags_buffer):
+			if event.type == gtk.gdk.BUTTON_RELEASE:
+				self.textbuffer.set_text("")
+				self.flags_buffer = False
+	
+	def close(self):
+		md=gtk.MessageDialog(parent=None, flags=0, type=gtk.MESSAGE_QUESTION, buttons=gtk.BUTTONS_YES_NO, message_format="Al cerrar, todos los procedimientos que este generando el Documentador de Fallas serán cerrados.\n\n\t¿Desea salir de la aplicación?")
+		md.set_title('Cerrar')
+		respuesta = md.run()
+		md.destroy()
+		
+		if respuesta == gtk.RESPONSE_YES:
+			systema= os.system("rm /tmp/test.jpg")
+			self.destroy()
+			gtk.main_quit()
+	
+	def on_delete(self, widget, data=None):
+		return not self.close()
 
 
 if __name__=="__main__":

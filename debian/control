@@ -2,7 +2,7 @@ Source: canaima-notas-gnome
 Section: misc
 Priority: optional
 Maintainer: Equipo de Desarrollo de Canaima GNU/Linux <desarrolladores@canaima.softwarelibre.gob.ve>
-Uploaders: Francisco Javier Vásquez Guerrero  <franjvasquezg@gmail.com>
+Uploaders: Carlos Espinoza <carlosarmikhael@gmail.com>
 Build-Depends: debhelper (>= 7.0.50~)
 Standards-Version: 3.9.1
 Homepage:  http://canaima.softwarelibre.gob.ve/
@@ -11,7 +11,7 @@ Vcs-Browser: http://gitorious.org/canaima-gnu-linux/canaima-notas-gnome/trees/ma
 
 Package: canaima-notas-gnome
 Architecture: all
-Depends: python, python-gtk2, python-gobject, ${shlibs:Depends}, ${misc:Depends}
+Depends: python, python-gtk2, python-gobject, python-imaging, ${shlibs:Depends}, ${misc:Depends}
 Recommends: canaima-estilo-visual-gnome (>= 3.1)
 Replaces: canaima-notas (<< 3.1)
 Conflicts: canaima-notas (<< 3.1)
@@ -31,6 +31,6 @@ Architecture: all
 Depends: canaima-notas-gnome (>= 3.1), ${shlibs:Depends}, ${misc:Depends}
 Description: Paquete transicional canaima-notas -> canaima-notas-gnome
  Esto es un paquete transicional para que los usuarios puedan
- actualizar de canaima-bienvenido a canaima-bienvenido-gnome sin muchos
+ actualizar de canaima-notas a canaima-notas-gnome sin muchos
  problemas. Puede ser removido.
 
