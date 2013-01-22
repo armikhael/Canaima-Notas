@@ -1,3 +1,9 @@
+canaima-notas-gnome (4.0-1) stable; urgency=low
+
+  * Incrementando el numero de la version. 
+
+ -- Carlos Espinoza <armikhael@armikhael>  Tue, 22 Jan 2013 12:33:52 -0430
+
 canaima-notas-gnome (3.1-9) stable; urgency=low
 
   * [23b9b00] corriendo omisión

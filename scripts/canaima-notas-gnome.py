@@ -31,7 +31,7 @@ def clic_ayuda(self):
 	hilo.start()
 		
 def ayuda_1(self, widget=None):			
-	x= Popen(["yelp /usr/share/gnome/help/canaima-notas/es/c-n.xml"], shell=True, stdout=PIPE)
+	x= Popen(["yelp /usr/share/gnome/help/canaima-notas-gnome/es/c-n.xml"], shell=True, stdout=PIPE)
 #-------------------------------------------------------
 
 #--------------------------imagen construir---------------------------------------
@@ -83,17 +83,17 @@ class Main(gtk.Window):
 		self.set_title('Documentador de Fallas')
 		#self.set_border_width(2)
 		self.connect("delete_event",self.on_delete)
-		if os.path.isfile('/usr/share/canaima-notas/img/banner-app-top.png'):
+		if os.path.isfile('/usr/share/canaima-notas-gnome/img/banner-app-top.png'):
                 	self.set_size_request(600, 520)
 		else:
 			self.set_size_request(600, 440)
 		self.set_resizable(False)
 		#icono del panel
-		self.set_icon_from_file('/usr/share/canaima-notas/img/canaima-notas-icons.png')
+		self.set_icon_from_file('/usr/share/canaima-notas-gnome/img/canaima-notas-icons.png')
 		self.worker = None
-		if os.path.basename('/usr/share/canaima-notas/img/banner-app-top.png') == 'banner-app-top.png':
+		if os.path.basename('/usr/share/canaima-notas-gnome/img/banner-app-top.png') == 'banner-app-top.png':
 			image = gtk.Image()
-			image.set_from_file('/usr/share/canaima-notas/img/banner-app-top.png')
+			image.set_from_file('/usr/share/canaima-notas-gnome/img/banner-app-top.png')
 		
 		#--------------------------------Primera caja--------------------------------------------
 		self.descripcion = gtk.Label()
