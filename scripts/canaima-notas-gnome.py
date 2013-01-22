@@ -80,37 +80,30 @@ class Main(gtk.Window):
 		
 		gtk.Window.__init__(self, gtk.WINDOW_TOPLEVEL)
 		gtk.Window.set_position(self, gtk.WIN_POS_CENTER_ALWAYS)
+		self.worker = None
 		self.set_title('Documentador de Fallas')
-		#self.set_border_width(2)
 		self.connect("delete_event",self.on_delete)
+
+		# Banner del panel
+		self.set_resizable(False)
 		if os.path.isfile('/usr/share/canaima-notas-gnome/img/banner-app-top.png'):
                 	self.set_size_request(600, 520)
 		else:
 			self.set_size_request(600, 440)
-		self.set_resizable(False)
-		#icono del panel
-		self.set_icon_from_file('/usr/share/canaima-notas-gnome/img/canaima-notas-icons.png')
-		self.worker = None
 		if os.path.basename('/usr/share/canaima-notas-gnome/img/banner-app-top.png') == 'banner-app-top.png':
 			image = gtk.Image()
 			image.set_from_file('/usr/share/canaima-notas-gnome/img/banner-app-top.png')
+
+		#Icono del panel
+		self.set_icon_from_file('/usr/share/canaima-notas-gnome/img/canaima-notas-icons.png')
 		
 		#--------------------------------Primera caja--------------------------------------------
 		self.descripcion = gtk.Label()
 		self.descripcion.set_markup("<b> Bienvenido al Documentador de Fallas</b>")
-		self.image_knotes = gtk.Image()
-		self.image_knotes.set_from_file('/usr/share/icons/canaima-iconos/apps/32/knotes.png')
 		#-------------------------Separadores
 		self.separator1 = gtk.HSeparator()
 		self.separator2 = gtk.HSeparator()
 		self.separator3 = gtk.HSeparator()
-		
-		#--------------------------------------
-		caja_1= gtk.HBox(False, False)
-		caja_1.pack_start(self.separator1, False, False,70)
-		caja_1.pack_start(self.image_knotes, False, False,0)
-		caja_1.pack_start(self.descripcion, False, False,0)	
-		#----------------------------------------------------------------------------------------
 		
 		#<<<<<<<<<<<<<<<<Sección de Dispositivos>>>>>>>>>>>>>>>>>>>>>>
 		self.tabla =  gtk.Table(4,4,True)
@@ -242,7 +235,6 @@ class Main(gtk.Window):
 		#self.hcaja = gtk.Hbox(False, 0)
 
 		# Creación de etiquetas
-
 		# Creación de barras de progreso
 		#self.pbar1 = gtk.ProgressBar()
 		#self.pbar2 = gtk.ProgressBar()
@@ -259,7 +251,7 @@ class Main(gtk.Window):
 		self.captcha_ima.set_from_file('/tmp/test.jpg')
 		#self.captcha_ima.connect('clicked', self.refresh_captcha)
 		
-		#############################################################################################################3################------------
+		#############################################################################################################################------------
 	
 		self.Titulo = gtk.Entry(20)
 		self.Autor = gtk.Entry(30)
@@ -324,22 +316,9 @@ class Main(gtk.Window):
 		marco.set_border_width(2)
 		marco_1.set_border_width(2)
 
-		if os.path.isfile('/usr/share/canaima-notas/img/banner-app-top.png'):
+		if os.path.isfile('/usr/share/canaima-notas-gnome/img/banner-app-top.png'):
 			vbox.pack_start(image, False, False, 3)
 		
-		#~ vbox.pack_start(caja_1, False, False, 0)
-		#~ vbox.pack_start(self.separator2, False, False,5)
-		#~ vbox.pack_start(self.tabla_T, False, False, 0)
-		#~ vbox.pack_start(caja_correo, True, True, 5)
-		#~ vbox.pack_start(marco, False, False, 0)
-		#~ vbox.pack_start(marco_1, False, False, 0)
-		#~ #vbox.pack_start(self.scrolledwindow, True, True, 0)#----------------------error---------------------------------
-		#~ vbox.pack_start(self.check_gdocum, False, False, 0)	
-		#~ vbox.pack_start(self.tabla_V, False, False, 0)
-		#~ vbox.pack_start(self.separator3, False, False,5)
-		#~ vbox.pack_start(button_box, False, False, 0)
-		
-		#vbox.add(caja_1)
 		vbox.add(self.separator2)
 		vbox.add(self.tabla_T)
 		vbox.add(caja_correo)
@@ -573,27 +552,6 @@ class Main(gtk.Window):
 								info+="-\n"
 								info+="-*- Información Enviada automáticamente desde el Documentador de Fallas (Cliente Notas Canaima):\n\n"
 								self.vdis=1
-
-							#~ if (self.Titulo.get_text()==""):
-								#~ md=gtk.MessageDialog(parent=None, flags=0, type=gtk.MESSAGE_ERROR, buttons=gtk.BUTTONS_CLOSE, message_format="Es necesario que coloque un título.")
-								#~ md.run()
-								#~ md.destroy()
-							
-							#~ if (self.Autor.get_text()==""):
-								#~ md=gtk.MessageDialog(parent=None, flags=0, type=gtk.MESSAGE_ERROR, buttons=gtk.BUTTONS_CLOSE, message_format="Es necesario que coloque un Autor.")
-								#~ md.run()
-								#~ md.destroy()
-							
-							#~ if (self.entry_correo.get_text()==""):
-								#~ md=gtk.MessageDialog(parent=None, flags=0, type=gtk.MESSAGE_ERROR, buttons=gtk.BUTTONS_CLOSE, message_format="Es necesario que coloque una Dirección de correo electrónico.")
-								#~ md.run()
-								#~ md.destroy()
-								
-							#~ if self.dnota == "":
-								#~ md=gtk.MessageDialog(parent=None, flags=0, type=gtk.MESSAGE_ERROR, buttons=gtk.BUTTONS_CLOSE, message_format="Por Favor!:\nTomese unos instantes y describa su situación o inconveniente\n en el Cuadro de Documentar Falla.")
-								#~ md.run()
-								#~ md.destroy()
-								#~ #self.__close2()
 							
 							if (self.vdis==0):
 								md=gtk.MessageDialog(parent=None, flags=0, type=gtk.MESSAGE_ERROR, buttons=gtk.BUTTONS_CLOSE, message_format="Por Favor!:\nSeleccione al menos una opción a consultar\ndel cuadro Seleccione datos a enviar.")

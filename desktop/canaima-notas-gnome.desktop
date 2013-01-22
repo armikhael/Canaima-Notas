@@ -3,7 +3,7 @@
 Version=1.0
 Encoding=UTF-8
 Name=Documentador de Fallas
-Icon=/usr/share/canaima-notas/img/canaima-notas-icons.png
+Icon=/usr/share/canaima-notas-gnome/img/canaima-notas-icons.png
 Comment=Documentador de Fallas: Cliente de la plataforma http://notas.canaima.softwarelibre.gob.ve
 Exec=/usr/bin/canaima-notas-gnome.sh
 Terminal=false
