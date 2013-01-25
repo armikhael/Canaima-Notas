@@ -31,8 +31,10 @@ canaima-notas-gnome (4.0-1) stable; urgency=low
     modificados/añadidos: Makefile
   * [64a2f64] [ canaima-desarrollador ] Los siguientes archivos han sido
     modificados/añadidos: Makefile
+  * [1f181b0] [ canaima-desarrollador ] Los siguientes archivos han sido
+    modificados/añadidos: canaima-notas-gnome.py
 
- -- Carlos Espinoza <carlosarmikhael@gmail.com>  Fri, 25 Jan 2013 14:15:38 -0430
+ -- Carlos Espinoza <carlosarmikhael@gmail.com>  Fri, 25 Jan 2013 14:43:21 -0430
 
 canaima-notas-gnome (3.1-9) stable; urgency=low
 
