@@ -27,8 +27,10 @@ canaima-notas-gnome (4.0-1) stable; urgency=low
   * [adffc87] Cambiando acceso directo de la aplicación. Modificando
     rutas de imágenes e iconos. Modificando letra del captcha.
   * [cd99467] modificando ruta de icons y acceso directo
+  * [e552083] [ canaima-desarrollador ] Los siguientes archivos han sido
+    modificados/añadidos: Makefile
 
- -- Carlos Espinoza <carlosarmikhael@gmail.com>  Fri, 25 Jan 2013 14:02:21 -0430
+ -- Carlos Espinoza <carlosarmikhael@gmail.com>  Fri, 25 Jan 2013 14:12:58 -0430
 
 canaima-notas-gnome (3.1-9) stable; urgency=low
 
