@@ -2,7 +2,6 @@
 # -*- coding: utf-8 -*-
 
 import urllib
-import vte
 import webbrowser
 import random
 import re
