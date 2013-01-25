@@ -53,7 +53,6 @@ install:
 	cp -r img $(DESTDIR)/usr/share/canaima-notas-gnome/	
 	rm -rf $(DESTDIR)/usr/share/canaima-notas-gnome/img/*.svg
 	cp -r desktop/canaima-notas-gnome.desktop $(DESTDIR)/usr/share/applications/
-	#cp -r scripts/canaima-notas-gnome $(DESTDIR)/usr/bin/
 	cp -r ayuda/canaima-notas-gnome $(DESTDIR)/usr/share/gnome/help
 	ln -s /usr/share/canaima-notas-gnome/scripts/canaima-notas-gnome.py $(DESTDIR)/usr/bin/canaima-notas-gnome
 
