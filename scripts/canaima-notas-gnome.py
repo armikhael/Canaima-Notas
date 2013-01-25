@@ -70,7 +70,7 @@ class TestThread2(threading.Thread):
         threading.Thread.__init__(self)
 
     def run(self):
-        systema= os.system("cunaguaro http://notas.canaima.softwarelibre.gob.ve/")
+        systema= os.system("sensible-browser http://notas.canaima.softwarelibre.gob.ve/")
 
 class Main(gtk.Window):
 	
@@ -86,16 +86,16 @@ class Main(gtk.Window):
 
 		# Banner del panel
 		self.set_resizable(False)
-		if os.path.isfile('/usr/share/canaima-notas-gnome/img/banner-app-top.png'):
+		if os.path.isfile('../img/banner-app-top.png'):
                 	self.set_size_request(600, 520)
 		else:
 			self.set_size_request(600, 440)
-		if os.path.basename('/usr/share/canaima-notas-gnome/img/banner-app-top.png') == 'banner-app-top.png':
+		if os.path.basename('../img/banner-app-top.png') == 'banner-app-top.png':
 			image = gtk.Image()
-			image.set_from_file('/usr/share/canaima-notas-gnome/img/banner-app-top.png')
+			image.set_from_file('../img/banner-app-top.png')
 
 		#Icono del panel
-		self.set_icon_from_file('/usr/share/canaima-notas-gnome/img/canaima-notas-icons.png')
+		self.set_icon_from_file('../img/canaima-notas-icons.png')
 		
 		#--------------------------------Primera caja--------------------------------------------
 		self.descripcion = gtk.Label()
@@ -316,7 +316,7 @@ class Main(gtk.Window):
 		marco.set_border_width(2)
 		marco_1.set_border_width(2)
 
-		if os.path.isfile('/usr/share/canaima-notas-gnome/img/banner-app-top.png'):
+		if os.path.isfile('../img/banner-app-top.png'):
 			vbox.pack_start(image, False, False, 3)
 		
 		vbox.add(self.separator2)
@@ -640,7 +640,7 @@ class Main(gtk.Window):
 		#self.destroy()
 	def refresh_captcha(self):
 		self.word = gen_random_word()
-		gen_captcha(self.word.strip(), '/usr/share/fonts/truetype/freefont/FreeSansBoldOblique.ttf', 20, '/tmp/test.jpg')
+		gen_captcha(self.word.strip(), '/usr/share/fonts/truetype/ttf-dejavu/DejaVuSans.ttf', 20, '/tmp/test.jpg')		
 		self.captcha_ima.set_from_file('/tmp/test.jpg')
 
 	def __close(self, widget=None):
