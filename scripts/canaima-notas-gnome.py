@@ -225,7 +225,7 @@ class Main(gtk.Window):
 		self.textview = gtk.TextView()
 		self.textbuffer = self.textview.get_buffer()
 		self.textview.set_editable(True)
-		self.textbuffer.set_text("\n\n\t\t\t\tEscriba el problema que ocurrió en su computador")
+		self.textbuffer.set_text("\n\t\t\t\tEscriba el problema que ocurrió en su computador")
 		self.textview.connect('event', self.on_entry_buffer_clicked)
 		#scroll
 		self.scrolledwindow.add(self.textview)
@@ -243,7 +243,7 @@ class Main(gtk.Window):
 		#------------------------------------------------------------------------
 		titulo = gtk.Label("Titulo:")
 		autor = gtk.Label("Autor:")
-		validador = gtk.Label("        Escribe lo que")
+		validador = gtk.Label("       Escribe lo que")
 		validador2 = gtk.Label("ves en la imagen")
 
 		self.captcha_ima = gtk.Image()
@@ -279,7 +279,7 @@ class Main(gtk.Window):
 		self.cerrar = gtk.Button(stock=gtk.STOCK_CLOSE)
 		self.cerrar.set_size_request(80, 30)
 		self.aceptar = gtk.Button(stock=gtk.STOCK_OK)
-		self.aceptar.set_size_request(80, 30)
+		self.aceptar.set_size_request(85, 30)
 		self.ayuda = gtk.Button(stock=gtk.STOCK_HELP)
 		self.ayuda.set_size_request(80, 30)
 		#button_box = gtk.HButtonBox()
