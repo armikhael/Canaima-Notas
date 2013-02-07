@@ -74,7 +74,7 @@ def gen_captcha(text, fnt, fnt_sz, file_name, fmt='JPEG'):
     d.text((3, 3), text, font=font, fill=fgcolor)
     im = im.filter(ImageFilter.EDGE_ENHANCE_MORE)
     im.save(file_name, format=fmt)
-#-------------------------------------------------------------------------------
+
 #---------------------threading para la variable systema------------------------
 class TestThread(threading.Thread):
     def __init__(self, mainview):
@@ -115,7 +115,7 @@ class Main(gtk.Window):
         #Icono del panel
         self.set_icon_from_file('/usr/share/canaima-notas-gnome/img/canaima-notas-icons.png')
 
-        #--------------------------------Primera caja--------------------------------------------
+        #--------------------------------Primera caja---------------------------
         self.descripcion = gtk.Label()
         self.descripcion.set_markup("<b> Bienvenido al Documentador de Fallas</b>")
         #-------------------------Separadores
@@ -152,7 +152,7 @@ class Main(gtk.Window):
         #---------------------------------------------------------------
 
 
-        #<<<<<<<<<<<<<<<<Sección de informaión del sistema>>>>>>>>>>>>>>>>>>>>>>>>>
+        #<<<<<<<<<<<<<<<<Sección de informaión del sistema>>>>>>>>>>>>>>>>>>>>>>
         self.tabla1 = gtk.Table(4, 4, True)
 
         self.check_acelgraf = gtk.CheckButton("Aceleración Gráfica")
@@ -250,16 +250,9 @@ class Main(gtk.Window):
         self.scrolledwindow.add(self.textview)
         self.alineacion.add(self.scrolledwindow)
         marco.add(self.alineacion)
-        #self.hcaja = gtk.Hbox(False, 0)
-
-        # Creación de etiquetas
-        # Creación de barras de progreso
-        #self.pbar1 = gtk.ProgressBar()
-        #self.pbar2 = gtk.ProgressBar()
-        #self.borrar_usuario.set_active(True)
 
         # Caja titulo autor y captcha
-        #------------------------------------------------------------------------
+        #-----------------------------------------------------------------------
         titulo = gtk.Label("Titulo:")
         autor = gtk.Label("Autor:")
         validador = gtk.Label("        Escribe lo que")
@@ -267,9 +260,8 @@ class Main(gtk.Window):
 
         self.captcha_ima = gtk.Image()
         self.captcha_ima.set_from_file('/tmp/test.jpg')
-        #self.captcha_ima.connect('clicked', self.refresh_captcha)
 
-        #############################################################################################################################------------
+        ########################################################################
 
         self.Titulo = gtk.Entry(20)
         self.Autor = gtk.Entry(30)
@@ -287,28 +279,26 @@ class Main(gtk.Window):
         self.tabla_V = gtk.Table(1, 5, True)
         self.tabla_V.attach(validador, 0, 1, 0, 1)
         self.tabla_V.attach(validador2, 1, 2, 0, 1)
-        self.tabla_V.attach(self.captcha_ima, 2, 3, 0, 1)################################################################################33
+        self.tabla_V.attach(self.captcha_ima, 2, 3, 0, 1)
         self.tabla_V.attach(self.Dato, 3, 4, 0, 1)
         self.tabla_V.show()
 
         self.check_gdocum = gtk.CheckButton("Ver Documento (No enviar)")
         self.check_gdocum.set_active(False)
 
-        # Creación de botones--------------------------caja botones----------------------------
+        # --------------------------caja botones--------------------------------
         self.cerrar = gtk.Button(stock=gtk.STOCK_CLOSE)
         self.cerrar.set_size_request(80, 30)
         self.aceptar = gtk.Button(stock=gtk.STOCK_OK)
         self.aceptar.set_size_request(80, 30)
         self.ayuda = gtk.Button(stock=gtk.STOCK_HELP)
         self.ayuda.set_size_request(80, 30)
-        #button_box = gtk.HButtonBox()
         button_box = gtk.HBox(False, False)
-        #button_box.set_layout(gtk.BUTTONBOX_SPREAD)
         button_box.pack_start(self.cerrar, False, False, 10)
         button_box.pack_start(self.ayuda, False, False, 5)
         button_box.pack_start(self.aceptar, False, False, 315)
 
-        #-------------------------------------caja entry de correo---------------------------
+        #-------------------------------------caja entry de correo--------------
         self.correo = gtk.Label()
         self.correo.set_markup("Email:")
 
@@ -326,10 +316,8 @@ class Main(gtk.Window):
         caja_correo.pack_start(self.entry_correo, True, True, 0)
         caja_correo.pack_start(self.label_1, False, False, 60)
 
-        #----------------------------------------------------------------------------------------
 
-
-        #-----------------------------------CAJA DE WINDOW-------------------------------------
+        #-----------------------------------CAJA DE WINDOW----------------------
         vbox = gtk.VBox(False, 0)
         marco.set_border_width(2)
         marco_1.set_border_width(2)
@@ -342,24 +330,18 @@ class Main(gtk.Window):
         vbox.add(caja_correo)
         vbox.add(marco)
         vbox.add(marco_1)
-        #vbox.pack_start(self.scrolledwindow, True, True, 0)#----------------------error---------------------------------
         vbox.add(self.check_gdocum)
         vbox.add(self.tabla_V)
         vbox.add(self.separator3)
-        #vbox.add(button_box)
         vbox.pack_start(button_box, False, False, 0)
 
         self.add(vbox)
-        #-------------------------------------------------------------------------------
 
-        #----------------------conectar botones a las funciones------------------
+        #----------------------conectar botones a las funciones-----------------
         self.ayuda.connect("clicked", clic_ayuda)
         self.cerrar.connect("clicked", self.__close)
         self.aceptar.connect("clicked", self.__validate, self.textview)
-        #---------------------------------------------------------------------------
-
-        #vbox.pack_start(scrolledwindow, True, True, 0)
-        #scrolledwindow.add(self.textview)
+        #-----------------------------------------------------------------------
 
         self.show_all()
 
@@ -444,17 +426,12 @@ class Main(gtk.Window):
                             info += "\n___________________ NOTA DE USUARIO ___________________\n\n"
                             info += "-\n"
 
-                            #--------------------capchat---------------------------
-
-                            #--------------------capchat---------------------------
-
                             #Titulo de la Nota
                             titulo_1 = self.Titulo.get_text()
                             autor_1 = self.Autor.get_text()
 
                             titulo_2 = "TITULO: " + self.Titulo.get_text() + "\n\n"
                             autor_2 = "AUTOR: " + self.Autor.get_text() + "\n\n"
-
 
                             info += self.textbuffer.get_text(start, end)
                             info += "\n"
@@ -531,13 +508,6 @@ class Main(gtk.Window):
                                 info += "-\n"
                                 self.vdis = 1
 
-                            #if self.check_logsys.get_active() == True:
-                            #    info+="----- Log del Systema:----------\n\n"
-                            #    info+="-\n"
-                            #    info+=os.popen("gksu cat /var/log/syslog|grep 'error'").read()
-                            #    info+="-\n"
-                            #    self.vdis=1
-
                             if self.check_xorg.get_active() == True:
                                 info += "----- Información del servidor de pantallas en Canaima 2.1 (lenny):\n\n"
                                 info += "-\n"
@@ -591,7 +561,6 @@ class Main(gtk.Window):
                                     filedf.close()
                                     worker = TestThread(self)
                                     worker.start()
-                                    #os.popen("gedit /tmp/Documento.txt")
 
                                 else:
 
@@ -608,20 +577,15 @@ class Main(gtk.Window):
                                                 pass
 
                                     if prueba_inter(self) == True:
-
                                         params = urllib.urlencode({'codigo_form': info, 'titulo_form': titulo_1, 'nombre_form': autor_1})
                                         f = urllib.urlopen("http://notas.canaima.softwarelibre.gob.ve/enviar_consola", params)
                                         self.mes = f.read()
-                                        #print self.mes
                                         md = gtk.MessageDialog(parent=None, flags=0, type=gtk.MESSAGE_INFO, buttons=gtk.BUTTONS_CLOSE, message_format="El envio de la nota fue exitoso...!\n " + str(self.mes))
                                         md.run()
                                         md.destroy()
                                         worker = TestThread2(self)
                                         worker.start()
-                                        #systema= os.system("cunaguaro http://notas.canaima.softwarelibre.gob.ve/")
-
                                     else:
-
                                         md = gtk.MessageDialog(parent=None, flags=0, type=gtk.MESSAGE_ERROR, buttons=gtk.BUTTONS_CLOSE, message_format="\tEl reporte no podrá ser enviado a la plataforma de \t\n\tCanaima, porque no posee una conexión a internet.\n\n\tPero puedo verlo en el sistema con la opción \n\tVer Documento (No Enviar).")
                                         md.set_title('Error en Conexión')
                                         md.run()
@@ -651,11 +615,6 @@ class Main(gtk.Window):
             md.destroy()
             self.refresh_captcha()
 
-        #self.aceptar.set_sensitive(True)
-        #self.cerrar.set_sensitive(True)
-
-    #def __close2(self, widget=None):
-        #self.destroy()
     def refresh_captcha(self):
         self.word = gen_random_word()
         gen_captcha(self.word.strip(), '/usr/share/fonts/truetype/ttf-dejavu/DejaVuSans.ttf', 20, '/tmp/test.jpg')
@@ -677,7 +636,6 @@ class Main(gtk.Window):
             systema = os.system("rm /tmp/test.jpg")
             self.destroy()
             gtk.main_quit()
-            #sys.exit(0)
 
     def on_entry_correo_clicked(self, widget, event, data=None):
         if (self.flags_correo):
