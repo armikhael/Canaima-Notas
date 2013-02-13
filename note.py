@@ -1,9 +1,30 @@
 '''
+Copyright (C) 2010 Canaima GNU/Linux
+<desarrolladores@canaima.softwarelibre.gob.ve>
+
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software
+Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA
+
 Created on 08/02/2013
 
-@author: Erick Birbe
+@author: Erick Birbe <erickcion@gmail.com>
 '''
 import os
+import urllib
+from common import list_to_lines, TXT_FILE
+
+URL_SEND = "http://notas.canaima.softwarelibre.gob.ve/enviar_consola"
 
 
 class Note():
@@ -20,14 +41,7 @@ class Note():
         self.is_viewonly = True
 
     def __str__(self):
-        data = ""
-        i = 0
-        for line in self.__data:
-            if i > 0:
-                data += "\n"
-            i += 1
-            data += str(line)
-        return data
+        return list_to_lines(self.__data)
 
     def add(self, string):
         self.__data.append(string)
@@ -59,12 +73,16 @@ class Note():
         self.add("")
         self.add(self.details)
         self.add("__________________________________________________________")
+        self.add("")
 
-if __name__ == "__main__":
-    n = Note()
-    n.title = "Hi"
-    n.author = "There"
-    n.email = "How"
-    n.details = "are you"
-    n.append_defaults()
-    print n
+    def send_note(self):
+        params = urllib.urlencode({'codigo_form': self.__str__(),
+                                   'titulo_form': self.title,
+                                   'nombre_form': self.author})
+        f = urllib.urlopen(URL_SEND, params)
+        self.mes = f.read()
+
+    def write_to_file(self):
+        note_file = open(TXT_FILE, 'w')
+        note_file.writelines(self.__str__())
+        note_file.close()

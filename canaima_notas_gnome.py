@@ -1,35 +1,36 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-#==============================================================================
-#
-# Copyright (C) 2010 Canaima GNU/Linux
-# <desarrolladores@canaima.softwarelibre.gob.ve>
-#
-# This program is free software; you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation; either version 2 of the License, or
-# (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
-#
-#==============================================================================
+'''
+Copyright (C) 2010 Canaima GNU/Linux
+<desarrolladores@canaima.softwarelibre.gob.ve>
+
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software
+Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA
+
+@author: Erick Birbe <erickcion@gmail.com>
+@author: Carlos Espinoza <carlosarmikhael@gmail.com>
+@author: Francisco Vásquez <franjvasquezg@gmail.com>
+
+'''
 
 from common import ICON_PATH, TOP_BANNER_PATH, get_random_word, FONT_CAPTCHA, \
     IMG_CAPTCHA, create_captcha_img, TXT_FILE, URL_PASTE_PLATFORM, \
-    launch_help, message_question
+    launch_help, message_question, message_error, list_to_lines
 import gtk
 import os
-import re
 import threading
-import urllib
-from validations import is_empty_string, is_valid_email
+from validations import is_empty_string, is_valid_email, have_internet_access
 from note import Note
 
 gtk.gdk.threads_init()
@@ -201,6 +202,7 @@ específico posible):")
         self.check_gdocum.set_active(False)
 
         # Capcha
+        # FIXME: Captcha sólo deberia aparecer si el contenido se va a enviar
         lbl_captcha = gtk.Label("Escribe lo que ves en la imagen:")
         lbl_captcha.set_justify(gtk.JUSTIFY_LEFT)
         self.word = get_random_word()
@@ -223,7 +225,7 @@ específico posible):")
         self.btn_ayuda = gtk.Button(stock=gtk.STOCK_HELP)
         self.btn_ayuda.connect("clicked", self.on_btn_ayuda_clicked)
         self.btn_aceptar = gtk.Button(stock=gtk.STOCK_OK)
-        self.btn_aceptar.connect("clicked", self.__validate, self.textview)
+        self.btn_aceptar.connect("clicked", self.on_btn_aceptar_clicked)
 
         button_box = gtk.HBox(False, False)
         button_box.pack_start(self.btn_cerrar, False, False, 10)
@@ -281,7 +283,6 @@ específico posible):")
             self.check_tpart.set_active(True)
             self.check_prefe.set_active(True)
             self.check_ired.set_active(True)
-            self.check_logsys.set_active(True)
 
         else:
             self.check_acelgraf.set_active(False)
@@ -290,7 +291,6 @@ específico posible):")
             self.check_tpart.set_active(False)
             self.check_prefe.set_active(False)
             self.check_ired.set_active(False)
-            self.check_logsys.set_active(False)
 
     def selectalldis3(self, widget, data=None):
 
@@ -305,9 +305,28 @@ específico posible):")
 
     # Eventos -----------------------------------------------------------------
 
-    def on_btn_ayuda_clicked(self):
+    def on_btn_ayuda_clicked(self, widget=None):
         hilo = threading.Thread(target=launch_help, args=(self))
         hilo.start()
+
+    def on_btn_aceptar_clicked(self, widget):
+        errors = self.__validate_form()
+        # Si la lista de errores contiene algo entonces no es valido.
+        if errors != []:
+            message_error(list_to_lines(errors))
+            return False
+
+        if self.__is_viewonly():
+            self.note.write_to_file()
+            worker = ThreadTxtEditor(self)
+            worker.start()
+        else:
+            self.note.send_note()
+            worker = ThreadWebBrowser(self)
+            worker.start()
+
+        self.refresh_captcha()
+        return True
 
     def on_txt_correo_clicked(self, widget, event, data=None):
         if (self.flags_correo):
@@ -326,243 +345,160 @@ específico posible):")
 
     # Funciones Internas ------------------------------------------------------
 
-    def __validate(self, widget, textview):
+    def __validate_form(self):
 
-        is_validated = True
+        messages = []
+
         #TODO: Cambiar este textbuffer por un Entry con multilineas
-        self.textbuffer = textview.get_buffer()
+        self.textbuffer = self.textview.get_buffer()
         start, end = self.textbuffer.get_bounds()
         self.dnota = self.textbuffer.get_text(start, end)
 
-        # Validar Título
+        # Validar título
         if is_empty_string(self.txt_titulo.get_text()):
-            is_validated = False
+            messages.append("- Es necesario que escriba un título.")
 
         # Validar Autor
         if is_empty_string(self.txt_autor.get_text()):
-            is_validated = False
+            messages.append("- Es necesario que escriba su nombre.")
 
-        # Validar Correo
+        # Validar correo
         if not is_valid_email(self.txt_correo.get_text()):
-            is_validated = False
+            messages.append("- Es necesario que escriba su dirección de \
+correo electrónico.")
 
-        # Validar Descipción
+        # Validar descipción
         if is_empty_string(self.dnota):
-            is_validated = False
+            messages.append("- Tómese unos instantes y describa la falla.")
 
-        # Validar Captcha
-        if  self.txt_captcha.get_text() != self.word:
-            is_validated = False
+        # Validar opciones seleccionadas
+        if not self.__build_note():
+            messages.append("- Seleccione al menos 1 opción del cuadro de \
+Datos a Enviar.")
 
-        # Validar Opciones seleccionadas
-        # Chequear internet
+        # Validaciones sólo para el caso de enviar
+        if not self.__is_viewonly():
+            # Validar captcha
+            if  self.txt_captcha.get_text() != self.word:
+                messages.append("- El valor introducido no coincide con el de \
+la imágen.")
+            # Chequear internet
+            if not have_internet_access():
+                messages.append("- No posee una conexión a internet activa. \
+Seleccione la opción No Enviar.")
 
-        return is_validated
-
-        if self.txt_titulo.get_text():
-
-            if self.txt_autor.get_text():
-
-                if re.match('^[(a-z0-9\_\-\.)]+@[(a-z0-9\_\-\.)]+\.[(a-z)]{2,4}$', self.txt_correo.get_text().lower()):
-
-                    if self.dnota:
-
-                        #validacion del captcha
-                        if  self.txt_captcha.get_text() != self.word:
-
-                            md = gtk.MessageDialog(parent=None, flags=0, type=gtk.MESSAGE_ERROR, buttons=gtk.BUTTONS_CLOSE, message_format="El valor introducido no coincide con el captcha intente de nuevo")
-                            md.run()
-                            md.destroy()
-                            self.refresh_captcha()
-                            self.txt_captcha.set_text("")
-
-                        else:
-                            self.refresh_captcha()
-
-                            ## Aqui se construia la nota
-
-                            if (self.vdis == 0):
-                                md = gtk.MessageDialog(parent=None, flags=0, type=gtk.MESSAGE_ERROR, buttons=gtk.BUTTONS_CLOSE, message_format="Por Favor!:\nSeleccione al menos una opción a consultar\ndel cuadro Seleccione datos a enviar.")
-                                md.run()
-                                md.destroy()
-
-                            if (self.dnota == "" or self.vdis == 0 or self.txt_titulo.get_text() == "" or self.txt_autor.get_text() == ""):
-                                md = gtk.MessageDialog(parent=None, flags=0, type=gtk.MESSAGE_ERROR, buttons=gtk.BUTTONS_CLOSE, message_format="No es posible enviar la nota o ver el informe.")
-                                md.run()
-                                md.destroy()
-
-                            else:
-
-                                if self.check_gdocum.get_active() == True:
-                                    filedf = open(TXT_FILE, 'w')
-                                    filedf.writelines(titulo_2)
-                                    filedf.writelines(autor_2)
-                                    filedf.writelines(info)
-                                    filedf.close()
-                                    worker = ThreadTxtEditor(self)
-                                    worker.start()
-
-                                else:
-
-                                    def prueba_inter(self):
-                                        os.system("wget -P /tmp http://www.google.co.ve/")
-                                        t = next(os.walk('/tmp/'))[2]
-                                        a = 'index.html'
-                                        b = ''
-                                        for b in t:
-                                            if b == a:
-                                                os.system('rm /tmp/index.html')
-                                                return True
-                                            else:
-                                                pass
-
-                                    if prueba_inter(self) == True:
-                                        params = urllib.urlencode({'codigo_form': info, 'titulo_form': titulo_1, 'nombre_form': autor_1})
-                                        f = urllib.urlopen("http://notas.canaima.softwarelibre.gob.ve/enviar_consola", params)
-                                        self.mes = f.read()
-                                        md = gtk.MessageDialog(parent=None, flags=0, type=gtk.MESSAGE_INFO, buttons=gtk.BUTTONS_CLOSE, message_format="El envio de la nota fue exitoso...!\n " + str(self.mes))
-                                        md.run()
-                                        md.destroy()
-                                        worker = ThreadWebBrowser(self)
-                                        worker.start()
-                                    else:
-                                        md = gtk.MessageDialog(parent=None, flags=0, type=gtk.MESSAGE_ERROR, buttons=gtk.BUTTONS_CLOSE, message_format="\tEl reporte no podrá ser enviado a la plataforma de \t\n\tCanaima, porque no posee una conexión a internet.\n\n\tPero puedo verlo en el sistema con la opción \n\tVer Documento (No Enviar).")
-                                        md.set_title('Error en Conexión')
-                                        md.run()
-                                        md.destroy()
-                                        self.check_gdocum.set_active(True)
-
-                    else:
-                        md = gtk.MessageDialog(parent=None, flags=0, type=gtk.MESSAGE_ERROR, buttons=gtk.BUTTONS_CLOSE, message_format="Por Favor!:\nTomese unos instantes y describa su situación o inconveniente\n en el Cuadro de Documentar Falla.")
-                        md.run()
-                        md.destroy()
-                        self.refresh_captcha()
-
-                else:
-                    md = gtk.MessageDialog(parent=None, flags=0, type=gtk.MESSAGE_ERROR, buttons=gtk.BUTTONS_CLOSE, message_format="Es necesario que coloque una Dirección de correo electrónico.\n\n\t\t Ejemplo : correo@ejemplo.com")
-                    md.run()
-                    md.destroy()
-                    self.refresh_captcha()
-            else:
-                md = gtk.MessageDialog(parent=None, flags=0, type=gtk.MESSAGE_ERROR, buttons=gtk.BUTTONS_CLOSE, message_format="Es necesario que coloque un txt_autor.")
-                md.run()
-                md.destroy()
-                self.refresh_captcha()
-
-        else:
-            md = gtk.MessageDialog(parent=None, flags=0, type=gtk.MESSAGE_ERROR, buttons=gtk.BUTTONS_CLOSE, message_format="Es necesario que coloque un título.")
-            md.run()
-            md.destroy()
-            self.refresh_captcha()
+        return messages
 
     def __is_viewonly(self):
         return self.check_gdocum.get_active()
 
     def __build_note(self):
 
-        self.vdis = 0
+        selection = False
 
-        info = Note(self.txt_titulo.get_text(),
+        self.note = Note(self.txt_titulo.get_text(),
                     self.txt_autor.get_text(),
                     self.txt_correo.get_text(),
                     self.dnota)
-        info.is_viewonly = self.__is_viewonly()
+        self.note.is_viewonly = self.__is_viewonly()
 
+        if self.__is_viewonly():
+            self.note.append_defaults()
+
+        #TODO: Ordenar estos comandos desde lo mas general a lo mas especifico
         if self.check_lspci.get_active() == True:
             command = "lspci"
             subtitle = "Dispositivos conectados por PCI"
-            info.add_log_output(command, subtitle)
-            self.vdis = 1
+            self.note.add_log_output(command, subtitle)
+            selection = True
 
         if self.check_tm.get_active() == True:
             command = "lspci | grep 'Host bridge:'"
             subtitle = "Tarjeta Madre"
-            info.add_log_output(command, subtitle)
-            self.vdis = 1
+            self.note.add_log_output(command, subtitle)
+            selection = True
 
         if self.check_lsusb.get_active() == True:
             command = "lsusb"
             subtitle = "Dispositivos conectados por puerto USB"
-            info.add_log_output(command, subtitle)
-            self.vdis = 1
+            self.note.add_log_output(command, subtitle)
+            selection = True
 
         if self.check_acelgraf.get_active() == True:
             command = "glxinfo | grep -A4 'name of display:'"
             subtitle = "Aceleración gráfica"
-            info.add_log_output(command, subtitle)
-            self.vdis = 1
+            self.note.add_log_output(command, subtitle)
+            selection = True
 
         if self.check_ired.get_active() == True:
             command = "cat /etc/network/interfaces"
             subtitle = "Información interfaces de RED"
-            info.add_log_output(command, subtitle)
-            self.vdis = 1
+            self.note.add_log_output(command, subtitle)
+            selection = True
 
         if self.check_prefe.get_active() == True:
             command = "cat /etc/apt/preferences"
             subtitle = "Información /etc/apt/preferences"
-            info.add_log_output(command, subtitle)
-            self.vdis = 1
+            self.note.add_log_output(command, subtitle)
+            selection = True
 
         if self.check_ram.get_active() == True:
             command = "free -m"
             subtitle = "Memoria RAM, Swap, y Buffer (en MB)"
-            info.add_log_output(command, subtitle)
-            self.vdis = 1
+            self.note.add_log_output(command, subtitle)
+            selection = True
 
         if self.check_df.get_active() == True:
             command = "df -h"
-            subtitle = "Espacio libre en los dispositivos de almacenamiento:\n\
-S.ficheros| Tamaño Usado | Disp | Uso% | Montado en"
-            info.add_log_output(command, subtitle)
-            self.vdis = 1
+            subtitle = "Espacio libre en los dispositivos de almacenamiento:"
+            self.note.add_log_output(command, subtitle)
+            selection = True
 
         if self.check_tpart.get_active() == True:
             command = "fdisk -l"
-            subtitle = "Tabla de particiónes"
-            info.add_log_output(command, subtitle)
-            self.vdis = 1
+            subtitle = "Tabla de particiones"
+            self.note.add_log_output(command, subtitle)
+            selection = True
 
         if self.check_cpu.get_active() == True:
             command = "cat /proc/cpuinfo"
             subtitle = "Información del procesador"
-            info.add_log_output(command, subtitle)
-            self.vdis = 1
+            self.note.add_log_output(command, subtitle)
+            self.vdis = True
 
         if self.check_xorg.get_active() == True:
             command = "cat /var/log/Xorg.0.log | grep 'error'"
             subtitle = "Información de errores de Xorg"
-            info.add_log_output(command, subtitle)
-            self.vdis = 1
+            self.note.add_log_output(command, subtitle)
+            selection = True
 
         if self.check_repo.get_active() == True:
             command = "cat /etc/apt/sources.list"
             subtitle = "Información de los repositorios"
-            info.add_log_output(command, subtitle)
-            self.vdis = 1
+            self.note.add_log_output(command, subtitle)
+            selection = True
 
         if self.check_modu.get_active() == True:
             command = "lsmod"
             subtitle = "Listado de los modulos del kernel"
-            info.add_log_output(command, subtitle)
-            self.vdis = 1
+            self.note.add_log_output(command, subtitle)
+            selection = True
 
         if self.check_vers.get_active() == True:
             command = "uname -a"
             subtitle = "Versión del Kernel"
-            info.add_log_output(command, subtitle)
-            self.vdis = 1
+            self.note.add_log_output(command, subtitle)
+            selection = True
+
+        return selection
 
     def __close(self, widget=None):
         if self.txt_titulo.get_text() or self.txt_autor.get_text():
-            md = message_question("Al cerrar, todos los procedimientos que \
-            esté generando el Documentador de Fallas serán cerrados.\n\n\t\
-            ¿Desea salir de la aplicación?", self)
-            md.set_title('Cerrar')
-            respuesta = md.run()
-            md.destroy()
+            response = message_question("Al cerrar, todos los procedimientos \
+que esté generando el Documentador de Fallas serán cerrados.\n\n\t \
+¿Desea salir de la aplicación?", self)
 
-            if respuesta == gtk.RESPONSE_YES:
+            if response == gtk.RESPONSE_YES:
                 os.system("rm %s" % IMG_CAPTCHA)
                 self.destroy()
                 gtk.main_quit()
@@ -599,5 +535,5 @@ class ThreadWebBrowser(threading.Thread):
 
 if __name__ == "__main__":
 
-    base = Main()
+    wnd_form = Main()
     gtk.main()
