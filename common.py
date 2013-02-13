@@ -53,7 +53,7 @@ def launch_help(widget=None):
               shell=True, stdout=PIPE)
 
 
-def get_random_word(wordLen=6):
+def get_random_word(wordLen=4):
     word = ""
     allowedChars = "abcdefghijklmnopqrstuvwzyzABCDEFGHIJKLMNOPQRSTUVWZYZ012345\
 6789"
