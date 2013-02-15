@@ -1,3 +1,9 @@
+canaima-notas-gnome (4.0-2) stable; urgency=low
+
+  * [50d4b01] Tamaño botón aceptar – label validar – textbuffer
+
+ -- Carlos Espinoza <carlosarmikhael@gmail.com>  Mon, 28 Jan 2013 10:12:18 -0430
+
 canaima-notas-gnome (4.0-1) stable; urgency=low
 
   * Incrementando el numero de la version. 
