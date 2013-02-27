@@ -95,7 +95,8 @@ class Main(gtk.Window):
 en su computador")
         self.textview.connect('event', self.on_entry_buffer_clicked)
 
-        self.scrolledwindow = gtk.ScrolledWindow()
+        self.scrolledwindow = gtk.ScrolledWindow()      
+        self.scrolledwindow.set_size_request(-1,100)
         self.scrolledwindow.set_policy(gtk.POLICY_AUTOMATIC, \
                                        gtk.POLICY_AUTOMATIC)
         self.scrolledwindow.add(self.textview)
