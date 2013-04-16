@@ -49,7 +49,7 @@ install:
 	mkdir -p $(DESTDIR)/usr/share/applications/
 	mkdir -p $(DESTDIR)/usr/share/gnome/help
 
-	cp -r scripts $(DESTDIR)/usr/share/canaima-notas-gnome
+	cp -r canaima_notas_gnome.py $(DESTDIR)/usr/share/canaima-notas-gnome
 	cp -r img $(DESTDIR)/usr/share/canaima-notas-gnome/	
 	rm -rf $(DESTDIR)/usr/share/canaima-notas-gnome/img/*.svg
 	cp -r desktop/canaima-notas-gnome.desktop $(DESTDIR)/usr/share/applications/
