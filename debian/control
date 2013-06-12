@@ -1,21 +1,21 @@
 Source: canaima-notas-gnome
 Section: misc
 Priority: optional
-Maintainer: Equipo de Desarrollo de Canaima GNU/Linux <desarrolladores@canaima.softwarelibre.gob.ve>
-Uploaders: Carlos Espinoza <carlosarmikhael@gmail.com>
-Build-Depends: debhelper (>= 7.0.50~)
-Standards-Version: 3.9.1
+Maintainer: Carlos Espinoza <carlosarmikhael@gmail.com>
+Build-Depends: debhelper (>= 9)
+Standards-Version: 3.9.3
 Homepage:  http://canaima.softwarelibre.gob.ve/
 Vcs-Git: git://gitorious.org/canaima-gnu-linux/canaima-notas-gnome.git
 Vcs-Browser: http://gitorious.org/canaima-gnu-linux/canaima-notas-gnome/trees/master
 
 Package: canaima-notas-gnome
 Architecture: all
-Depends: python, python-gtk2, python-gobject, python-imaging, ${shlibs:Depends}, ${misc:Depends}
-Recommends: canaima-estilo-visual-gnome (>= 3.1)
-Replaces: canaima-notas (<< 3.1)
-Conflicts: canaima-notas (<< 3.1)
-Provides: canaima-notas
+Depends: 	python,
+		python-gtk2, 
+		python-gobject, 
+		python-imaging, 
+		${shlibs:Depends}, 
+		${misc:Depends}
 Description: Cliente plataforma http://notas.canaima.softwarelibre.gob.ve
  A través de Canaima Notas puedes enviar texto a la
  plataforma Canaima, de forma tal que sirva como referencia
@@ -25,12 +25,3 @@ Description: Cliente plataforma http://notas.canaima.softwarelibre.gob.ve
  .
  Opcionalmente puedes elegir varios datos a incluir en la nota, 
  como por ejemplo: Tarjeta gráfica, Kernel, entre otros.
-
-Package: canaima-notas
-Architecture: all
-Depends: canaima-notas-gnome (>= 3.1), ${shlibs:Depends}, ${misc:Depends}
-Description: Paquete transicional canaima-notas -> canaima-notas-gnome
- Esto es un paquete transicional para que los usuarios puedan
- actualizar de canaima-notas a canaima-notas-gnome sin muchos
- problemas. Puede ser removido.
-
