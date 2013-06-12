@@ -120,3 +120,12 @@ def message_error(message, parent=None):
     response = msg_box.run()
     msg_box.destroy()
     return response
+
+def message_info(message, parent=None):
+    msg_box = gtk.MessageDialog(parent=parent,
+                             type=gtk.MESSAGE_INFO,
+                             buttons=gtk.BUTTONS_CLOSE,
+                             message_format=message)
+    response = msg_box.run()
+    msg_box.destroy()
+    return response

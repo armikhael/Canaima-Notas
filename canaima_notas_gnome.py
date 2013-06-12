@@ -26,7 +26,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA
 
 from common import ICON_PATH, TOP_BANNER_PATH, get_random_word, FONT_CAPTCHA, \
     IMG_CAPTCHA, create_captcha_img, TXT_FILE, URL_PASTE_PLATFORM, \
-    launch_help, message_question, message_error, list_to_lines
+    launch_help, message_question, message_error, message_info, list_to_lines
 import gtk
 import os
 import threading
@@ -321,11 +321,13 @@ específico posible):")
             self.note.write_to_file()
             worker = ThreadTxtEditor(self)
             worker.start()
+            
         else:
             self.note.send_note()
             worker = ThreadWebBrowser(self)
             worker.start()
-
+            message_info("El envio de la nota fue exitoso...!\n\n"+str(self.note.msg))
+            
         self.refresh_captcha()
         return True
 
@@ -381,7 +383,8 @@ Datos a Enviar.")
         if not self.__is_viewonly():
             # Validar captcha
             if  self.txt_captcha.get_text() != self.word:
-                messages.append("- El valor introducido no coincide con el de \
+				self.refresh_captcha()
+				messages.append("- El valor introducido no coincide con el de \
 la imágen.")
             # Chequear internet
             if not have_internet_access():
@@ -403,9 +406,8 @@ Seleccione la opción No Enviar.")
                     self.dnota)
         self.note.is_viewonly = self.__is_viewonly()
 
-        if self.__is_viewonly():
-            self.note.append_defaults()
-
+        self.note.append_defaults()
+        
         #TODO: Ordenar estos comandos desde lo mas general a lo mas especifico
         if self.check_lspci.get_active() == True:
             command = "lspci"

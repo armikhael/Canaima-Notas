@@ -26,7 +26,6 @@ from common import list_to_lines, TXT_FILE
 
 URL_SEND = "http://notas.canaima.softwarelibre.gob.ve/enviar_consola"
 
-
 class Note():
 
     def __init__(self, title=None, author=None, email=None, details=None):
@@ -66,7 +65,8 @@ class Note():
         if self.is_viewonly:
             self.add("TITULO: %s" % self.title)
             self.add("AUTOR: %s" % self.author)
-            self.add("CORREO: %s" % self.email)
+        
+        self.add("CORREO: %s" % self.email)
 
         self.add("")
         self.add("_____________________ NOTA DE USUARIO ____________________")
@@ -80,7 +80,7 @@ class Note():
                                    'titulo_form': self.title,
                                    'nombre_form': self.author})
         f = urllib.urlopen(URL_SEND, params)
-        self.mes = f.read()
+        self.msg = f.read()
 
     def write_to_file(self):
         note_file = open(TXT_FILE, 'w')
