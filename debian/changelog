@@ -1,3 +1,41 @@
+canaima-notas-gnome (4.0-3) stable; urgency=low
+
+  [ Erick Birbe ]
+  * [0d7fad5] Añadiendo copyright al código python
+  * [a5a87f9] Convirtiendo todas las tabulaciones a espacios.
+    Existia una mezcla entre tabulaciones y espacios para hacer las
+    identaciones. Se ha procedido a convertir todas las tabulaciones a
+    espacios.
+  * [1f5e8f1] Eliminados del codigo fuente comentarios innecesarios
+  * [125731f] Moviendo el script .py a una carpeta superior.
+    Necesario para trabajar con las rutas relativas en los nombres de
+    archivos.
+  * [b98765e] Eliminando imágenen en PNG.
+    Los formatos binarios de imágen en PNG deben ser generados con el
+    comando 'make gen-img' ya que los mismos agregan peso innecesario al
+    repositorio git.
+  * [d9f82e7] Agregando archivo .gitignore
+    ignorando principalmente archivos .png y .pyc
+  * [b24aa73] Cambiando nombre del módulo para cumplir con las normas de python.
+    Los nombres de módulos de python no deben poseer giones.
+  * [36e153e] Limpiando la estructura del código
+  * [ddeb443] Limpiando la estructura del código.
+    Continuando con la reestructuración del codigo fuente, principalmente
+    eliminado todo el bloque de validación que consistia de muchis if's
+    anidados. Escribiendo archivo y subiendo la nota.
+  * [c9b686c] Colocando un capcha de menos letras.
+
+  [ Carlos Espinoza ]
+  * [8a1980f] cambiando tamaño del cuadro de descripción
+  * [8291b5d] prueba de empaquetado cambiando rutas de archivos
+  * [08701a9] colocando nuevas rutas de archivos en el makefile
+  * [a64cb74] cambiando ruta del enlace en makefile
+  * [9ce63ff] locando nombre correcto del archivo en el makefile
+  * [d9111d3] -Agregando función message_info common.py -Modifiando línea de correo en note.py para que salga en la plataforma Notas -Agregando mensage_info, Recargar captcha = Error , llamar a función append_defaults() canaima_notas_gnome.py
+  * [01f53e1] Removiendo paquete trancisional canaima-notas.
+
+ -- Carlos Espinoza <carlosarmikhael@gmail.com>  Thu, 13 Jun 2013 15:21:00 -0430
+
 canaima-notas-gnome (4.0-2) stable; urgency=low
 
   * [50d4b01] Tamaño botón aceptar – label validar – textbuffer
