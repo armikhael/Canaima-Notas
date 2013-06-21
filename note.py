@@ -23,6 +23,13 @@ Created on 08/02/2013
 import os
 import urllib
 from common import list_to_lines, TXT_FILE
+import gettext
+from gettext import gettext as _
+
+# Traducciones de Canaima-notas-gnome -----
+gettext.textdomain("canaima_notas_gnome")
+gettext.bindtextdomain("canaima_notas_gnome", "locale")
+
 
 URL_SEND = "http://notas.canaima.softwarelibre.gob.ve/enviar_consola"
 
@@ -63,13 +70,13 @@ class Note():
         assert self.details is not None
 
         if self.is_viewonly:
-            self.add("TITULO: %s" % self.title)
-            self.add("AUTOR: %s" % self.author)
+            self.add(_("TITLE: %s") % self.title)
+            self.add(_("AUTHOR: %s") % self.author)
         
-        self.add("CORREO: %s" % self.email)
+        self.add(_("EMAIL: %s") % self.email)
 
         self.add("")
-        self.add("_____________________ NOTA DE USUARIO ____________________")
+        self.add(_("_____________________ NOTE TO USER ____________________"))
         self.add("")
         self.add(self.details)
         self.add("__________________________________________________________")

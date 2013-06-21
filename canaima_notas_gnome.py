@@ -32,11 +32,17 @@ import os
 import threading
 from validations import is_empty_string, is_valid_email, have_internet_access
 from note import Note
+import gettext
+from gettext import gettext as _
 
 gtk.gdk.threads_init()
 
-# Clase principal -------------------------------------------------------------
+# Traducciones de Canaima-notas-gnome -----
+gettext.textdomain("canaima_notas_gnome")
+gettext.bindtextdomain("canaima_notas_gnome", "locale")
 
+
+# Clase principal -------------------------------------------------------------
 
 class Main(gtk.Window):
 
@@ -49,7 +55,7 @@ class Main(gtk.Window):
         gtk.Window.__init__(self, gtk.WINDOW_TOPLEVEL)
         gtk.Window.set_position(self, gtk.WIN_POS_CENTER_ALWAYS)
         self.set_resizable(False)
-        self.set_title('Documentador de Fallas')
+        self.set_title(_("Documenting of Failures"))
         self.connect("delete_event", self.on_delete)
         # Icono de la ventana
         if os.path.isfile(ICON_PATH):
@@ -65,14 +71,14 @@ class Main(gtk.Window):
 
         # Identificación >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
-        self.lbl_titulo = gtk.Label("Titulo:")
-        self.lbl_autor = gtk.Label("Autor:")
-        self.lbl_correo = gtk.Label("Email:")
+        self.lbl_titulo = gtk.Label(_("Title:"))
+        self.lbl_autor = gtk.Label(_("Author:"))
+        self.lbl_correo = gtk.Label(_("Email:"))
 
         self.txt_titulo = gtk.Entry(20)
         self.txt_autor = gtk.Entry(30)
         self.txt_correo = gtk.Entry()
-        self.txt_correo.set_text("correo@ejemplo.com")
+        self.txt_correo.set_text(_("email@example.com"))
         self.txt_correo.connect('event', self.on_txt_correo_clicked)
 
         self.tbl_indetif = gtk.Table(2, 6, True)
@@ -91,8 +97,8 @@ class Main(gtk.Window):
         self.textview = gtk.TextView()
         self.textbuffer = self.textview.get_buffer()
         self.textview.set_editable(True)
-        self.textbuffer.set_text("\n\n\t\t\t\tEscriba el problema que ocurrió \
-en su computador")
+        self.textbuffer.set_text(_("\n\n\t\t\t\tWrite the problem happened \
+on your computer"))
         self.textview.connect('event', self.on_entry_buffer_clicked)
 
         self.scrolledwindow = gtk.ScrolledWindow()      
@@ -105,8 +111,8 @@ en su computador")
                                         yscale=0.5)
         self.alineacion.add(self.scrolledwindow)
 
-        marco = gtk.Frame("Escriba los detalles de la falla (sea lo más \
-específico posible):")
+        marco = gtk.Frame(_("Enter the details of the fault (be as \
+specific as possible):"))
         marco.set_border_width(2)
         marco.add(self.alineacion)
 
@@ -121,13 +127,13 @@ específico posible):")
         self.check_lsusb.set_active(False)
         self.check_ram = gtk.CheckButton("RAM/SWAP/Buffers")
         self.check_ram.set_active(False)
-        self.check_df = gtk.CheckButton("Espacio Discos")
+        self.check_df = gtk.CheckButton(_("Disk Space"))
         self.check_df.set_active(True)
         self.check_cpu = gtk.CheckButton("CPU")
         self.check_cpu.set_active(False)
-        self.check_tm = gtk.CheckButton("Tarjeta Madre")
+        self.check_tm = gtk.CheckButton(_("Motherboard"))
         self.check_tm.set_active(False)
-        self.check_all = gtk.CheckButton("Seleccionar Todos")
+        self.check_all = gtk.CheckButton(_("Select All"))
         self.check_all.connect("toggled", self.selectalldis, "Todos")
 
         self.check_all.set_active(False)
@@ -143,19 +149,19 @@ específico posible):")
         # Seccion de informaión del sistema
         self.tabla1 = gtk.Table(4, 4, True)
 
-        self.check_acelgraf = gtk.CheckButton("Aceleración Gráfica")
+        self.check_acelgraf = gtk.CheckButton(_("Graphics Acceleration"))
         self.check_acelgraf.set_active(False)
-        self.check_xorg = gtk.CheckButton("Servidor Pantalla")
+        self.check_xorg = gtk.CheckButton(_("Screen Server"))
         self.check_xorg.set_active(False)
-        self.check_repo = gtk.CheckButton("Repositorios")
+        self.check_repo = gtk.CheckButton(_("Repositories"))
         self.check_repo.set_active(True)
-        self.check_tpart = gtk.CheckButton("Tabla de partición")
+        self.check_tpart = gtk.CheckButton(_("Partition table"))
         self.check_tpart.set_active(True)
-        self.check_prefe = gtk.CheckButton("Prioridad APT")
+        self.check_prefe = gtk.CheckButton(_("Priority APT"))
         self.check_prefe.set_active(False)
-        self.check_ired = gtk.CheckButton("Interfaces de RED")
+        self.check_ired = gtk.CheckButton(_("Network Interfaces"))
         self.check_ired.set_active(False)
-        self.check_all2 = gtk.CheckButton("Seleccionar Todos")
+        self.check_all2 = gtk.CheckButton(_("Select All"))
         self.check_all2.connect("toggled", self.selectalldis2, "Todos")
         self.check_all2.set_active(False)
 
@@ -171,11 +177,11 @@ específico posible):")
         # Sección del Kernel
         self.tabla2 = gtk.Table(4, 4, True)
 
-        self.check_vers = gtk.CheckButton("Versión")
+        self.check_vers = gtk.CheckButton(_("Version"))
         self.check_vers.set_active(True)
-        self.check_modu = gtk.CheckButton("Módulos")
+        self.check_modu = gtk.CheckButton(_("Modules"))
         self.check_modu.set_active(False)
-        self.check_all3 = gtk.CheckButton("Seleccionar Todos")
+        self.check_all3 = gtk.CheckButton(_("Select All"))
         self.check_all3.connect("toggled", self.selectalldis3, "Todos")
         self.check_all3.set_active(False)
 
@@ -186,25 +192,25 @@ específico posible):")
 
         self.notebook = gtk.Notebook()
         self.notebook.set_tab_pos(gtk.POS_TOP)
-        label = gtk.Label("Dispositivos")
+        label = gtk.Label(_("Devices"))
         self.notebook.insert_page(self.tabla, label, 1)
-        label = gtk.Label("Información del Sistema")
+        label = gtk.Label(_("System Information"))
         self.notebook.insert_page(self.tabla1, label, 2)
-        label = gtk.Label("Kernel")
+        label = gtk.Label(_("Kernel"))
         self.notebook.insert_page(self.tabla2, label, 3)
 
-        marco_1 = gtk.Frame("Seleccione los datos a enviar:")
+        marco_1 = gtk.Frame(_("Select the data to be sent:"))
         marco_1.set_border_width(2)
         marco_1.add(self.notebook)
 
         # Envío >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
-        self.check_gdocum = gtk.CheckButton("Ver Documento (No enviar).")
+        self.check_gdocum = gtk.CheckButton(_("See document (not send)."))
         self.check_gdocum.set_active(False)
 
         # Capcha
         # FIXME: Captcha sólo deberia aparecer si el contenido se va a enviar
-        lbl_captcha = gtk.Label("Escribe lo que ves en la imagen:")
+        lbl_captcha = gtk.Label(_("Write what you see in the picture:"))
         lbl_captcha.set_justify(gtk.JUSTIFY_LEFT)
         self.word = get_random_word()
         create_captcha_img(self.word.strip(), FONT_CAPTCHA, 20, IMG_CAPTCHA)
@@ -326,7 +332,7 @@ específico posible):")
             self.note.send_note()
             worker = ThreadWebBrowser(self)
             worker.start()
-            message_info("El envio de la nota fue exitoso...!\n\n"+str(self.note.msg))
+            message_info(_("The sending of the note was successful...!\n\n")+str(self.note.msg))
             
         self.refresh_captcha()
         return True
@@ -359,37 +365,37 @@ específico posible):")
 
         # Validar título
         if is_empty_string(self.txt_titulo.get_text()):
-            messages.append("- Es necesario que escriba un título.")
+            messages.append(_("- You need to enter a title."))
 
         # Validar Autor
         if is_empty_string(self.txt_autor.get_text()):
-            messages.append("- Es necesario que escriba su nombre.")
+            messages.append(_("- You need to enter your name."))
 
         # Validar correo
         if not is_valid_email(self.txt_correo.get_text()):
-            messages.append("- Es necesario que escriba su dirección de \
-correo electrónico.")
+            messages.append(_("- You need to enter your address \
+email."))
 
         # Validar descipción
         if is_empty_string(self.dnota):
-            messages.append("- Tómese unos instantes y describa la falla.")
+            messages.append(_("- Take a moment and describe the failure."))
 
         # Validar opciones seleccionadas
         if not self.__build_note():
-            messages.append("- Seleccione al menos 1 opción del cuadro de \
-Datos a Enviar.")
+            messages.append(_("- Select at least 1 option box \
+Data to Send."))
 
         # Validaciones sólo para el caso de enviar
         if not self.__is_viewonly():
             # Validar captcha
             if  self.txt_captcha.get_text() != self.word:
 				self.refresh_captcha()
-				messages.append("- El valor introducido no coincide con el de \
-la imágen.")
+				messages.append(_("- The value entered does not match that of \
+the image."))
             # Chequear internet
             if not have_internet_access():
-                messages.append("- No posee una conexión a internet activa. \
-Seleccione la opción No Enviar.")
+                messages.append(_("- It has an active internet connection. \
+Select the Do not Send."))
 
         return messages
 
@@ -411,85 +417,85 @@ Seleccione la opción No Enviar.")
         #TODO: Ordenar estos comandos desde lo mas general a lo mas especifico
         if self.check_lspci.get_active() == True:
             command = "lspci"
-            subtitle = "Dispositivos conectados por PCI"
+            subtitle = _("Devices connected by PCI")
             self.note.add_log_output(command, subtitle)
             selection = True
 
         if self.check_tm.get_active() == True:
             command = "lspci | grep 'Host bridge:'"
-            subtitle = "Tarjeta Madre"
+            subtitle = _("Motherboard")
             self.note.add_log_output(command, subtitle)
             selection = True
 
         if self.check_lsusb.get_active() == True:
             command = "lsusb"
-            subtitle = "Dispositivos conectados por puerto USB"
+            subtitle = _("Devices connected by USB port")
             self.note.add_log_output(command, subtitle)
             selection = True
 
         if self.check_acelgraf.get_active() == True:
             command = "glxinfo | grep -A4 'name of display:'"
-            subtitle = "Aceleración gráfica"
+            subtitle = _("Graphics Acceleration")
             self.note.add_log_output(command, subtitle)
             selection = True
 
         if self.check_ired.get_active() == True:
             command = "cat /etc/network/interfaces"
-            subtitle = "Información interfaces de RED"
+            subtitle = _("Information Network interfaces")
             self.note.add_log_output(command, subtitle)
             selection = True
 
         if self.check_prefe.get_active() == True:
             command = "cat /etc/apt/preferences"
-            subtitle = "Información /etc/apt/preferences"
+            subtitle = _("Information /etc/apt/preferences")
             self.note.add_log_output(command, subtitle)
             selection = True
 
         if self.check_ram.get_active() == True:
             command = "free -m"
-            subtitle = "Memoria RAM, Swap, y Buffer (en MB)"
+            subtitle = _("RAM Memory, Swap, and Buffer (in MB)")
             self.note.add_log_output(command, subtitle)
             selection = True
 
         if self.check_df.get_active() == True:
             command = "df -h"
-            subtitle = "Espacio libre en los dispositivos de almacenamiento:"
+            subtitle = _("Free space on storage devices:")
             self.note.add_log_output(command, subtitle)
             selection = True
 
         if self.check_tpart.get_active() == True:
             command = "fdisk -l"
-            subtitle = "Tabla de particiones"
+            subtitle = _("Partition Table")
             self.note.add_log_output(command, subtitle)
             selection = True
 
         if self.check_cpu.get_active() == True:
             command = "cat /proc/cpuinfo"
-            subtitle = "Información del procesador"
+            subtitle = _("Information processor")
             self.note.add_log_output(command, subtitle)
             self.vdis = True
 
         if self.check_xorg.get_active() == True:
             command = "cat /var/log/Xorg.0.log | grep 'error'"
-            subtitle = "Información de errores de Xorg"
+            subtitle = _("Xorg error information")
             self.note.add_log_output(command, subtitle)
             selection = True
 
         if self.check_repo.get_active() == True:
             command = "cat /etc/apt/sources.list"
-            subtitle = "Información de los repositorios"
+            subtitle = _("Information repositories")
             self.note.add_log_output(command, subtitle)
             selection = True
 
         if self.check_modu.get_active() == True:
             command = "lsmod"
-            subtitle = "Listado de los modulos del kernel"
+            subtitle = _("List of kernel modules")
             self.note.add_log_output(command, subtitle)
             selection = True
 
         if self.check_vers.get_active() == True:
             command = "uname -a"
-            subtitle = "Versión del Kernel"
+            subtitle = _("Kernel version")
             self.note.add_log_output(command, subtitle)
             selection = True
 
@@ -497,9 +503,9 @@ Seleccione la opción No Enviar.")
 
     def __close(self, widget=None):
         if self.txt_titulo.get_text() or self.txt_autor.get_text():
-            response = message_question("Al cerrar, todos los procedimientos \
-que esté generando el Documentador de Fallas serán cerrados.\n\n\t \
-¿Desea salir de la aplicación?", self)
+            response = message_question(_("In closing, all procedures \
+that is generating Documenting of Failures will be closed. \n\n\t \
+Do you want to exit the application?"), self)
 
             if response == gtk.RESPONSE_YES:
                 os.system("rm %s" % IMG_CAPTCHA)
