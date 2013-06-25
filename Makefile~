@@ -22,8 +22,8 @@ gen-mo: clean-mo
 
 	@printf "Generating translation messages from source [PO > MO] ["
 	@for LOCALE in $(LOCALES); do \
-		$(MSGFMT) locale/$${LOCALE}/LC_MESSAGES/messages.po \
-			-o locale/$${LOCALE}/LC_MESSAGES/messages.mo; \
+		$(MSGFMT) locale/$${LOCALE}/LC_MESSAGES/es.po \
+			-o locale/$${LOCALE}/LC_MESSAGES/canaima_notas_gnome.mo; \
 		printf "."; \
 	done
 	@printf "]\n"
@@ -32,7 +32,7 @@ clean-mo:
 
 	@printf "Cleaning generated localization ["
 	@for LOCALE in $(LOCALES); do \
-		rm -rf locale/$${LOCALE}/LC_MESSAGES/messages.mo; \
+		rm -rf locale/$${LOCALE}/LC_MESSAGES/canaima_notas_gnome.mo; \
 		printf "."; \
 	done
 	@printf "]\n"
