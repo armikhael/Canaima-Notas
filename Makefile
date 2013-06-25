@@ -70,6 +70,7 @@ install:
 	mkdir -p $(DESTDIR)/usr/bin/
 	mkdir -p $(DESTDIR)/usr/share/applications/
 	mkdir -p $(DESTDIR)/usr/share/gnome/help
+	mkdir -p $(DESTDIR)/usr/share/locale/$${LOCALE}/LC_MESSAGES/
 
 	cp -r canaima_notas_gnome.py $(DESTDIR)/usr/share/canaima-notas-gnome
 	cp -r common.py $(DESTDIR)/usr/share/canaima-notas-gnome
