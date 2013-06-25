@@ -39,7 +39,7 @@ gtk.gdk.threads_init()
 
 # Traducciones de Canaima-notas-gnome -----
 gettext.textdomain("canaima_notas_gnome")
-gettext.bindtextdomain("canaima_notas_gnome", "locale")
+gettext.bindtextdomain("canaima_notas_gnome", "/usr/share/locale")
 
 
 # Clase principal -------------------------------------------------------------
