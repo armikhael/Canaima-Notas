@@ -1,3 +1,9 @@
+canaima-notas-gnome (4.0-9) stable; urgency=low
+
+  * [a191553] empaquetado .mo
+
+ -- Carlos Espinoza <carlosarmikhael@gmail.com>  Tue, 25 Jun 2013 17:27:04 -0430
+
 canaima-notas-gnome (4.0-8) stable; urgency=low
 
   * [75cd0e4] empaquetado .mo
