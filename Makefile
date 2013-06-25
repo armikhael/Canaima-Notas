@@ -83,7 +83,7 @@ install:
 
 	for LOCALE in $(LOCALES); do \
 		mkdir -p $(DESTDIR)/usr/share/locale/$${LOCALE}/LC_MESSAGES/; \
-		cp -r locale/$${LOCALE}/LC_MESSAGES/canaima_notas_gnome.po $(DESTDIR)/usr/share/locale/$${LOCALE}/LC_MESSAGES/; \
+		cp -r locale/$${LOCALE}/LC_MESSAGES/canaima_notas_gnome.mo $(DESTDIR)/usr/share/locale/$${LOCALE}/LC_MESSAGES/; \
 	done
 
 uninstall:
