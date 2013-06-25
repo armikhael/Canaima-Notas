@@ -81,7 +81,7 @@ install:
 	cp -r ayuda/canaima-notas-gnome $(DESTDIR)/usr/share/gnome/help
 	ln -s /usr/share/canaima-notas-gnome/canaima_notas_gnome.py $(DESTDIR)/usr/bin/canaima-notas-gnome
 
-	@for LOCALE in $(LOCALES); do \
+	for LOCALE in $(LOCALES); do \
 		mkdir -p $(DESTDIR)/usr/share/locale/$${LOCALE}/LC_MESSAGES/; \	
 		cp -r locale/$${LOCALE}/LC_MESSAGES/canaima_notas_gnome.po $(DESTDIR)/usr/share/locale/$${LOCALE}/LC_MESSAGES/; \
 	done
