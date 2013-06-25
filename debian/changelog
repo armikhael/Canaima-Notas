@@ -1,3 +1,10 @@
+canaima-notas-gnome (4.0-5) stable; urgency=low
+
+  * [55befd1] Quitando linea de .mo en makefile
+  * [6e24951] verificando generación del .mo
+
+ -- Carlos Espinoza <carlosarmikhael@gmail.com>  Tue, 25 Jun 2013 16:38:52 -0430
+
 canaima-notas-gnome (4.0-4) stable; urgency=low
 
   * [33ec554] Agrando Traducciones al Canaima-notas-gnome
