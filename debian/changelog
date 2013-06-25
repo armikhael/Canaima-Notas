@@ -1,3 +1,14 @@
+canaima-notas-gnome (4.0-4) stable; urgency=low
+
+  * [33ec554] Agrando Traducciones al Canaima-notas-gnome
+  * [51fcb92] Agregando Función gen-mon al makefile para crear .mo
+  * [c90841a] carpeta pot
+  * [45c43bf] Agregando for al makefile para copiar .mo
+  * [bdeec96] Agrengando al makefile ruta de .mo
+  * [234b5be] verificando generación del .mo
+
+ -- Carlos Espinoza <carlosarmikhael@gmail.com>  Tue, 25 Jun 2013 16:36:55 -0430
+
 canaima-notas-gnome (4.0-3) stable; urgency=low
 
   [ Erick Birbe ]
