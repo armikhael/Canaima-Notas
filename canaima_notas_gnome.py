@@ -34,6 +34,7 @@ from validations import is_empty_string, is_valid_email, have_internet_access
 from note import Note
 import gettext
 from gettext import gettext as _
+from mod_accesible import atk_acc
 
 gtk.gdk.threads_init()
 
@@ -74,13 +75,13 @@ class Main(gtk.Window):
         self.lbl_titulo = gtk.Label(_("Title:"))
         self.lbl_autor = gtk.Label(_("Author:"))
         self.lbl_correo = gtk.Label(_("Email:"))
-
+        
         self.txt_titulo = gtk.Entry(20)
         self.txt_autor = gtk.Entry(30)
         self.txt_correo = gtk.Entry()
         self.txt_correo.set_text(_("email@example.com"))
         self.txt_correo.connect('event', self.on_txt_correo_clicked)
-
+        
         self.tbl_indetif = gtk.Table(2, 6, True)
         self.tbl_indetif.attach(self.lbl_titulo, 0, 1, 0, 1)
         self.tbl_indetif.attach(self.txt_titulo, 1, 5, 0, 1)
@@ -261,7 +262,12 @@ specific as possible):"))
 
         self.add(vbox)
         self.show_all()
-
+        
+        # Accesiblidad 
+        atk_acc(self.txt_titulo, self.lbl_titulo)
+        atk_acc(self.txt_autor, self.lbl_autor)
+        atk_acc(self.txt_correo, self.lbl_correo)
+        
     def selectalldis(self, widget, data=None):
 
         if self.check_all.get_active() == True:
@@ -524,6 +530,7 @@ Do you want to exit the application?"), self)
 
 
 # Hilos -----------------------------------------------------------------------
+
 
 
 class ThreadTxtEditor(threading.Thread):
