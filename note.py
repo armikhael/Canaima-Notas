@@ -28,7 +28,7 @@ from gettext import gettext as _
 
 # Traducciones de Canaima-notas-gnome -----
 gettext.textdomain("canaima_notas_gnome")
-gettext.bindtextdomain("canaima_notas_gnome", "locale")
+gettext.bindtextdomain("canaima_notas_gnome", "/usr/share/locale")
 
 
 URL_SEND = "http://notas.canaima.softwarelibre.gob.ve/enviar_consola"
