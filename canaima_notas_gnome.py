@@ -24,8 +24,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA
 
 '''
 
-from common import ICON_PATH, TOP_BANNER_PATH, get_random_word, FONT_CAPTCHA, \
-    IMG_CAPTCHA, create_captcha_img, TXT_FILE, URL_PASTE_PLATFORM, \
+from common import ICON_PATH, TOP_BANNER_PATH, \
+    TXT_FILE, URL_PASTE_PLATFORM, \
     launch_help, message_question, message_error, message_info, list_to_lines
 import gtk
 import os
@@ -209,21 +209,8 @@ specific as possible):"))
         self.check_gdocum = gtk.CheckButton(_("See document (not send)."))
         self.check_gdocum.set_active(False)
 
-        # Capcha
-        # FIXME: Captcha sólo deberia aparecer si el contenido se va a enviar
-        lbl_captcha = gtk.Label(_("Write what you see in the picture:"))
-        lbl_captcha.set_justify(gtk.JUSTIFY_LEFT)
-        self.word = get_random_word()
-        create_captcha_img(self.word.strip(), FONT_CAPTCHA, 20, IMG_CAPTCHA)
-        self.img_captcha = gtk.Image()
-        self.img_captcha.set_from_file(IMG_CAPTCHA)
-        self.txt_captcha = gtk.Entry(6)
-
-        self.tbl_envio = gtk.Table(2, 5, True)
+        self.tbl_envio = gtk.Table(1, 5, True)
         self.tbl_envio.attach(self.check_gdocum, 0, 5, 0, 1)
-        self.tbl_envio.attach(lbl_captcha, 0, 2, 1, 2)
-        self.tbl_envio.attach(self.img_captcha, 2, 3, 1, 2)
-        self.tbl_envio.attach(self.txt_captcha, 3, 4, 1, 2)
         self.tbl_envio.show()
 
         # Caja botones >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -263,7 +250,7 @@ specific as possible):"))
         self.add(vbox)
         self.show_all()
         
-        # Accesiblidad 
+        # Accesibilidad
         atk_acc(self.txt_titulo, self.lbl_titulo)
         atk_acc(self.txt_autor, self.lbl_autor)
         atk_acc(self.txt_correo, self.lbl_correo)
@@ -339,8 +326,8 @@ specific as possible):"))
             worker = ThreadWebBrowser(self)
             worker.start()
             message_info(_("The sending of the note was successful...!\n\n")+str(self.note.msg))
+            self.txt_correo.set_text("")
             
-        self.refresh_captcha()
         return True
 
     def on_txt_correo_clicked(self, widget, event, data=None):
@@ -393,11 +380,6 @@ Data to Send."))
 
         # Validaciones sólo para el caso de enviar
         if not self.__is_viewonly():
-            # Validar captcha
-            if  self.txt_captcha.get_text() != self.word:
-				self.refresh_captcha()
-				messages.append(_("- The value entered does not match that of \
-the image."))
             # Chequear internet
             if not have_internet_access():
                 messages.append(_("- It has an active internet connection. \
@@ -514,20 +496,14 @@ that is generating Documenting of Failures will be closed. \n\n\t \
 Do you want to exit the application?"), self)
 
             if response == gtk.RESPONSE_YES:
-                os.system("rm %s" % IMG_CAPTCHA)
+                
                 self.destroy()
                 gtk.main_quit()
 
         else:
-            os.system("rm %s" % IMG_CAPTCHA)
+            
             self.destroy()
             gtk.main_quit()
-
-    def refresh_captcha(self):
-        self.word = get_random_word()
-        create_captcha_img(self.word.strip(), FONT_CAPTCHA, 20, IMG_CAPTCHA)
-        self.img_captcha.set_from_file(IMG_CAPTCHA)
-
 
 # Hilos -----------------------------------------------------------------------
 

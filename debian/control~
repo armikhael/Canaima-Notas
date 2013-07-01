@@ -13,6 +13,7 @@ Architecture: all
 Depends: 	python,
 		python-gtk2, 
 		python-gobject, 
+		python-imaging, 
 		${shlibs:Depends}, 
 		${misc:Depends}
 Description: Cliente plataforma http://notas.canaima.softwarelibre.gob.ve
