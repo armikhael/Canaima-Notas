@@ -75,7 +75,6 @@ install:
 	cp -r common.py $(DESTDIR)/usr/share/canaima-notas-gnome
 	cp -r note.py $(DESTDIR)/usr/share/canaima-notas-gnome
 	cp -r validations.py $(DESTDIR)/usr/share/canaima-notas-gnome
-	cp -r mod_accesible.py $(DESTDIR)/usr/share/canaima-notas-gnome
 	cp -r img $(DESTDIR)/usr/share/canaima-notas-gnome/	
 	rm -rf $(DESTDIR)/usr/share/canaima-notas-gnome/img/*.svg
 	cp -r desktop/canaima-notas-gnome.desktop $(DESTDIR)/usr/share/applications/

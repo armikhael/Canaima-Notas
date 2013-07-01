@@ -135,13 +135,7 @@
 					</listitem>
 				</itemizedlist>
 			</para>
-		
-		
-		</listitem>
-		<listitem>
-			<para>
-				Captcha: en este campo deberá colocar lo que ve en la imagen.
-			</para>
+			
 		</listitem>
 		
 		<listitem>
@@ -172,7 +166,104 @@
 	</note>
 </sect1>
 
+<sect1 id="c-s-accesibilidad"> 
+	<title>Accesibilidad</title> 
+	
+	<para>
+		Canaima Notas genera un Documento el cual es enviado a la plataforma o si lo prefiere podrás escuchar el documento en el sistema. Para poder crear una Nota debe llenar todos los datos siguientes: 
+	</para>
+	
+	<note>
+		<para>
+			Para pasar entre los campo en la aplicación debe usar Tabulación o Tabulación + Control  
+		</para>
+	</note>
+	
+	<para>
+	<orderedlist>
+		<listitem>
+			<para>
+				Titulo: en este campo se escribe el titulo correspondiste al problema que preste.
+			</para>
+		</listitem>
+		<listitem>
+			<para>
+				Autor: el nombre de la persona que envía la Nota.
+			</para>
+		</listitem>
+		<listitem>
+			<para>
+				Correo Electrónico: el correo de la persona que envía la nota, de esta forma podrá obtener respuesta de los Técnicos de la comunidad Canaima.   
+			</para>
+		</listitem>
+		<listitem>
+			<para>
+				Documentar Falla: aquí podrá escribir toda la problemática que presente el sistema opertivo, detallando su problema en especifico.
+				<note>
+					<para>
+						Para pasar al siguiente campo en la aplicación debe usar Tabulación + Control  
+					</para>
+				</note>
+			</para>
+		</listitem>
+		<listitem>
+			<para>
+				Selección Datos a Envías. En este campo tendrá tres pestañas las cuales deberá seleccionar  todas las que crea concerniente a la problemática que presente : 
+				<note>
+					<para>
+						Para pasar entre los campos de Dispositivo, información y kernel debe usar las flechas direcionales. Para salir del campo y pasar al siguiente 
+						Control + Tabulación  
+					</para>
+				</note>
+				<itemizedlist>
+					<listitem>
+						<para>
+							Dispositivos : PCI, USB, RAM/SWAP/buffers, Espacio Disco, CPU y Tarjeta Madre.
+						</para>
+					</listitem>
+					<listitem>
+						<para>
+							información del Sistema: Aclaración Gráfica,  Servidor Pantalla, Repositorios, Tabla de partición, Prioridad APT y Interfaces de RED
+						</para>
+					</listitem>
+					<listitem>
+						<para>
+							Kernel: Versión y Modulo. 
+						</para>
+					</listitem>
+				</itemizedlist>
+			</para>
+			
+		</listitem>
+		
+		<listitem>
+			<para>
+				Luego de llenar todo los datos podrá enviar la información a la plataforma, haciendo click en el botón Aceptar.   
 
+			</para>
+		</listitem>
+
+	</orderedlist>
+	
+	</para>
+	
+	<para>	
+		Para poder ver la información enviada solo debe entrar en la  dirección <ulink url="http://notas.canaima.softwarelibre.gob.ve/">http://notas.canaima.softwarelibre.gob.ve/</ulink>
+	</para>
+
+	<caution>
+		<para>
+			Es importante tener en cuenta que, si no posee una conexión a internet no podrá enviar la nota a la plataforma de Canaima.
+		</para>
+
+	</caution>
+	<note>
+		<para>
+			Si desea ver la nota en su sistema solo debe presionar el boton "Ver Documento (No enviar)"
+		</para>
+	</note>
+
+</sect1>
 
 
 <sect1 id="myapp-about"> 
