@@ -1,3 +1,9 @@
+canaima-notas-gnome (4.0-13) stable; urgency=low
+
+  * [6e3044f] Comando lspci -nn , Todos los CheckButton True
+
+ -- Carlos Espinoza <carlosarmikhael@gmail.com>  Tue, 29 Oct 2013 11:15:59 -0430
+
 canaima-notas-gnome (4.0-12) stable; urgency=low
 
   * [d39e2cc] Agregando dirección de .mo al note.py
